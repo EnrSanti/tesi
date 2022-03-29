@@ -1,0 +1,107 @@
+\documentclass[a4paper,11pt]{report} %definisce classe documento e dim font
+	
+	
+	\usepackage{makeidx}
+	
+	\usepackage{subcaption}
+	\usepackage{graphicx} 
+	\graphicspath{ {./imgTesi/} }
+    \title{\textbf{Draft tesi 0.1}}
+    \author{Enrico Santi}
+    \makeindex	
+\usepackage{graphicx}
+\begin{document}
+%per non separare 2 parole da \n -> parola1~parola2
+%specifica dove split parola -> par\-ola
+
+\maketitle
+
+
+\printindex
+
+\clearpage
+%fine pag
+\index{Introduction}
+\section*{Introduction}
+This thesis concerns the study of ...
+\clearpage
+%fine pag
+
+\index{Introduction to Differential Equations}
+\section*{Introduction to Differential Equations}
+
+A differential equation is a relation involving one or more derivatives of an unknown function and the function itself \cite{odeIntro}. The function is referred as "unknown" since solving a differential eqaution (when it is possible) means finding an equation that when substitute to the unkown function itself satisfies relationship.
+
+...............
+\index{Ordinary Differential Equations}
+\section*{Ordinary Differential Equations}
+
+An ordinary differential equation, or ODE, is a kind of differential equation where the unknown function only depends on one independent variable (usually referred as time). The domain of the unknown function is then an interval ICR. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ where t is the independent variable, y the unknown function and F a function from $A \subseteq R^{(k+2)} \rightarrow R$.
+
+...............
+\index{Delay Differential Equations}
+\section*{Delay Differential Equations}
+
+...............
+\index{Dynamical Systems}
+\section*{Dynamical Systems}
+
+...............
+\index{A brief introdution to MatCont}
+\section*{A brief introdution to MatCont}
+
+...............
+
+\index{Extending the graphical user interface of MatCont}
+\section*{Extending the graphical user interface of MatCont}
+
+
+\index{Overview of the current MatCont GUI}
+\subsection*{Overview of the current MatCont GUI}
+
+\index{MatCont Main Window}
+\subsubsection*{MatCont Main Window}
+MatCont presents itself to the user with a monochromatic but rather intuitive interface. 
+The main window presented to the user is divided into three subsections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
+Class shows the user what type of system is currently loaded (only ODE), while
+\emph{Current System} shows the user some basic information about the system itself, such as the name and how the way the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the user what is going to be computed, to give him/her some recall of what the state of the software is. In this section information such as the properties of the inital point (i.e. "inital point type") are displayed.
+Above these three sections a toolbar menu is presented, from here the user load a new system, create, edit delete  and already existing one. He/she can decide the type of the specified initial point (e.g. a point without special properties, an equilibrium etc...), the curve to compute (e.g. an orbit, an equilibrium etc...). He/she can open an output window, both numerical and graphical (i.e. an euclidean plan with two or three axes).
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.500]{imgTesi/mainMatCont.png}
+\caption{The main MatCont window}
+\label{mainMatCont}
+\end{figure}
+
+
+\index{Inserting a new system}
+\subsubsection*{Inserting a new system}
+By pressing on Select, System, New in the toolbar menu the user can have access to a new window called \emph{System} from which MatCont allows to insert a new system. This window presents the user several input fields to be filled in:
+\begin{itemize}
+	\item Name: Allows the user to specify the name of the system. + specifica formato
+    \item Coordinates: Will contain the coordinates in the system + specifica formato
+    \item Parameters: will contain all the parameters used in the system + specifica formato
+    \item Time: will contain an independent variables of on which the equations in the system depend system + specifica formato
+\end{itemize}
+
+There is then a table with radio buttons that specify for each order derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{from window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative (if the Symbolic toolbox is installed in MatLab) symbolically.
+At the bottom of this window a larger text entry window is shown to allow the user to type the system in.
+
+\index{What happens next}
+\paragraph*{What happens next} Let the name of the system be "NewTypedSystem", when the user has correctly inserted all the required data MatCont will create two files under the folder System named NewNewTypedSystem.mat and NewTypedSystem.m.
+They are respectively a script file, and a binary file. The latter will contain a struct with 36 fields describing the system, such as the list of coordinates, the list of parameters, the equations in the system, the dimension of the system (i.e. the number of different coordnates) etc...
+This is the file that will be loaded in order to initalize the fileds of the current struct representing the system when "Edit", or "Load" is pressed. The .mat file on the other hand contains functions such as "fun-eval" and "init" that will be called by MatCont when performing different operations on the system.
+
+\index{Editing an existing system}
+\subsubsection*{Editing an existing system}
+By pressing on Select, System, Load/Edit/Delete System the user will be shown a new window in which he/she can select a system and and an action to perfom on it by pressing the relative button, "Load", "Delete" or "Edit". When "Edit" is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details.
+...............
+
+
+
+
+\bibliography{bibliografia}
+\bibliographystyle{ieeetr}
+\end{document}
+
