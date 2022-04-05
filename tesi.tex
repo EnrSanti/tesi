@@ -1,15 +1,13 @@
 \documentclass[a4paper,11pt]{report} %definisce classe documento e dim font
 	
 	
-	\usepackage{makeidx}
 	
 	\usepackage{subcaption}
 	\usepackage{graphicx} 
 	\graphicspath{ {./imgTesi/} }
-    \title{\textbf{Draft tesi 0.1}}
-    \author{Enrico Santi}
-    \makeindex	
-\usepackage{graphicx}
+	\title{\textbf{Draft tesi 0.1}}
+	\author{Enrico Santi}
+	
 \begin{document}
 %per non separare 2 parole da \n -> parola1~parola2
 %specifica dove split parola -> par\-ola
@@ -17,50 +15,51 @@
 \maketitle
 
 
-\printindex
+\tableofcontents
 
-\clearpage
-%fine pag
-\index{Introduction}
-\section*{Introduction}
-This thesis concerns the study of ...
-\clearpage
+\newpage
 %fine pag
 
-\index{Introduction to Differential Equations}
-\section*{Introduction to Differential Equations}
+\section{Introduction}
+This Thesis concerns an introductory study on differential equations, dynamical systems and how it is possible to study these systems through softwares. In particular the focus is on MatCont and how its graphical interface has been extended to allow users to study dynamical systems decribed by delay differential equations.
+\clearpage
+%fine pag
+
+
+\section{Introduction to Differential Equations}
 
 A differential equation is a relation involving one or more derivatives of an unknown function and the function itself \cite{odeIntro}. The function is referred as "unknown" since solving a differential eqaution (when it is possible) means finding an equation that when substitute to the unkown function itself satisfies relationship.
 
 ...............
-\index{Ordinary Differential Equations}
-\section*{Ordinary Differential Equations}
+\section{Ordinary Differential Equations}
 
 An ordinary differential equation, or ODE, is a kind of differential equation where the unknown function only depends on one independent variable (usually referred as time). The domain of the unknown function is then an interval ICR. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ where t is the independent variable, y the unknown function and F a function from $A \subseteq R^{(k+2)} \rightarrow R$.
 
 ...............
-\index{Delay Differential Equations}
-\section*{Delay Differential Equations}
+\section{Delay Differential Equations}
 
 ...............
-\index{Dynamical Systems}
-\section*{Dynamical Systems}
+\section{The idea behind the discretization algorithm}
+\section{Dynamical Systems}
+
+
+\subsection{Example: Logistic Model}
+\subsection{Example: Predator Prey Model}
 
 ...............
-\index{A brief introdution to MatCont}
-\section*{A brief introdution to MatCont}
-
+\section{A brief introdution to MatCont}
 ...............
+\subsection{The existing documentation}
+Online it is possible to find some guides and tutorials that introduce MatCont to a new user\footnote{https://sourceforge.net/projects/matcont/files/NewestDocumentation/MatContODE/Tutorials7px/}. A manual also exsists that provides more knowledge on how this software works and how it is structured\footnote{https://sourceforge.net/projects/matcont/files/NewestDocumentation/MatContODE/ManualAug2019.pdf}.	
 
-\index{Extending the graphical user interface of MatCont}
-\section*{Extending the graphical user interface of MatCont}
+
+\section{Extending the graphical user interface of MatCont}
 
 
-\index{Overview of the current MatCont GUI}
-\subsection*{Overview of the current MatCont GUI}
+\subsection{Overview of the current MatCont GUI}
 
-\index{MatCont Main Window}
-\subsubsection*{MatCont Main Window}
+
+\subsubsection{MatCont Main Window}
 MatCont presents itself to the user with a monochromatic but rather intuitive interface. 
 The main window presented to the user is divided into three subsections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
 Class shows the user what type of system is currently loaded (only ODE), while
@@ -75,32 +74,84 @@ Above these three sections a toolbar menu is presented, from here the user load 
 \end{figure}
 
 
-\index{Inserting a new system}
-\subsubsection*{Inserting a new system}
+\subsubsection{Inserting a new system}
 By pressing on Select, System, New in the toolbar menu the user can have access to a new window called \emph{System} from which MatCont allows to insert a new system. This window presents the user several input fields to be filled in:
 \begin{itemize}
 	\item Name: Allows the user to specify the name of the system. + specifica formato
-    \item Coordinates: Will contain the coordinates in the system + specifica formato
-    \item Parameters: will contain all the parameters used in the system + specifica formato
-    \item Time: will contain an independent variables of on which the equations in the system depend system + specifica formato
+	\item Coordinates: Will contain the coordinates in the system + specifica formato
+	\item Parameters: will contain all the parameters used in the system + specifica formato
+	\item Time: will contain an independent variables of on which the equations in the system depend system + specifica formato
 \end{itemize}
 
 There is then a table with radio buttons that specify for each order derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{from window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative (if the Symbolic toolbox is installed in MatLab) symbolically.
 At the bottom of this window a larger text entry window is shown to allow the user to type the system in.
 
-\index{What happens next}
-\paragraph*{What happens next} Let the name of the system be "NewTypedSystem", when the user has correctly inserted all the required data MatCont will create two files under the folder System named NewNewTypedSystem.mat and NewTypedSystem.m.
+\paragraph{What happens next?} Let the name of the system be "NewTypedSystem", when the user has correctly inserted all the required data MatCont will create two files under the folder System named NewNewTypedSystem.mat and NewTypedSystem.m \cite{documentazione}. 
 They are respectively a script file, and a binary file. The latter will contain a struct with 36 fields describing the system, such as the list of coordinates, the list of parameters, the equations in the system, the dimension of the system (i.e. the number of different coordnates) etc...
 This is the file that will be loaded in order to initalize the fileds of the current struct representing the system when "Edit", or "Load" is pressed. The .mat file on the other hand contains functions such as "fun-eval" and "init" that will be called by MatCont when performing different operations on the system.
 
-\index{Editing an existing system}
-\subsubsection*{Editing an existing system}
+\subsubsection{Editing an existing system}
 By pressing on Select, System, Load/Edit/Delete System the user will be shown a new window in which he/she can select a system and and an action to perfom on it by pressing the relative button, "Load", "Delete" or "Edit". When "Edit" is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details.
-...............
+	...............
 
 
+\subsection{Overview of the extended MatCont GUI}
+
+From the end user prespective the differences with the original MatCont GUI can be found when inserting or editing a system. These differences were intended to be both as locolaized as possible and coherent with MatCont's GUI style. The latter point has been achieved, the first one (i.e. keeping the differences localized in few specifc areas) has been satisfied only from the end user point of view.\newline
+While the graphical differences in the interface can be circumscribed in two main windows, the logic and behaviour of MatCont was indeed modified in several different places. This has been proven necessary to be able to fully support the usage of existing MatCont's components and functionalities and the new extension. This idea is fully expressed by the [citazione img] image
+	
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.80]{imgTesi/placeholderstack.png}
+\caption{Comparison between the initial idea and the implementation }
+\label{mainMatCont}
+\end{figure}
+
+\subsubsection{Inserting a new ODE or DDE system}
+When the user now selects the command to insert a new system will be presented the [citazione a figura] window. From [citazione a figura] we can see the interface did mantain its overall structure, indeed it would have been non useful to create a new interface from scratch, mainly for two reasons, the interface resulted to be already well structured and it would have been less easy for user that have used MatCont for years to adapt to a new interface. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.350]{imgTesi/insertingPredatorPrey.png}
+\caption{MatCont window to insert a DDE}
+\label{mainMatCont}
+\end{figure}
+
+Form the end user prespective only a single line has changed, in this line, a dropdown menu lets the user select the type of system he/she wants to insert.
+If the option "ODE" is chosen then nothing except this first line will be changed, on the other end if "DDE" is chosen a subwindow asking the user to input two values will appear.
 
 
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{imgTesi/parametri.png}
+\caption{MatCont window to insert a DDE}
+\label{mainMatCont}
+\end{figure}
+
+\newpage
+\subsubsection{Editing an ODE or DDE system}
+The view the user is presented when he/she selects a system to edit is the same of when a new system is insered, with the exception that now, the dropdown menu that would allow the user to select the system type is locked on the type of the system that is being modified. \newline
+When the system considered is then a 'legacy system' or an ODE system insered with the exteded version of MatCont, the user will be presented the same system details as in the original MatCont that could be modified (i.e. the name, the coordinates, the parameters, the time, and the equations themselves). \newline
+On the other hand, if the system considered is an "ODE" one, the interface will display (as when inserting a new "DDE" system) a button that will show the panel containing the delays used in the system and the number of discretization points chosen. These two values can be modified along side all the detaisl discussed above for the "ODE" systems.
+
+
+\subsection{The full legacy support}
+
+As written in [inserire point qui] the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont. One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the filed denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to "ODE", since in regular matcont only these types of systems are allowed. From now everything will work the same as for "ODE" systems insered with this versrion of the software.
+
+\subsection{A brief look at the development process}
+The development process followed some development principles presented in the Agile Manifesto \cite{agileManifesto}. Focus was especially put on the delivery of working software frequently and on the iterative development process. The evolution of the software indded went through these intermediate phases:
+
+
+\begin{itemize}
+	\item Development of the extension of the GUI (without any behaviour attached).
+	\item Integration of the structure used by MatCont to memorize systems in files and integration of the behaviour for the extended interface.
+	\item Adjustment of the preprocessing done on the data insered by the user before passing it to the numerical algorithms (at this point the numerical part of MatCont, such as integration or the continuation of an equilibrium, was working correctly with DDE systems).
+	\item Integration of MatConts' scripts related to the memorization of the computed data (now the plotting part of matcont worked correctly with DDE systems).
+\end{itemize}
+
+Each intermediate version was followed by a small testing phase, consisting primary of Unit testing and a code documentation phase. 
+\clearpage
 \bibliography{bibliografia}
 \bibliographystyle{ieeetr}
 \end{document}
