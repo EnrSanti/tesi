@@ -3,6 +3,15 @@
 	\usepackage{subcaption}
 	\usepackage{graphicx} 
 	\usepackage{hyperref}
+	
+	\usepackage{titlesec}
+
+	\usepackage{anyfontsize}
+
+		\titleformat{\chapter}[block]
+	  {\normalfont\LARGE\bfseries}{\hspace*{\fill}{\fontsize{60pt}{96pt}\selectfont \underline {$\overline	{{\thechapter}}$}}}{0.0em\newline\newline}{\LARGE}
+	\titlespacing*{\chapter}{0pt}{-35pt}{10pt}
+	
 	\graphicspath{ {./imgTesi/} }
 	\title{\textbf{Draft tesi 0.1}}
 	\author{Enrico Santi}
@@ -14,52 +23,99 @@
 
 \maketitle
 
+\thispagestyle{empty}
+\vspace*{-15.5em}
+\hspace*{-14.5em}
+\includegraphics[scale=1.05]{frontespizio.pdf}
+
+\clearpage
+\setcounter{page}{1}
 
 \tableofcontents
 
+
+
 \newpage
 %fine pag
-\section{Introduction}
+\chapter{Introduction}
 This Thesis concerns an introductory study on differential equations, dynamical systems and how it is possible to study these systems through existing softwares. In particular the focus is on MatCont and how its graphical interface has been extended to allow users to study dynamical systems decribed by delay differential equations via a more user-friendly interface.
 \clearpage
 %fine pag
 
 
-\section{Introduction to Differential Equations}
+\chapter{Introduction to Differential Equations}
 
-A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred as \emph{unknown} since solving a differential eqaution (when it is possible) means finding class of equations (e.g. queations that differ for a constant term) where each equation when substitute to the \emph{unknown} function itself satisfies relationship in an interval $I \subseteq R$.
+A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred as \emph{unknown} since solving a differential eqaution (when it is possible) means finding class of equations (e.g. queations that differ for a constant term) where each equation when substitute to the \emph{unknown} function itself satisfies relationship in an interval $I \subseteq R$. \newline
+A first distinction among differential equations is done on the number of indepentent variables the \emph{unknown} fucntion has, if these variables are more than one then partial differential eqautions are being considered. On the other hand if the independent variable is only one, the differential eqaution is called an ordinary differential equation. \newline
+In the following paragraphs only the latter case of differential equation will be taken into account. \newline
+Another distinction can be done on whether the relation is dependent not only on the functions but also on the variables of the functions or not. If the case is the latter then the differential equation is said to be autonomous.\newline
+The first example below shows an autonomous ordinary differential eqaution while the second example represents a non-automous one:
 
-...............
-...............
-...............
-...............
-
-\section{Ordinary Differential Equations}
-
-An ordinary differential equation, or ODE, is a kind of differential equation where the \emph{unknown} function only depends on one independent variable (usually referred as time). The domain of the \emph{unknown} function is then an interval $I \subset R$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, y the \emph{unknown} function, $ y^{(i)}(t) $ the i-th derivative of $y$ and $F$ a function from $A \subseteq R^{(k+2)} \rightarrow R$.
-
-...............
-...............
-...............
-...............
-
-\subsection{Some examples}
-
-An example of a simple ODE is represented by the logistic equation:  $y'(t)=r*y(t)*(1-y(t)) $ where $r$ is a parameter. This equation is a non linear autonomous first order ODE which can be solved analyitically by separation of variables.
+\begin{center}
+$y'(t)+y(t)+1=0$
+\end{center}
+\begin{center}
+$y'(t)+y(t)+t=0$
+\end{center}
 
 ...............
 ...............
 ...............
+
+\chapter{Ordinary Differential Equations}
+
+An ordinary differential equation, or ODE, is a kind of differential equation where the \emph{unknown} function only depends on one independent variable (usually referred as time). The domain of the \emph{unknown} function is then an interval $I \subset R$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, y the \emph{unknown} function, $ y^{(i)}(t) $ the i-th derivative of $y$ and $F$ a function from $A \subseteq R^{(k+2)} \rightarrow R$. \newline
+The maximum degree of the derivative of a differential equation is referred as the degree of the equation.
+The first example below shows a first oder differential eqaution\footnote{A first oder differential eqaution is a differential equation of degree equal to one, a second, third, forth and so on order differential equation will present a degree respectively of two, three, four and so on} while the second example represents a second order one:
+
+\begin{center}
+$y'(t)+1=0$
+\end{center}
+\begin{center}
+$y''(t)+y(t)+1=0$
+\end{center}
+...............
+...............
+...............
 ...............
 
-\subsection{Geometric interpretation for first order ODEs}
+\section{Intial value problem}
+
+\section{Some examples}
+
+A simple example of an ODE is represented by the logistic equation:  \begin{center}$y'(t)=r*y(t)*(1-y(t)) $ \end{center}  This equation\footnote{Where $r$ is a parameter.} is a non linear autonomous first order ODE which can be solved analyitically by separation of variables.
 
 ...............
 ...............
 ...............
 ...............
+\section{Geometric interpretation for first order ODEs}
+As in many other mathematical fields a geometrical interperatation associated to the concepts helps to obtain a better understanding of the topic.
+One of the first geometric concept linked to differential equations is the Phase diagram.	This diagram, in relation to a given ODE presents on one of it's axis the independent variable, and on the other the \emph{unknown} fucntion. What this diagram shows is a vector field\footnote{i.e. an assignment of a vector to each point in a given space}, where in each point, the slope of the corresponding vector represent the value the first derivative of the \emph{unknown} fucntion.\newline
+This becomes really clear when the definition of derivative is recalled, which can be informally described as a function that associates to each point of a derivable function the angular coefficient of the tangent vector in that point.\newline
 
-\section{Delay Differential Equations}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.300]{imgTesi/vecFieldAut.png}
+\caption{The phase plane of $y'(x)=y(x)+1$, with one solution plotted}
+\label{fig:autonomous}
+\end{figure}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.300]{imgTesi/vecFieldNonAut.png}
+\caption{The phase plane of $y'(x)=y(x)+x$, with one solution plotted}
+\label{fig:mainMatCont2}
+\end{figure}
+
+The two phase planes and the solution of the respective initial value problem (with $y(0)=1$) epmphasize the geometrical difference between the phase plane of an autonomous ODE Figure \ref{fig:autonomous}, where the vector associted to a given value of x remains the same for every value of y and the phase plane of a non-autonomous ODE, that doesn't present this property.
+
+...............
+...............
+...............
+...............
+...............
+
+\chapter{Delay Differential Equations}
 
 ...............
 ...............
@@ -73,56 +129,60 @@ An example of a simple ODE is represented by the logistic equation:  $y'(t)=r*y(
 ...............
 ...............
 
-\section{Dynamical Systems}
+\chapter{Dynamical Systems}
+
 A dynamical system is a system whose state varies as the time varies \cite{arrowsmith1990introduction} inside a phase space. A phase space can be informally described as all the values the dynamical system considered can assume as the time progesses. These systems are used to model the evolution of a phenomenon.\newline
 A fist major distinction of these systems is related to how the time is considered, if it is considered as a series of discrete intervals (i.e. $ t \in N $) then these are discrete dynamical systems, on the other hand if the time is considered continous (i.e. $ t \in R $) then these are continous dynamical systems.
-
+As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems is the relationship between $\delta x/\delta t$ and $dx/dt$.
 ...............
 ...............
 ...............
 ...............
 
 
-\subsection {Discrete dynamical systems}
+\section {Discrete dynamical systems}
+\cite{brin2002introduction}
+...............
+...............
+...............
+...............
+
+\section {Continuos dynamical systems}
+
+A continous dynamical system can be defined by a set of times $T \subset R$, a state space $X$ and a family of maps $T(t): X \rightarrow X$ such that $T(0) = Ix$ (where Ix is the identity map) and for all $ times t1,t2 \in T$   $ T(t1+t2)=T(t1) \circ T(t2)$ [citazione note Liessi].
+...............
+...............
+...............
+...............
+\section {Bifurcation theory}
+\subsection{Example: Logistic Model}
 
 ...............
 ...............
 ...............
 ...............
 
-\subsection {Continuos dynamical systems}
+\subsection{Example: Predator Prey Model}
 
 ...............
 ...............
 ...............
 ...............
 
-\subsubsection{Example: Logistic Model}
+\chapter{A brief introdution to MatCont}
 
-...............
-...............
-...............
-...............
-
-\subsubsection{Example: Predator Prey Model}
-
-...............
-...............
-...............
-...............
-
-\section{A brief introdution to MatCont}
-
-...............
-...............
-...............
-...............
-\subsection{Overview of the current MatCont GUI}
+MatCont is a software that provides functions and a graphic user interface to study the behaviour of dynamical systems, particuralry what concerns the bifurcations\cite{documentazione}.
+\newline
+The GUI and functions provided are independent, since the functionalities of MatCont can be used from the MatLab command line. 
+\newline
+In the following paragraphs the main aspects of MatCont's GUI and how the user could interact with it will be discussed, since they should be kept in consideration when the extension part will be described.
 
 
-\subsubsection{MatCont Main Window}
+\section{Overview of the current MatCont GUI}
+
+\subsection{MatCont Main Window}
 MatCont presents to the user a monochromatic but rather intuitive interface. 
-The main window presented to the user is divided into three subsections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
+The main window presented to the user is divided into three sections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
 \emph{Class} shows the user what type of system is currently loaded (only ODE), while
 \emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section information such as the properties of the inital point (i.e. "inital point type") are displayed.
 Above these three sections a toolbar menu is presented, from here the user load a new system, create or edit delete an already existing one. The type of the specified initial point can be selected (e.g. a point without special properties, an equilibrium etc...), the curve to compute can be chosen (e.g. an orbit, an equilibrium etc...). The user can also open an output window, both numerical and graphical (i.e. an euclidean plan with two or three axes).
@@ -134,7 +194,7 @@ Above these three sections a toolbar menu is presented, from here the user load 
 \label{fig:mainMatCont2}
 \end{figure}
 
-\subsubsection{Inserting a new system}
+\subsection{Inserting a new system}
 By pressing on Select, System, New in the toolbar menu the user can have access to a new window called \emph{System} from which MatCont allows to insert a new system. This window presents the user several input fields to be filled in:
 \begin{itemize}
 	\item Name: Allows the user to specify the name of the system. 
@@ -153,28 +213,29 @@ They are respectively a script file, and a binary file. The latter will contain 
 This is the file that will be loaded in order to initalize the fileds of the current struct representing the system when "Edit", or "Load" is pressed. The .mat file on the other hand contains functions such as "fun-eval" and "init" that will be called by MatCont when performing different computations on the system.
 
 \begin{figure}[htp]
-\centering
-\includegraphics[scale=0.380]{imgTesi/matcont_system_state_diagram.jpg}
+\hspace*{-4em}
+\includegraphics[scale=0.40]{imgTesi/matcont_system_state_diagram.jpg}
 \caption{The state diagram regarding the insertion of a new system}
 \label{stateDiagram}
 \end{figure}
 
 \newpage
-\subsubsection{Editing an existing system}
+\subsection{Editing an existing system}
 By pressing on Select, System, Load/Edit/Delete System the user will be shown a new window in which a system and an action to perfom on it can be selected by pressing the relative button, "Load", "Delete" or "Edit". \newline 
 When "Edit" is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press ok to confirm what done, at this point both the .m and .mat file will be overwritten with the new information and the system will be reloaded form them.
-\subsection{The existing documentation}
+\section{The existing documentation}
 Online it is possible to find some guides and tutorials that introduce MatCont to a new user\footnote{https://sourceforge.net/projects/matcont/files/NewestDocumentation/MatContODE/Tutorials7px/}. A manual also exsists that provides more knowledge on how this software works and how it is structured\footnote{https://sourceforge.net/projects/matcont/files/NewestDocumentation/MatContODE/ManualAug2019.pdf}.	
+\newline
+On the other hand the lack of code documentation, such as comments or method contracts, especially in some regions of the code can make reading, understanding and subsequentially modifying the software quite a difficult task.
+
+\chapter{Extending the graphical user interface of MatCont}
 
 
-\section{Extending the graphical user interface of MatCont}
 
 
 
 
-
-
-\subsection{Overview of the extended MatCont GUI}
+\section{Overview of the extended MatCont GUI}
 
 From the end user prespective the differences with the original MatCont GUI can be found when inserting or editing a system. These differences were intended to be both as locolaized as possible and coherent with MatCont's GUI style. The latter point has been achieved, the first one (i.e. keeping the differences localized in few specifc areas) has been satisfied only from the end user point of view.\newline
 While the graphical differences in the interface can be circumscribed in two main windows, the logic and behaviour of MatCont was indeed modified in several different places. This has been proven necessary to be able to fully support the usage of existing MatCont's components and functionalities with the new extension. This idea is fully expressed by Figure \ref{fig:stackComparison}.
@@ -186,9 +247,9 @@ While the graphical differences in the interface can be circumscribed in two mai
 \label{fig:stackComparison}
 \end{figure}
 
-\subsubsection{The DDE syntax}
+\subsection{The DDE syntax}
 
-How the user can enter a DDE equation by typing it in a natural syntax (i.e. a syntax similar to how the user would write the system on paper) was a major point during the extension process, since the main goal was to create a user-friendly interface to study DDE systems and if the syntax would have been complex and un-natural the goal wouldn't have been fullfilled.
+How the user can enter a DDE equation by typing it in a natural syntax (i.e. a syntax similar to how the user would write the system on paper) was a major point during the extension process, since the main goal was to create a user-friendly interface to study DDE systems and if the syntax would have been complex and un-\ref{fig:insertingWindow}.natural the goal wouldn't have been fullfilled.
 \newline
 Creating a method that was able to recognise the syntax was a process carried out during the first phase of the development and extended later on. It involved the usage of regular grammars.
 \newline
@@ -197,7 +258,7 @@ An equation like $y'(t)=r*y(t)*(1-y(t-\tau))$ could be written in the appropriat
 \newline
 In the same way a state dependent equation like [inserire esempio] could be written as [sintassi matcont esempio].
 
-\subsubsection{Inserting a new ODE or DDE system}
+\subsection{Inserting a new ODE or DDE system}
 
 By selecting the command to insert a new system in the new version of MatCont  the user will be presented the window in Figure \ref{fig:insertingWindow}. From Figure \ref{fig:insertingWindow} we can see the interface did mantain its overall structure, indeed it would have been counter intuitive to create a new interface from scratch, mainly for two reasons, the interface resulted to be already well structured and it would have been harder for users that had already used MatCont for years to adapt to a new interface. 
 
@@ -226,29 +287,29 @@ The key idea used is the same as principle used when refactoring a method, the m
 
 
 
-\subsubsection{Editing an ODE or DDE system}
+\subsection{Editing an ODE or DDE system}
 The view the user is presented when a system to edit is selected is still the same of when a new system is insered, with the exception that now, the dropdown menu that would allow the user to select the system type is locked on the type of the system that is being modified. \newline
 When the system considered is a 'legacy system', meaning a system previously insered with the original version of MatCont, or an ODE system insered with the exteded version of MatCont, the user will be presented the same system details as in the original MatCont that could be modified (i.e. the name, the coordinates, the parameters, the time, and the equations themselves). \newline
 On the other hand, if the system considered is an "DDE" one, the interface will display (as when the insertion of a new "DDE" system is performed) a button that when pressed will show the panel containing the number of discretization points chosen. This value can be modified along side all the details discussed above for the "ODE" systems.
 
 
-\subsection{The full legacy support}
+\section{The full legacy support}
 
-As written in  \hyperref[sec:additionalFields]{this section} the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont. \newline
+As written in  \hyperref[sec:additionalFields]{section 7.1.2} the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont. \newline
 One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the filed denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to "ODE", since in regular MatCont only these types of systems are allowed. From this point in the code everything will work the same as for "ODE" systems insered with the extended versrion of the software.
 \newline
 \newline
 This compatibility with previously created systems can easily be understood from Figure \ref{fig:stateDiagramNew} which describes the states the extended MatCont has when inserting the new system. Comparing it with [inserire img state previous] the new states are represented by a green rectangle, and it can be observed that the overall structure remains similar while special states for managing the new cases are added. This modus operandi lead also the extension for the other MatCont's components involved.
 
 \begin{figure}[htp]
-\centering
-\includegraphics[scale=0.40]{imgTesi/matcont_system_state_diagramNEW.jpg}
+\hspace*{-3em}
+\includegraphics[scale=0.45]{imgTesi/matcont_system_state_diagramNEW.jpg}
 \caption{The state diagram regarding the insertion of a new system in the extended MatCont}
 \label{fig:stateDiagramNew}
 \end{figure}
 \newpage
 
-\subsection{A brief look at the development process}
+\section{A brief look at the development process}
 The development process followed some of the development principles presented in the Agile Manifesto \cite{agileManifesto}. Focus was especially put on the delivery of working software frequently and on the iterative development process. The evolution of the software indeed went through these major intermediate phases:
 
 
@@ -259,8 +320,16 @@ The development process followed some of the development principles presented in
 	\item Integration of MatConts' scripts related to the memorization of the computed data (the plotting part of matcont worked correctly with DDE systems).
 	\item Extension of the preprocessing and parsing phase done on the input to recognise state dependent equations. 
 \end{itemize}
+Each intermediate version was followed by a small testing phase, consisting primary of Unit testing and a code documentation phase. Towards the ending phases of the development some system testing (e.g. higher level testing aiming to check the quality of the whole system \cite{softwareTesting}) took place. These last tests were carried out with ad-hoc dynamical systems and by creating, studying and comparing the results of some of the examples studied with DDE-BifTool\footnote{A software for the bifurcation analysis of delay-differential equations} that can be found on its reference webpage. page\footnote{http://ddebiftool.sourceforge.net/demos/index.html}.  
 
-Each intermediate version was followed by a small testing phase, consisting primary of Unit testing and a code documentation phase. Towards the ending phases of the development some system testing (e.g. higher level testing aiming to check the quality of the whole system \cite{softwareTesting}) took place. 
+\begin{figure}[htp]
+\hspace*{-5em}
+\includegraphics[scale=0.38]{imgTesi/comparisonMerged.png}
+\caption{The qualitative comparison between DDE-Biftool curve and Matcont's curve }
+\label{fig:curveComparison}
+\end{figure}
+\newpage
+
 \clearpage
 \bibliography{bibliografia}
 \bibliographystyle{ieeetr}
