@@ -51,10 +51,10 @@ The work done and described in Chapter [7] will also be presented at the \emph{1
 
 \chapter{Introduction to Differential Equations}
 
-A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred as \emph{unknown} since solving a differential equation (when it is possible) means finding a class of equations (e.g. equations that differ for a constant term) where each equation when substituted to the \emph{unknown} function itself satisfies relationship in an interval $I \subseteq R$. \newline
+A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred as \emph{unknown} since solving a differential equation (when it is possible) means finding a class of equations (e.g. equations that differ for a constant term) where each equation when substituted to the \emph{unknown} function satisfies relationship in an interval $I \subseteq R$. \newline
 A first distinction among differential equations is done on the number of independent variables the \emph{unknown} function presents, if these variables are more than one then partial differential equations are being considered. On the other hand if the independent variable is only one, the differential equation is called an ordinary differential equation. \newline
 In the following paragraphs only the latter case of differential equation will be taken into account. \newline
-Another distinction can be made on whether the relation is dependent not only on the functions but also on the variables of the functions or not. If the case is the latter then the differential equation is said to be autonomous.\newline
+Another distinction can be made on whether or not the relation describing the equation depends not only on the function but also on the independent variables of the function. In the latter case the differential equation is said to be \emph{autonomous}.\newline
 The first example below shows an autonomous ordinary differential equation while the second example represents a non-autonomous one:
 
 
@@ -66,10 +66,13 @@ $y'(t)+y(t)+t=0$
 \end{center}
 
 A more concrete difference concerning these two kinds of ODEs is presented in Paragraph \ref{geometric}. 
+\newline
+Another important distinction is on linear or non-linear differential equations. Linear differential equations can be described by a linear polynomial where the variables are the unknown functions (i.e. linear differential equations don't present any unknown function to some power).
+\textcolor{red}{unire capitoli 1 e 2?}
 
 \chapter{Ordinary Differential Equations}
 
-An ordinary differential equation, or ODE, is a kind of differential equation where the \emph{unknown} function only depends on one independent variable (usually referred to as time). The domain of the \emph{unknown} function is then an interval $I \subset R$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, y the \emph{unknown} function, $ y^{(i)}(t) $ the i-th derivative of $y$ and $F$ a function from $A \subseteq R^{(k+2)} \rightarrow R$. \newline
+An ordinary differential equation, or ODE, is a kind of differential equation where the \emph{unknown} function only depends on one independent variable (usually referred to as time), the domain of the unknown function is then an interval $I \subset R$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, y the unknown function, $ y^{(i)}(t) $ the i-th derivative of $y$ and $F : A \subseteq R^{(k+2)} \rightarrow R$. \newline \newline
 The maximum degree of the derivative of a differential equation is referred to as the order of the equation.
 The first example below shows a first order differential equation\footnote{A first order differential equation is a differential equation of degree equal to one, a second, third, forth and so on order differential equation will present a degree respectively of two, three, four and so on} while the second example represents a second order one:
 
@@ -97,38 +100,39 @@ z'(t)+y(t)+1=0
 \end{equation}
 
 \subsection{Intial value problem}
-As written in the introduction, solving a differential equation or a system of equations (i.e. looking for the General solution) means finding a class/family of equations, it may be required though to find a specific solution (i.e. a single equation or system that satisfies the relationship with some initial conditions in the domain of the \emph{unknown} function).
+As written in the introduction, solving a differential equation or a system of equations (i.e. looking for the \emph{general} solution) means finding a class/family of equations, it may be required though to find a specific solution (i.e. a single equation or system that satisfies the relationship with some initial conditions in the domain of the unknown function).
 The initial value problem for a given equation can be viewed as a system containing the differential equations considered and $n$ additional equations that specify the initial conditions where $n$ is the order of the equation.
 
 For what concerns the properties of the IVP the following statement from \cite{chicone} can be cited: "Every initial value problem has a unique solution that is smooth with respect to initial conditions and parameters".
+%{inserire: non verrà ripotata la dimostrazione di esistemza e unicità o un maggiore formalismo}
 
 \section{Geometric interpretation for first order ODEs}
-As in many other mathematical fields a geometrical interpretation associated with the concepts helps to obtain a better understanding of the topic.
-One of the first geometric concepts linked to differential equations is the Trajectory diagram.    This diagram, in relation to a given ODE, presents on one of its axis the independent variable, and on the other the \emph{unknown} function. What this diagram shows is a vector field\footnote{i.e. an assignment of a vector to each point in a given space}, where in each point, the slope of the corresponding vector represent the value the first derivative of the \emph{unknown} function.\newline
+As in many other mathematical fields a geometrical interpretation associated with the concepts studied helps to obtain a better understanding of the topic.
+One of the first geometric concepts related to differential equations is the Trajectory diagram. This diagram, in relation to a given ODE, presents on one of its axis the independent variable, and on the other the unknown function. What this diagram shows is a vector field\footnote{i.e. an assignment of a vector to each point in a given space}, where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point.\newline
 This becomes really clear when the definition of derivative is recalled, which can be informally described as a function that associates to each point of a derivable function the angular coefficient of the tangent vector in that point.\newline
 
 
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.300]{imgTesi/vecFieldAut.png}
-\caption{The trajectory diagram of $y'(x)=y(x)+1$, showing one solution}
+\caption{The trajectory diagram of $y'(x)=y(x)+1$, showing one solution.}
 \label{fig:autonomous}
 \end{figure}
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.300]{imgTesi/vecFieldNonAut.png}
 \caption{The trajectory diagram of $y'(x)=y(x)+x$, showing one solution}
-\label{fig:mainMatCont2}
+\label{fig:nonautonomous}
 \end{figure}
 
 
-The two trajectory diagrams and the solution of the respective initial value problem (with $y(0)=1$) emphasise the geometrical difference between the trajectory of an autonomous ODE Figure \ref{fig:autonomous} and the trajectory of a non-autonomous ODE. In the first case the vector associated to a given point $(x_k,y(x_k))$ remains the same for every other value point $(x_l,y(x_k))$, while the second diagram doesn't present this property. \label{geometric}
+The two trajectory diagrams in Figure \ref{fig:autonomous} and \ref{fig:nonautonomous} showing the solution of the respective initial value problem (with $y(0)=1$) emphasise the geometrical difference between the trajectory of an autonomous ODE Figure \ref{fig:autonomous} and the trajectory of a non-autonomous ODE. In the first case the vector associated to a given point $(x_k,y(x_k))$ remains unchanged for every other point $(x_i,y(x_k))$, while the second diagram doesn't present this property. \label{geometric}
 \newline
 The geometric interpretation allows to quantitative study an ODE or a system of ODEs without analytically solving them, giving insights on the problem \cite{chicone}.
-For what concerns systems of autonomous ordinary differential equations usually the phase or orbit plane is presented, this plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
+For what concerns systems of autonomous ordinary differential equations usually also the \emph{phase} or \emph{orbit} plane is presented, this plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
 The phase diagram can also be plotted for an autonomous ODE, but this will result in a one dimensional euclidean plane.\newline
 \newline
-From the phase plane of some systems can be present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively called a \emph{periodic orbit} and a \emph{stable point} or an \emph{equilibrium}. In Chapter 5 the related concepts of stability and bifurcation will be briefly discussed. \cite{chicone}
+	The phase plane of a given systems (with proper initial conditions) can present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred as a \emph{periodic orbit} and a \emph{stable point} or an \emph{equilibrium}. In Chapter [5] the related concepts of stability and bifurcation will be briefly discussed \cite{chicone}.
 
 \section{An example}
 
@@ -140,7 +144,7 @@ y'(t)=r*y(t)
  
 This equation\footnote{Where $r$ is a parameter.} is a linear autonomous first order ODE which can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)*b(y)$}.\newline
 The general solution of the equation is $y(t)=y_0*e^{(r*t)}$ where $y_0$ is the initial value chosen for $y(t_0)$.\newline
-An equilibrium, so a solution constant on the domain, for the equation (regardless the value of the parameter r) is obtained with the value $y_0=0$. Plotting the solution of the relative IVP (with different values of r) will always result in a straight line on the trajectory plane.
+An equilibrium, a solution constant on the domain, for the equation (regardless the value of the parameter r) is obtained with the initial value $y_0=0$. Plotting the solution of the relative IVP (with different values of r) will always result in a straight line on the trajectory plane.
 
 \chapter{Delay Differential Equations}
 \cite{diekmann2012delay}
@@ -158,14 +162,16 @@ An equilibrium, so a solution constant on the domain, for the equation (regardle
 
 \chapter{Dynamical Systems}
 
-A dynamical system is a system whose state varies as the time varies \cite{arrowsmith1990introduction} inside a phase space. A phase space can be informally described as all the values the dynamical system considered can assume as the time progresses. These systems are used to model the evolution of a phenomenon.\newline
-A fist major distinction of these systems is related to how the time is considered, if it is considered as a series of discrete intervals (i.e. $ t \in N $) then these are discrete dynamical systems, on the other hand if the time is considered continuous (i.e. $ t \in R $) then these are continuous dynamical systems.
-As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems is the relationship between $\delta x/\delta t$ and $dx/dt$.
 
-\textcolor{red}{
-...............
-...............
-...............}
+A dynamical system is a system whose state varies inside a \emph{phase space} as the time changes \cite{arrowsmith1990introduction}. A phase space can be informally described as all the values (describing the state) the dynamical system considered can assume as the time progresses. 
+How the state of the system evolves with time is describled by a family of functions refernced as \emph{evolution operators} presenting two properties.
+\newline
+A dynamical system can the described as a triple $\{T,X,\phi^t\}$ where the first element T is the time set, X is the state space and $\phi^t$ is the family of evolution operators depending on $t \in T$, $\phi^t : X \rightarrow X$ satisfying $\phi^0=id$ and $\phi^{t+s}=\phi^t \circ \phi^s$ where id represents the identity function mapping each state to itself \cite{kuznetsov}.
+%continua: The first property of the evolution operators 
+\newline
+A fist major distinction of these systems is related to the time set considered, if it is considered as a series of discrete intervals (i.e. $ T \subset N_0 $) then these are discrete dynamical systems, on the other hand if the time is considered continuous (i.e. $ T \subset R $) then these are continuous dynamical systems.
+As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems recalls the relationship between $\delta x/\delta t$ and $dx/dt$. \textcolor{red}{è scrito correttamente?}\newline
+These systems are used to model the evolution of a phenomenon, and find application in several fields, from engineering to biology.\newline
 
 
 \section {Discrete dynamical systems}
@@ -177,7 +183,7 @@ As described in \cite{MEERSCHAERT2013115} the relationship between discrete and 
 
 \section {Continuos dynamical systems}
 
-A continuous dynamical system can be defined by a set of times $T \subset R$, a state space $X$ and a family of maps $T(t): X \rightarrow X$ such that $T(0) = Ix$ (where Ix is the identity map) and for all $ times t1,t2 \in T$   $ T(t1+t2)=T(t1) \circ T(t2)$ \textcolor{red}{[citazione }.
+
 
 \textcolor{red}{
 ...............
@@ -185,14 +191,13 @@ A continuous dynamical system can be defined by a set of times $T \subset R$, a 
 ...............}
 \section {Stability and Local bifurcations}
 
-The idea of stability of a solution is both informally and rigorously described in \cite{chicone}, the latter can be defined as: a solution for a differential equation is stable whether other solutions close to the solution considered remain relatively close.
+The idea of stability of a solution is both rigorously and intuitively described in \cite{chicone}, the latter can be defined as: a solution for a differential equation is stable whether other solutions close to the solution considered remain relatively close.
 \newline\newline
 When taking into consideration systems depending on one or more parameters such as \ref{malthusEquation} it can be studied how changes in the value of a single parameter affect the solution of the system itself.
 The graph showing how changes in the parameter change the (general) solution is the \emph{bifurcation diagram} \cite{chicone} and it can be represented as an euclidean plane presenting on an axis the parameter chosen for the bifurcation analysis and on the other axis the coordinates for the orbit diagram of the system.
 \newline
-Depending on which aspect of the system's solution changes bifurcation points can be classified into different classes, such as:
+Depending on which aspect of the system's solution changes, bifurcation points can be classified into different classes, such as:
 
- 
 \begin{itemize}
     \item Saddle-node bifurcation point: A value of the considered parameter at which one or more equilibria in the solution arise or disappear.  
     \item Transcritical bifurcation point: A value of the considered parameter at which one or more equilibria in the solution switches stability.
@@ -290,6 +295,7 @@ The capabilities of the extended MatCont version (i.e. what systems of different
 The systems that can be studied with MatCont now include all the previous ODE systems (referred in later paragraphs as \emph{legacy systems}) as well as DDE systems with one or more discrete delays, such as $y'(t)=\beta*y(t-TAU)/(1+y(t-TAU)^n)-\gamma*y(t)$\footnote{The Mackey-Glass equation} and distributed delays as for example $y'(t)=\int_{-1}^{0} ky(t+z) dz$.
 \newline
 During the development process some choices were made to allow the extended system to further be extended easily in order to accept other families of DDEs, such as state dependent DDEs and renewal equations.
+\textcolor{red}{da completare man mano che si evolve il sw}
 \newpage
 \section{Overview of the extended MatCont GUI}
 
@@ -313,7 +319,7 @@ Creating a method that was able to recognise the syntax was a process carried ou
 An equation like $y'(t)=r*y(t)*(1-y(t-\tau))$ could be written in the appropriate window (\ref{systemWindow}) by typing $y'=r*y*(1-y[t-TAU])$ where TAU is a parameter representing $\tau$ \label{tau}( since only ASCII characters are allowed).
 \newline
 In later development stages distributed delay differential equations were added to the equations supported by the software.\newline An equation like $y'(t)=r* \int_{-\tau}^{0} -y(t-delay)\,delay $ can be inserted by typing $y'=r * \backslash int\_\{-TAU\}    \widehat {} \{0\}\{ -y[t-delay] \} \{ delay \}$.
-The syntax used to insert integrals is very similar to the syntax used in LateX.
+The syntax used to insert integrals is very similar to the syntax used in \LaTeX.
 The $\backslash int\_$ marks the beginning of the integral, then four pairs of curly braces delimit respectively the first and second integration extreme, the function to integrate and the integration variable. \newline
 In the same way a state dependent equation like [inserire esempio] could be written as [sintassi matcont esempio].
 
@@ -324,22 +330,22 @@ By selecting the command to insert a new system in the new version of MatCont  t
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.350]{imgTesi/insertingPredatorPrey.png}
-\caption{MatCont window to insert a DDE}
+\caption{MatCont's window to insert a DDE}
 \label{fig:insertingWindow}
 \end{figure}
 
 From the end user perspective only a single line has changed, in this line, a dropdown menu lets the user select the type of system to be inserted.
-If the option "ODE" is chosen then nothing except this first line will be changed, on the other end if "DDE" is chosen a subwindow asking the user to input an additional parameter will appear.
-All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$\ref{tau}) had to be specified in the subwindow, alongside the number of equations discretizing the system. \newline
+If the option "ODE" is chosen then nothing except this first line will be changed, on the other end if "DDE" is chosen a subwindow asking the user to input an additional parameter will appear (the degree of the collocation polynomial).
+All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$ in \ref{tau}) had to be specified in the subwindow, alongside the number of equations discretizing the system. \newline
 \newline
-What the user can not see, at least from the graphical interface, is that the binary file associated with a system contains now two additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the number of equations on which approximate the infinite dimensional ode system.
+What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now two additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the number of equations on which approximate the infinite dimensional ode system.
 The script file containing the functions used by MatCont when performing operations on the system, if it's a DDE system, is also substantially different when comparing it to the same file associated with an ODE system.
-The key idea used is based on the same principle used when refactoring a method: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
+The key idea used is based on the same principle used when refactoring a function: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.40]{imgTesi/parametri.png}
-\caption{\textcolor{red}{cambiare con l'immagine corretta}}
+\includegraphics[scale=0.40]{imgTesi/rpedatory_prey_parameters.png}
+\caption{MatCont's window to insert a DDE showing the panel to insert the additional parameter.}
 \label{mParameter}
 \end{figure}
 
@@ -362,7 +368,7 @@ This compatibility with previously created systems can easily be understood from
 \begin{figure}[htp]
 \hspace*{-3em}
 \includegraphics[scale=0.45]{imgTesi/matcont_system_state_diagramNEW.jpg}
-\caption{The state diagram regarding the insertion of a new system in the extended MatCont}
+\caption{The state diagram regarding the insertion of a new system in the extended MatCont. The new states are marked by the green border.}
 \label{fig:stateDiagramNew}
 \end{figure}
 
@@ -423,8 +429,8 @@ During the development two main challenges were faced:
 	\item Understanding and extending sections of code with little or none code documentation (i.e. comments or method contracts) as introduced in section \ref{documentation}. This challenge was mostly faced when adapting the code responsible for handling the curve data. Overall, this challenge has been faced with the help of some of the tools provided by MatLab for the debugging process such as breakpoints and step-by-step execution. 
 \end{itemize}
 
-On the other hand, it has not been a problem adapting to the programming language used by MatLab being a high level programming language and presenting a semantic for the main constructs analogous to many other languages. 
-\newline
+%On the other hand, it has not been a problem adapting to the programming language used by MatLab being a high level programming language and presenting a semantic for the main constructs analogous to many other languages. 
+%\newline
 \begin{figure}[htp]
 \hspace*{-5em}
 \includegraphics[scale=0.38]{imgTesi/comparisonMerged.png}
