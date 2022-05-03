@@ -114,13 +114,13 @@ This becomes really clear when the definition of derivative is recalled, which c
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.300]{imgTesi/vecFieldAut.png}
+\includegraphics[scale=0.280]{imgTesi/vecFieldAut.png}
 \caption{The trajectory diagram of $y'(x)=y(x)+1$, showing one solution.}
 \label{fig:autonomous}
 \end{figure}
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.300]{imgTesi/vecFieldNonAut.png}
+\includegraphics[scale=0.280]{imgTesi/vecFieldNonAut.png}
 \caption{The trajectory diagram of $y'(x)=y(x)+x$, showing one solution}
 \label{fig:nonautonomous}
 \end{figure}
@@ -225,12 +225,12 @@ The logistic model represented by the logistic equation \ref{logisticEQ} describ
 
 \chapter{A brief introdution to MatCont}
 
-MatCont is a software, based upon MatLab, that provides functions and a graphic user interface to study the behaviour of dynamical systems, particularly what concerns the bifurcation analisys\cite{documentazione}.
+MatCont is a software, based upon MatLab, that provides functions and a graphic user interface to study the behaviour of continous dynamical systems, particularly what concerns the bifurcation analisys\cite{documentazione}.
 \newline
-The GUI and functions provided are independent, since the functionalities of MatCont can also be used from the MatLab's command line.
+The GUI and functions provided are independent, since the functionalities of MatCont can also be used from MatLab's command line.
 \newline
-In the following paragraphs the main aspects of MatCont's GUI and how the user could interact with it will be discussed, since they should be kept in consideration when the extension part will be described in the next chapter.
-There will not be an exhaustive description of the parsing done by MatCont on the data inserted by the user since during the extension process this parsing phase has been largely amplified (??) but only slightly interfering with the pre-existing parsing.
+In the following paragraphs the main aspects of MatCont's GUI and how the user could interact with it will be discussed, they should be kept in consideration when the extension part will be described in the next chapter.
+There will not be an exhaustive description of the parsing done by MatCont on the data inserted by the user since during the extension process new parsing functions were introducted without interfering with the pre-existing parsing.
 
 
 \section{Overview of the current MatCont GUI}
@@ -238,8 +238,7 @@ There will not be an exhaustive description of the parsing done by MatCont on th
 \subsection{MatCont Main Window}
 MatCont presents to the user a monochromatic but rather intuitive interface. 
 The main window shown to the user is divided into three sections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
-\emph{Class} shows the user what type of system is currently loaded (at the moment only ODE), while
-\emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section information such as the properties of the initial point (i.e. "initial point type") and the method that's going to be executed when computing the curve (i.e. "initializer") are displayed.
+\emph{Class} shows the user what type of system is currently loaded (at the moment only ODE), while \emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section, information such as the properties of the initial point (i.e. "initial point type") and the method that's going to be executed when computing the curve (i.e. "initializer") are displayed.
 Above these three sections a toolbar menu is presented, from here the user can create a new system, load, edit or delete an already existing one. The type of the specified initial point can also be selected from this menu (e.g. a point without special properties, an equilibrium etc...), the curve to compute can be chosen (e.g. an orbit, an equilibrium etc...). The user from this toolbar menu can also open an output window, both numerical and graphical (i.e. an euclidean plane with two or three axis). The graphical output window will plot the graph (along the specified axis) of what is being computed, at the same time the numerical output window will show the values of the specified parameters, coordinates and other variables at every step of the computation. 
 
 \begin{figure}[htp]
@@ -260,7 +259,7 @@ By pressing on Select, System, New in the toolbar menu the user can have access 
 
 The name of the system must not contain spaces, while the coordinates and the parameters have to be separated by commas.
 \newline
-There is then a table with radio buttons that specify for each order of derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{From window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative (if the Symbolic toolbox is installed in MatLab) symbolically.
+There is then a table with radio buttons that specify for each order of derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{From window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative symbolically (only if the Symbolic toolbox is installed in MatLab).
 At the bottom of this window a larger text entry window is shown to allow the user to type the system in\label{systemWindow}. The syntax a system must satisfy will be later described.
 
 \paragraph{What happens next?} Let for example the name of the new system inserted be "NewTypedSystem", when the user has correctly inserted all the required data and pressed the \emph{Ok button} MatCont will parse the data entered and create two files under the folder \emph{System} named "NewNewTypedSystem.m" and "NewTypedSystem.mat" \cite{documentazione}.
@@ -277,8 +276,8 @@ This binary file contains the struct that will be loaded in order to initialise 
 
 \newpage
 \subsection{Editing an existing system}
-By pressing on \emph{Select}, \emph{System}, \emph{Load/Edit/Delete System} the user will be shown a new window in which an existing system and an action to perform on it can be selected by pressing the relative button, "Load", "Delete" or "Edit". \newline 
-When "Edit" is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press the \emph{ok button} to confirm what was done, now both the .m and .mat file will be overwritten with the new information and the system will be reloaded from them.
+By pressing on \emph{Select}, \emph{System}, \emph{Load/Edit/Delete System} the user will be presented a new window in which the list of existing systems and a list of buttons including \emph{Load}, \emph{Delete} or \emph{Edit} are shown. \newline 
+When the desired system is selected and Edit is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press the \emph{ok button} to confirm the changes made, now both the .m and .mat file will be overwritten with the new information and the system will be reloaded from them.
 
 \section{The existing documentation}
 Online it is possible to find some guides and tutorials that introduce MatCont to a new user\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/Tutorials7px/} by presenting a series of examples that can be repeated step by step. A manual also exists that provides more knowledge on how this software works and how it is structured\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/ManualAug2019.pdf}.	
@@ -299,33 +298,35 @@ During the development process some choices were made to allow the extended syst
 \newpage
 \section{Overview of the extended MatCont GUI}
 
-From the end user perspective the differences with the original MatCont GUI can be found when inserting or editing a system. These differences were intended to be both as localised as possible and coherent with MatCont's GUI style. The latter point has been achieved, the first one (i.e. keeping the differences localized in few specific areas) has been satisfied only from the end user point of view.\newline
-While the graphical differences in the interface can be circumscribed in two main windows, the logic and behaviour of MatCont was indeed modified in several different places. This has been proven necessary to be able to fully support the usage of existing MatCont's components and functionalities with the new extension. This idea is fully expressed by Figure \ref{fig:stackComparison}.
+From the end user perspective the differences with the original version of MatCont GUI can be found when inserting or editing a system. These differences were intended to be both as localised as possible and consistent with MatCont's GUI style. The latter point has been fully achieved, the first one (i.e. keeping the differences localized in few specific areas) has been satisfied only from the point of view of the end user.\newline
+Indeed while the graphical differences in the interface can be circumscribed in two main windows, the logic and behaviour of MatCont was modified in several different places. This has been proven necessary to be able to fully support the usage of existing MatCont's components and functionalities with the new extension. This idea is fully expressed by Figure \ref{fig:stackComparison}.
 	
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.2]{imgTesi/ideaComparison.jpg}
-\caption{Comparison between the initial idea and the implementation }
+\caption{Comparison between the initial idea and the implementation.}
 \label{fig:stackComparison}
 \end{figure}
 
 \subsection{The DDE syntax}
 
-How the user can enter a DDE equation by typing it in a natural syntax (i.e. a syntax similar to how the user would write the system on a sheet of paper) was a major issue during the extension process, since the main goal was to create a user-friendly interface to study DDE systems and if the syntax would have been complex and unnatural, the goal wouldn't have been fulfilled.
+How the user can insert a DDE equation by typing it with natural syntax (i.e. a syntax similar to how the user would write the system with pen and paper) was a major issue during the extension process, since the main goal was to create a user-friendly interface to study DDE systems and if the syntax would have resulted complex and unnatural, the goal wouldn't have been fully achieved.
 \newline
 Creating a method that was able to recognise the syntax was a process carried out during the first phase of the development and extended later on. It largely involved the usage of regular grammars\footnote{A formal grammar whose expressive power corresponds to the expressive power of finite automatons}.
 \newline
 \newline
-An equation like $y'(t)=r*y(t)*(1-y(t-\tau))$ could be written in the appropriate window (\ref{systemWindow}) by typing $y'=r*y*(1-y[t-TAU])$ where TAU is a parameter representing $\tau$ \label{tau}( since only ASCII characters are allowed).
+An equation like $y'(t)=r*y(t)*(1-y(t-\tau))$ could be written in the appropriate window (\ref{systemWindow}) by typing \verb| y'=r*y*(1-y[t-TAU]) | where TAU is a parameter representing $\tau$ \label{tau}(since only ASCII characters are allowed). 
 \newline
-In later development stages distributed delay differential equations were added to the equations supported by the software.\newline An equation like $y'(t)=r* \int_{-\tau}^{0} -y(t-delay)\,delay $ can be inserted by typing $y'=r * \backslash int\_\{-TAU\}    \widehat {} \{0\}\{ -y[t-delay] \} \{ delay \}$.
+In later development stages distributed delay differential equations were added to the equations supported by the software.\newline An equation like $y'(t)=r* \int_{-\tau}^{0} -y(t-delay)\,delay $ can be inserted by typing \verb| y'=r * \int_{-TAU}^{0}{-y[t-delay]}{delay}|.
 The syntax used to insert integrals is very similar to the syntax used in \LaTeX.
-The $\backslash int\_$ marks the beginning of the integral, then four pairs of curly braces delimit respectively the first and second integration extreme, the function to integrate and the integration variable. \newline
-In the same way a state dependent equation like [inserire esempio] could be written as [sintassi matcont esempio].
+The $\backslash int\_$ string marks the beginning of the integral, then four pairs of curly braces delimit respectively the first and second integration extreme, the function to integrate and the integration variable. \newline
+With the same syntax a state dependent equation like \textcolor{red}{[inserire esempio]} could be written as \textcolor{red}{[sintassi matcont esempio]}.
+\newline
+As can be seen from the examples above dependencies of the coordinates on specific points in time are specified with square brackets, e.g., \texttt{y[t-1]} or \texttt{y[t-TAU]}, where in this latter case \texttt{TAU} is a parameter.
 
 \subsection{Inserting a new ODE or DDE system}
 
-By selecting the command to insert a new system in the new version of MatCont  the user will be presented the window in Figure \ref{fig:insertingWindow}. From Figure \ref{fig:insertingWindow} we can see the interface did maintain its overall structure, indeed it would have been counterintuitive to create a new interface from scratch, mainly for two reasons, the interface resulted to be already well structured and it would have been harder for users that had already used MatCont for years to adapt to a new interface. 
+By proceding with the insertion of a new system in the extended version of MatCont the user will be presented the window in Figure \ref{fig:insertingWindow}. From Figure \ref{fig:insertingWindow} we can observe that the interface did maintain its overall structure, indeed it would have been counterintuitive to create a new interface from scratch, mainly for two reasons, the interface resulted to be already well structured and it would have been harder for users that had already used MatCont for years to adapt to a different interface. 
 
 \begin{figure}[htp]
 \centering
@@ -335,12 +336,12 @@ By selecting the command to insert a new system in the new version of MatCont  t
 \end{figure}
 
 From the end user perspective only a single line has changed, in this line, a dropdown menu lets the user select the type of system to be inserted.
-If the option "ODE" is chosen then nothing except this first line will be changed, on the other end if "DDE" is chosen a subwindow asking the user to input an additional parameter will appear (the degree of the collocation polynomial).
-All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$ in \ref{tau}) had to be specified in the subwindow, alongside the number of equations discretizing the system. \newline
+If the option "ODE" is chosen then nothing except this first line will be changed, on the other end if "DDE" is chosen a subwindow asking the user to input an additional parameter (the degree of the collocation polynomial) will appear.
+All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$ in \ref{tau}) had to be specified in an additional entry in the subwindow, alongside the degree of the collocation polynomial. \newline
 \newline
-What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now two additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the number of equations on which approximate the infinite dimensional ode system.
-The script file containing the functions used by MatCont when performing operations on the system, if it's a DDE system, is also substantially different when comparing it to the same file associated with an ODE system.
-The key idea used is based on the same principle used when refactoring a function: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
+What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now two additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the degree of the collocation polynomial.
+The script file containing the functions used by MatCont when studying the system, if it's a DDE system, is also substantially different when comparing it to the same file associated with an ODE system.
+The key idea used was based on the same principle used when refactoring a function: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
 
 \begin{figure}[htp]
 \centering
@@ -349,21 +350,19 @@ The key idea used is based on the same principle used when refactoring a functio
 \label{mParameter}
 \end{figure}
 
-
-
 \subsection{Editing an ODE or DDE system}
-The view the user is presented when a system to edit is selected is still the same of when a new system is inserted, with the exception that now, the dropdown menu that would allow the user to select the system type is locked on the type of the system that is being modified. \newline
-When the system considered is a 'legacy system', meaning a system previously inserted with the original version of MatCont, or an ODE system inserted with the extended version of MatCont, the user will be presented the same system details as in the original MatCont that could be modified (i.e. the name, the coordinates, the parameters, the time, and the equations themselves). \newline
-On the other hand, if the system considered is an "DDE" one, the interface will display (as when the insertion of a new "DDE" system is performed) a button that when pressed will show the panel containing the number of equations discretizing the system chosen. This value can be modified alongside all the details discussed above for the "ODE" systems.
+The view the user is presented when a system to edit is selected it is still the same of when a new system is inserted, with the exception that now, the dropdown menu that would allow the user to select the system type is locked on the type of the system that is being modified. \newline
+When the system considered is a legacy system, meaning a system previously inserted with the original version of MatCont, or an ODE system inserted with the extended version of MatCont, the user will be presented the same system details as in the original MatCont that could be modified (i.e. the name, the coordinates, the parameters, the time, and the equations themselves). \newline
+On the other hand, if the system considered is an "DDE" one, the interface will display (as when the insertion of a new "DDE" system is performed) a button that when pressed will show the subpanel containing an entry with the degree of the collocation polynomial chosen. This value can be modified alongside all the details discussed above for the "ODE" systems.
 
 
 \section{The full legacy support}
 
-As written in  \hyperref[sec:additionalFields]{section 7.1.2} the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont, previously referred as \emph{legacy systems}. \newline
-One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the field denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to "ODE", since in regular MatCont only these types of systems are allowed. From this point in the code everything will work the same as for "ODE" systems inserted with the extended version of the software.
+As written in  \hyperref[sec:additionalFields]{section 7.1.2} the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont (legacy systems). \newline
+One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the field denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to "ODE", since in regular MatCont only these types of systems are allowed (the struct in which the data is loaded contains indeed all the fields, regardless of what structure is saved on the file). From this point in the code everything will work the same as for ODE systems inserted with the extended version of the software.
 \newline
 \newline
-This compatibility with previously created systems can easily be understood from Figure \ref{fig:stateDiagramNew} which describes the states the extended MatCont can have when inserting the new system. Comparing it with Figure \ref{stateDiagram} the new states are represented by a green rectangle, and it can be observed that the overall structure remains similar while special states for managing the new cases are added. This modus operandi lead also the extension for the other MatCont's components involved.
+This compatibility with previously created systems can easily be understood from Figure \ref{fig:stateDiagramNew} which describes the states the extended MatCont can go through when inserting the new system. Comparing it with Figure \ref{stateDiagram} the new states are represented by a green rectangle, and it can be observed that the overall structure remains similar while special states for managing the new cases are added. This modus operandi lead also the extension for the other few MatCont's components involved.
 
 \begin{figure}[htp]
 \hspace*{-3em}
@@ -374,28 +373,33 @@ This compatibility with previously created systems can easily be understood from
 
 \section{A Deeper view of the parsing process} 
 
-The parsing process on the equations of the System as can be seen from Figure \ref{fig:stateDiagramNew} takes place only in the case of DDE systems, since otherwise the system won't contain nor discrete nor distributed delays.\newline
+The additional parsing process on the equations of the system, as can be observed from Figure \ref{fig:stateDiagramNew}, takes place only in the case of DDE systems, since otherwise the system won't contain nor discrete nor distributed delays.\newline
 This parsing phase is responsible for translating the equations in the system written by the user to the format the system will present in its discretized form in the \emph{fun\_eval} function in the relative .m file. The \emph{fun\_eval} function returns a vector containing the evaluation of the system with the specified state and value of the parameters \textcolor{red}{(da verificare, fun eval, non ha desrcizione)}.\newline
-The parsing process consist of two main phases, a first routine where each equation of the system is checked for delayed terms (since some equations in the DDE system may not contain delays) with the a regular expression like the following:
+The parsing process consist of two main phases, a first routine where each equation of the system is checked for delayed terms (since some equations in the DDE system may not contain delays) with the a regular expression like the one presented below:
 \begin{center}
 $"coordinateVar\; \backslash [\;timeVar \;\backslash W\;(\;\backslash [\;timeVar \;\backslash W\;[\;\widehat {}\; \backslash ]]*\backslash ]\;|\;[ \;\widehat {} \;  \backslash ]])*\backslash ]"$ 
-\end{center}	
+\end{center}
+
+
+% \verb$ coordinateVar \int[timeVar \W (\[timeVar \W [^\]]*\]|[^\]])*\W] $ 
+%er equivalente in verb
+
 The meaning of the regular expression above applied on an equation of the system can be interpreted as: "Find in the right hand side of the equation the substrings starting with the specific coordinate, followed by a open square bracket and by a non alphabetic nor numeric symbol \footnote{A character not in the[a\textendash zA\textendash Z\_0\textendash 9] set.} (expecting the user to insert a $+$ or $-$) followed either by another open square bracket, another non alphabetic nor numeric symbol and a string not containing the close square bracket, or followed by just the latter string. Then repeat this pattern for zero or more times (Kleene star operator) and lastly the substring must end with a close square bracket".\newline
-By doing this it is then possible to extrapolate the delay and replace the substring with another properly built string that contains a call to a static function defined inside another script file that is responsible for computing the interpolation.
+By doing this it is then possible to extrapolate the delay and replace the substring with another properly built string that contains a function call to a static method defined inside another script file that is responsible for computing the interpolation.
 \newline
 This process is repeated for each equation with all the different coordinates (since every equation might contain an arbitrary delayed term).
-The structure of the regular expression above allows the recognition of state dependent equation up to one nested level. \textcolor{red}{da implementare ancora}\newline
-The second routine of the parsing phase, also mainly based on the usage of regular expressions, is responsible for recognising and properly substituting integrals that may appear in the right hand side of an equation. It follows the same principle, for each equation with a proper built regular expression find all the integrals, recognise and substitute the integration variable and eventually substitute the integral in the right hand side with a string that will be evaluated in computing \emph{fun\_eval}. These two phases are carried out sequentially, so the string representing the right hand side of each equation in the discretized system produced in output by the first parser is then taken as an input in the second parser.
+The structure of the regular expression above allows the recognition of state dependent equation up to one nested level. \textcolor{red}{da implementare ancora}\newline \newline
+The second routine of the parsing phase, also mainly based on the usage of regular expressions, is responsible for recognising and properly substituting integrals that may appear in the right hand side of an equation. It follows the same principle as the first routine, for each equation with, a proper built regular expression, find all the integrals, recognise and substitute the integration variable and eventually substitute the integral in the right hand side with a the correct string representing the \textcolor{red}{integral dicretizato? approssimato?} that will be evaluated in computing \emph{fun\_eval}. These two phases are carried out sequentially, so the string representing the right hand side of each equation in the discretized system produced in output by the first routine is then taken as an input in the second parser routine.
 \begin{figure}[htp]
 \hspace*{-5.5em}
 \includegraphics[scale=0.21]{imgTesi/indeepDiagram.jpg}
 \caption{A more detailed state diagram of the "parsing the equations" state of Figure \ref{fig:stateDiagramNew}}
 \label{fig:stateDiagramNewDetail}
 \end{figure}
-\newline There are also other secondary less complex routines that write in the .m file other parts of both the \emph{fun\_eval}, \emph{init} and other functions.\newline
-One of the routines mentioned is responsible for writing in the file some functions each returning a pre-computed matrix. For example one function returns the M+1 Chebyshev nodes in the interval $[0,1]$.
+\newline There are also other secondary less complex routines that write in the .m file other sections of both the \emph{fun\_eval}, \emph{init} and other functions.\newline
+One of the routines mentioned is responsible for writing in the file some functions each returning a pre-computed matrix. For example one function returns the M+1\footnote{where M is the degree of the collocation polynomial} Chebyshev nodes in the interval $[0,1]$.
 \newline \newline
-Another of the secondary routine is responsible for writing in \emph{fun\_eval} an array identified by the name 'delayFunctions' containing all the delays found in the system. The process used to find the delays is analogous to the one used during the first parsing phase. The array written in \emph{fun\_eval} will be used in every evaluation of the system to determine the maximum (without sign) delay and subsequently scale the Chebyshev nodes (used to interpolate the behaviour of the solution in the interval $[-\tau_{max},0]$) from the interval $[0,1]$ to $[-\tau_{max},0]$
+Another of the secondary routine is responsible for writing in \emph{fun\_eval} an array identified by the name 'delayFunctions' containing all the delays found in the system. The process used to find the delays is analogous to the one used during the first parsing phase. The array written in \emph{fun\_eval} will be used in every evaluation of the system to determine the maximum (without sign) delay and subsequently scale the Chebyshev nodes (used to interpolate the behaviour of the solution in the interval $[-\tau_{max},0]$) from the interval $[0,1]$ to $[-\tau_{max},0]$.
 
 
 
@@ -405,16 +409,16 @@ Another of the secondary routine is responsible for writing in \emph{fun\_eval} 
 
 \newpage
 \section{A brief look at the development process}
-The development process followed some of the development principles presented in the Agile Manifesto \cite{agileManifesto}. Focus was especially put on the delivery of working software frequently and on the iterative development process. Overviewing the iteration process the evolution of the software went through these major intermediate phases: \label{iterative}
+The extension rocess followed some of the development principles presented in the Agile Manifesto \cite{agileManifesto}. Focus was especially put on the delivery of working software frequently and on the iterative development process. Overviewing the iteration process the evolution of the software went through these major intermediate phases: \label{iterative}
 
 
 \begin{itemize}
-    \item Development of the extension of the GUI (without any behaviour attached).
-    \item Integration of the structure used by MatCont to memorize systems in files and integration of the behaviour for the extended interface.
-    \item Adjustment of the preprocessing done on the data inserted by the user before passing it to the numerical algorithms (at this point the numerical part of MatCont, such as integration or the continuation of an equilibrium, was working correctly with non state dependent DDE equations).
+    \item Development of the GUI extension (without any behaviour attached).
+    \item Integration of the structure used by MatCont to memorize systems in files and integration of the behaviour of the extended interface.
+    \item Adjustment of the preprocessing done on the data inserted by the user before passing it to the numerical algorithms (at this point the numerical part of MatCont, such as integration or the continuation of an equilibrium, was working correctly with DDEs with discrete delays).
     \item Integration of MatConts' scripts related to the memorization of the computed data (now the part of Matcont related to plotting the computed curve worked correctly with DDE systems).
     \item Extension of the preprocessing and parsing phase done on the input to recognise distributed delays (i.e. parsing integrals).
-    \item Extension of the preprocessing and parsing phase done on the input to recognise state dependent equations.  [da fare]
+    \item Extension of the preprocessing and parsing phase done on the input to recognise state dependent equations.  \textcolor{red}{[da fare]}
 \end{itemize}
 
 
@@ -424,7 +428,7 @@ Each intermediate version was followed by a small testing phase, consisting prim
 During the development two main challenges were faced:
 
 \begin{itemize}
-	\item Working on a software (MatCont) related to a previously unknown domain to me. This situation is quite common when dealing with softwares in a field new to someone. How this challenged was faced and overcame was by conducting an introductory study on the main aspects of the field (e.g. Chapter 4 and 5) and also by interacting with a domain expert.   
+	\item Working on a software (MatCont) related to a previously unknown domain to me. This situation can be quite common when dealing with softwares in a different fields. How this challenged was faced and overcame was by conducting an introductory study on the main aspects of the field and also by interacting and working with a domain expert.   
 	
 	\item Understanding and extending sections of code with little or none code documentation (i.e. comments or method contracts) as introduced in section \ref{documentation}. This challenge was mostly faced when adapting the code responsible for handling the curve data. Overall, this challenge has been faced with the help of some of the tools provided by MatLab for the debugging process such as breakpoints and step-by-step execution. 
 \end{itemize}
