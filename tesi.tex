@@ -7,15 +7,17 @@
 	\usepackage{titlesec}
 	\usepackage{amsmath}
 	\usepackage{anyfontsize}
-
+	\usepackage{amssymb}
+	\usepackage{amsthm}
 		\titleformat{\chapter}[block]
 	  {\normalfont\LARGE\bfseries}{\hspace*{\fill}{\fontsize{60pt}{96pt}\selectfont \underline {$\overline	{{\thechapter}}$}}}{0.0em\newline\newline}{\LARGE}
 	\titlespacing*{\chapter}{0pt}{-35pt}{10pt}
 	
 	\graphicspath{ {./imgTesi/} }
-	\title{\textbf{Draft tesi (\textcolor{red}{missing text reported in red})}}
+	\title{\textbf{Draft tesi (\textcolor{orange}{possible text to fix in orange})}}
 	\author{Enrico Santi}
 	
+	\newtheorem{chiconetheo}{Theorem}
 \begin{document}
 
 %per non separare 2 parole da \n -> parola1~parola2
@@ -38,12 +40,12 @@
 \newpage
 %fine pag
 \chapter{Introduction}
-This thesis concerns the work carried out during the internship at the CdLab of the University of Udine. \newline Starting with a brief introduction on differential equations, dynamical systems and how it is possible to study these systems through existing softwares the focus will then be on MatCont and how it has been extended to allow users to study dynamical systems described by delay differential equations via a more user-friendly interface. \newline 
-The current version of MatCont, the extended version, what are the new capabilities of this software and how the development has been carried out will be exhaustively treated in Chapters [6,7].
+This thesis concerns the work carried out during the internship at the CD-Lab at the department of Mathematics, Computer Science and Physics of the University of Udine. \newline Starting with a brief introduction on differential equations, dynamical systems and how it is possible to study these systems through existing softwares the focus will then be on MatCont and how it has been extended to allow users to study dynamical systems described by delay differential equations via a more user-friendly interface. \newline 
+The current version of MatCont, the extended version, what are the new capabilities of this software and how the development has been carried out will be exhaustively treated in Chapters 6 and 7.
 %For what concerns the first brief chapters this thesis is not focused on how the different types of (ordinary) differential equations can be analytically solved but rather on understanding the meaning of ODEs and some of their properties.  
 \newline
 \newline
-The work done and described in Chapter [7] will also be presented at the \emph{17th IFAC Workshop on Time Delay Systems (TDS)}. 	
+The work done and described in Chapter 7 will also be presented at the \emph{17th IFAC Workshop on Time Delay Systems (TDS)} in September 2022 Montreal, Canada. 
 
 \clearpage
 %fine pag
@@ -51,29 +53,29 @@ The work done and described in Chapter [7] will also be presented at the \emph{1
 
 \chapter{Introduction to Differential Equations}
 
-A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred as \emph{unknown} since solving a differential equation (when it is possible) means finding a class of equations (e.g. equations that differ for a constant term) where each equation when substituted to the \emph{unknown} function satisfies relationship in an interval $I \subseteq R$. \newline
-A first distinction among differential equations is done on the number of independent variables the \emph{unknown} function presents, if these variables are more than one then partial differential equations are being considered. On the other hand if the independent variable is only one, the differential equation is called an ordinary differential equation. \newline
+A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred as unknown since solving a differential equation (when it is possible) means finding a class of functions (e.g. functions that differ for a constant term) where each function substituted to the unknown function satisfies relationship in an interval $I \subseteq {\rm I\!R}$. \newline 
+A first distinction among differential equations is done on the number of independent variables the unknown function presents, if these variables are more than one then partial differential equations are being considered. On the other hand if the independent variable is only one, the differential equation is called an ordinary differential equation. \newline
 In the following paragraphs only the latter case of differential equation will be taken into account. \newline
 Another distinction can be made on whether or not the relation describing the equation depends not only on the function but also on the independent variables of the function. In the latter case the differential equation is said to be \emph{autonomous}.\newline
-The first example below shows an autonomous ordinary differential equation while the second example represents a non-autonomous one:
+The first example below shows an autonomous ordinary differential equation while the second example represents a non autonomous one:
 
 
 \begin{center}
-$y'(t)+y(t)+1=0$
+$y'(t)+y(t)+1=0$,
 \end{center}
 \begin{center}
-$y'(t)+y(t)+t=0$
+$y'(t)+y(t)+t=0$,
 \end{center}
 
 A more concrete difference concerning these two kinds of ODEs is presented in Paragraph \ref{geometric}. 
 \newline
-Another important distinction is on linear or non-linear differential equations. Linear differential equations can be described by a linear polynomial where the variables are the unknown functions (i.e. linear differential equations don't present any unknown function to some power).
-\textcolor{red}{unire capitoli 1 e 2?}
+Another important distinction is on linear or non-linear differential equations. Linear differential equations can be described by a linear function where the variables are the unknown functions (i.e. linear differential equations present a polynomial of degree one in terms of the unknown function).
+
 
 \chapter{Ordinary Differential Equations}
 
-An ordinary differential equation, or ODE, is a kind of differential equation where the \emph{unknown} function only depends on one independent variable (usually referred to as time), the domain of the unknown function is then an interval $I \subset R$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, y the unknown function, $ y^{(i)}(t) $ the i-th derivative of $y$ and $F : A \subseteq R^{(k+2)} \rightarrow R$. \newline \newline
-The maximum degree of the derivative of a differential equation is referred to as the order of the equation.
+An ordinary differential equation, or ODE, is a kind of differential equation where the unknown function only depends on one independent variable (usually referred to as time), the domain of the unknown function is then an interval $I \subset {\rm I\!R}$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, $y$ the unknown function, $ y^{(i)}(t) $ the $i$-th derivative of $y$ and $F : A \subseteq {\rm I\!R}^{k+2} \rightarrow R$. \newline \newline
+The maximum order of derivative of a differential equation is referred to as the order of the equation.
 The first example below shows a first order differential equation\footnote{A first order differential equation is a differential equation of degree equal to one, a second, third, forth and so on order differential equation will present a degree respectively of two, three, four and so on} while the second example represents a second order one:
 
 
@@ -89,7 +91,7 @@ y''(t)+y(t)+1=0
 
 \vspace*{1em}
 
-A useful observation that could be used when studying ODEs is that given an ODE of degree $n$ it can be re-written as a system of $n$ first order ODEs. As an example the equation \ref{equation2} can be studied as the following system:
+A useful observation that could be used when studying ODEs is that given an ODE of degree $n$ it can be re-written as a system of $n$ first order ODEs. The equation \eqref{equation2} is equivalent to the following system:
 
 \begin{equation} 
 \begin{cases}
@@ -103,12 +105,16 @@ z'(t)+y(t)+1=0
 As written in the introduction, solving a differential equation or a system of equations (i.e. looking for the \emph{general} solution) means finding a class/family of equations, it may be required though to find a specific solution (i.e. a single equation or system that satisfies the relationship with some initial conditions in the domain of the unknown function).
 The initial value problem for a given equation can be viewed as a system containing the differential equations considered and $n$ additional equations that specify the initial conditions where $n$ is the order of the equation.
 
-For what concerns the properties of the IVP the following statement from \cite{chicone} can be cited: "Every initial value problem has a unique solution that is smooth with respect to initial conditions and parameters".
+For what concerns the properties of the IVP we recall the following theorem from \cite{chicone}.
+
+\begin{chiconetheo}
+Every initial value problem has a unique solution that is smooth with respect to initial conditions and parameters.
+\end{chiconetheo}.
 %{inserire: non verrà ripotata la dimostrazione di esistemza e unicità o un maggiore formalismo}
 
 \section{Geometric interpretation for first order ODEs}
 As in many other mathematical fields a geometrical interpretation associated with the concepts studied helps to obtain a better understanding of the topic.
-One of the first geometric concepts related to differential equations is the Trajectory diagram. This diagram, in relation to a given ODE, presents on one of its axis the independent variable, and on the other the unknown function. What this diagram shows is a vector field\footnote{i.e. an assignment of a vector to each point in a given space}, where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point.\newline
+A trajectory of a solution of an ODE, in particular for a dynamical system can be described as a function that satisfies the relation expressed by the ODE itself. Related to this concept, one of the first geometric visualizations for ODEs is the Trajectory diagram. This diagram, in relation to a given ODE, presents on one of its axis the independent variable, and on the other the unknown function. What this diagram shows is a vector field\footnote{i.e. an assignment of a vector to each point in a given space}, where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point.\newline
 This becomes really clear when the definition of derivative is recalled, which can be informally described as a function that associates to each point of a derivable function the angular coefficient of the tangent vector in that point.\newline
 
 
@@ -126,25 +132,26 @@ This becomes really clear when the definition of derivative is recalled, which c
 \end{figure}
 
 
-The two trajectory diagrams in Figure \ref{fig:autonomous} and \ref{fig:nonautonomous} showing the solution of the respective initial value problem (with $y(0)=1$) emphasise the geometrical difference between the trajectory of an autonomous ODE Figure \ref{fig:autonomous} and the trajectory of a non-autonomous ODE. In the first case the vector associated to a given point $(x_k,y(x_k))$ remains unchanged for every other point $(x_i,y(x_k))$, while the second diagram doesn't present this property. \label{geometric}
+The two trajectory diagrams in Figure \ref{fig:autonomous} and \ref{fig:nonautonomous} showing the solution of the respective initial value problem (with $y(0)=1$) emphasise the geometrical difference between the trajectory of an autonomous ODE Figure \ref{fig:autonomous} and the trajectory of a non autonomous ODE. In the first case the vector associated to a given point $(x_i,y_j)$ remains unchanged for every other point $(x_k,y_j)$, while the second diagram doesn't present this property. \label{geometric}
 \newline
-The geometric interpretation allows to quantitative study an ODE or a system of ODEs without analytically solving them, giving insights on the problem \cite{chicone}.
+The geometric interpretation allows to quantitatively study an ODE or a system of ODEs without analytically solving them, giving insights on the problem \cite{chicone}.
+Another concept is the orbit of a solution of an ODE. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value in the subset is contained in the image of the solution in the interval \cite{chicone}.  
 For what concerns systems of autonomous ordinary differential equations usually also the \emph{phase} or \emph{orbit} plane is presented, this plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
-The phase diagram can also be plotted for an autonomous ODE, but this will result in a one dimensional euclidean plane.\newline
+The phase diagram can also be plotted for an autonomous ODE, but this will result in a one dimensional line.\newline
 \newline
-	The phase plane of a given systems (with proper initial conditions) can present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred as a \emph{periodic orbit} and a \emph{stable point} or an \emph{equilibrium}. In Chapter [5] the related concepts of stability and bifurcation will be briefly discussed \cite{chicone}.
+	The phase plane of a given systems (with proper initial conditions) can present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred as a \emph{periodic orbit} and a \emph{steady state} or an \emph{equilibrium}. In Chapter 5 the related concepts of stability and bifurcation will be briefly discussed.
 
 \section{An example}
 
 A simple example of an ODE is represented by the Malthus equation:  
 \begin{equation}
-y'(t)=r*y(t) 
+y'(t)=r y(t) 
 \label{malthusEquation}
 \end{equation}
  
-This equation\footnote{Where $r$ is a parameter.} is a linear autonomous first order ODE which can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)*b(y)$}.\newline
-The general solution of the equation is $y(t)=y_0*e^{(r*t)}$ where $y_0$ is the initial value chosen for $y(t_0)$.\newline
-An equilibrium, a solution constant on the domain, for the equation (regardless the value of the parameter r) is obtained with the initial value $y_0=0$. Plotting the solution of the relative IVP (with different values of r) will always result in a straight line on the trajectory plane.
+This equation, where $r$ is a parameter, is a linear autonomous first order ODE which can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)b(y)$}.\newline
+The general solution of the equation is $y(t)=y_0 e^{rt}$ where $y_0$ is the initial value chosen for $y(t_0)$.\newline
+An equilibrium, a solution constant on the domain, for the equation (regardless the value of the parameter r) is obtained with the initial value $y_0=0$. Plotting the solution of the relative IVP (with different values of $r$) will always result in a straight lin	e on the trajectory plane.
 
 \chapter{Delay Differential Equations}
 \cite{diekmann2012delay}
@@ -163,38 +170,31 @@ An equilibrium, a solution constant on the domain, for the equation (regardless 
 \chapter{Dynamical Systems}
 
 
-A dynamical system is a system whose state varies inside a \emph{phase space} as the time changes \cite{arrowsmith1990introduction}. A phase space can be informally described as all the values (describing the state) the dynamical system considered can assume as the time progresses. 
-How the state of the system evolves with time is describled by a family of functions refernced as \emph{evolution operators} presenting two properties.
+A dynamical system is a system whose state varies inside a \emph{state space} as the time changes \cite{arrowsmith1990introduction}. A state space can be informally described as all the values (describing the state) the dynamical system considered can assume as the time progresses. 
+How the state of the system evolves with time is described by a family of functions referenced as \emph{evolution operators} presenting two properties.
 \newline
-A dynamical system can the described as a triple $\{T,X,\phi^t\}$ where the first element T is the time set, X is the state space and $\phi^t$ is the family of evolution operators depending on $t \in T$, $\phi^t : X \rightarrow X$ satisfying $\phi^0=id$ and $\phi^{t+s}=\phi^t \circ \phi^s$ where id represents the identity function mapping each state to itself \cite{kuznetsov}.
+A dynamical system can the described as a triple $\{T,X,\phi^t\}$ where the first element T is the time set, X is the state space and $\phi^t$ is the family of evolution operators depending on $t \in T$, $\phi^t : X \rightarrow X$ satisfying $\phi^0=id$ and $\phi^{t+s}=\phi^t \circ \phi^s$ where $id$ represents the identity function mapping each state to itself \cite{kuznetsov}.
 %continua: The first property of the evolution operators 
 \newline
-A fist major distinction of these systems is related to the time set considered, if it is considered as a series of discrete intervals (i.e. $ T \subset N_0 $) then these are discrete dynamical systems, on the other hand if the time is considered continuous (i.e. $ T \subset R $) then these are continuous dynamical systems.
-As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems recalls the relationship between $\delta x/\delta t$ and $dx/dt$. \textcolor{red}{è scrito correttamente?}\newline
+A fist major distinction of these systems is related to the time set considered, if it is considered as a sequence of discrete points (i.e. $ T \subset {\rm I\!N} $) then these are discrete dynamical systems, on the other hand if the time is considered continuous (i.e. $ T $ can be a more general subset of ${\rm I\!R}$ such as an interval) then these are continuous dynamical systems.
+As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems recalls the relationship between $\Delta x/\Delta t$ and $dx/dt$.\newline
 These systems are used to model the evolution of a phenomenon, and find application in several fields, from engineering to biology.\newline
 
+\section {Discrete and continuous dynamical systems}
+As briefly introduced, a discrete dynamical system differs from a continuous-time one by the time set $T$, which can only be a subset of ${\rm I\!N}$. In some sense when modelling a phenomenon with such a system we are only interested in the states of the system at discrete points in time \cite{barbarossa2011stability}. Another difference from continuous-time dynamical system is that the description of such system is not based on ODEs or delay equations but on recursive equations. For example the correspective time-discrete system of the system described by the equation \ref{malthusEquation} is:
 
-\section {Discrete dynamical systems}
-\cite{brin2002introduction}
-\textcolor{red}{
-...............
-...............
-...............}
-
-\section {Continuos dynamical systems}
+\begin{equation} 
+\label{malthusdiscrete}
+y_{t+1}=y_t+ry_t
+\end{equation}
 
 
-
-\textcolor{red}{
-...............
-...............
-...............}
 \section {Stability and Local bifurcations}
 
-The idea of stability of a solution is both rigorously and intuitively described in \cite{chicone}, the latter can be defined as: a solution for a differential equation is stable whether other solutions close to the solution considered remain relatively close.
+The idea of stability of a solution is both rigorously and intuitively described in \cite{chicone}, the latter can be defined as: a solution for a differential equation is stable if other solutions close to the solution considered remain relatively close as the system evolves.
 \newline\newline
 When taking into consideration systems depending on one or more parameters such as \ref{malthusEquation} it can be studied how changes in the value of a single parameter affect the solution of the system itself.
-The graph showing how changes in the parameter change the (general) solution is the \emph{bifurcation diagram} \cite{chicone} and it can be represented as an euclidean plane presenting on an axis the parameter chosen for the bifurcation analysis and on the other axis the coordinates for the orbit diagram of the system.
+The graph showing how changes in the parameter change the (general) solution is the \emph{bifurcation diagram} \cite{chicone} and it can be represented as a Euclidean plane presenting on an axis the parameter chosen for the bifurcation analysis and on the other axis the coordinates for the orbit diagram of the system.
 \newline
 Depending on which aspect of the system's solution changes, bifurcation points can be classified into different classes, such as:
 
@@ -210,22 +210,23 @@ Depending on which aspect of the system's solution changes, bifurcation points c
 
 \subsection{Example: Logistic Model}
 
-The logistic model represented by the logistic equation \ref{logisticEQ} describes the ratio at which a population of individuals grows. The parameter $r$ is the rate of maximum population growth (i.e. the rate at which the individuals can reproduce)\cite{weisstein2003logistic}. The parameter $r$ is usually considered a positive value.
-\textcolor{red}{
-...............
-...............
-...............}
-
-\subsection{Example: Predator Prey Model}
-
-\textcolor{red}{
-...............
-...............
-...............}
+The (continuous) logistic model is described by the logistic equation:
+\begin{equation} 
+\label{logisticEQ}
+y'(t)=ry(t)(1-\frac{y(t)}{K})
+\end{equation}
+This model describes the ratio at which a population of individuals grows. The parameter $r$ is the rate of maximum population growth (i.e. the rate at which the individuals can reproduce)\cite{weisstein2003logistic} and it is usually considered a positive value. The parameter $K$ represents the maximum number of individuals the environment can sustain.  
+The general solution to the equation can be obtained by separation of variables:
+\begin{equation}  
+\label{logisticEQsol}
+y(t)=\frac{1}{1+(\frac{K}{x_0}-1)e^{-rt}}
+\end{equation}
+Where $x_0$ is the value of $y(0)$ in the related IVP.\newline
+The system presents two steady points, one (the trivial) at $0$ and the second at $K$, for what concerns positive values of $r$, the trivial steady point is unstable while the second one is stable. 
 
 \chapter{A brief introdution to MatCont}
 
-MatCont is a software, based upon MatLab, that provides functions and a graphic user interface to study the behaviour of continous dynamical systems, particularly what concerns the bifurcation analisys\cite{documentazione}.
+MatCont is a software, based upon MATLAB, that provides functions and a graphic user interface to study the behaviour of continuous dynamical systems defined by ODEs, particularly what concerns the bifurcation analysis\cite{documentazione}.
 \newline
 The GUI and functions provided are independent, since the functionalities of MatCont can also be used from MatLab's command line.
 \newline
@@ -236,15 +237,15 @@ There will not be an exhaustive description of the parsing done by MatCont on th
 \section{Overview of the current MatCont GUI}
 
 \subsection{MatCont Main Window}
-MatCont presents to the user a monochromatic but rather intuitive interface. 
+MatCont presents to the user a minimalist but rather intuitive interface. 
 The main window shown to the user is divided into three sections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
-\emph{Class} shows the user what type of system is currently loaded (at the moment only ODE), while \emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section, information such as the properties of the initial point (i.e. "initial point type") and the method that's going to be executed when computing the curve (i.e. "initializer") are displayed.
-Above these three sections a toolbar menu is presented, from here the user can create a new system, load, edit or delete an already existing one. The type of the specified initial point can also be selected from this menu (e.g. a point without special properties, an equilibrium etc...), the curve to compute can be chosen (e.g. an orbit, an equilibrium etc...). The user from this toolbar menu can also open an output window, both numerical and graphical (i.e. an euclidean plane with two or three axis). The graphical output window will plot the graph (along the specified axis) of what is being computed, at the same time the numerical output window will show the values of the specified parameters, coordinates and other variables at every step of the computation. 
+\emph{Class} shows the user what type of system is currently loaded (at the moment only ODE), while \emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section, information such as the properties of the initial point (i.e. ``initial point type'' ) and the method that's going to be executed when computing the curve (i.e. ``initializer'') are displayed.
+Above these three sections a toolbar menu is presented, from here the user can create a new system, load, edit or delete an already existing one. The type of the specified initial point can also be selected from this menu (e.g. a point without special properties, an equilibrium etc...), the curve to compute can be chosen (e.g. an orbit, an equilibrium etc...). The user from this toolbar menu can also open an output window, both numerical and graphical (i.e. a Euclidean plane with two or three axes). The graphical output window will plot the graph (along the specified axes) of what is being computed, at the same time the numerical output window will show the values of the specified parameters, coordinates and other quantities of interest at every step of the computation. 
 
 \begin{figure}[htp]
 \centering
 \includegraphics[scale=0.500]{imgTesi/mainMatCont.png}
-\caption{The main MatCont window}
+\caption{MatCont's main window}
 \label{fig:mainMatCont2}
 \end{figure}
 
@@ -260,16 +261,16 @@ By pressing on Select, System, New in the toolbar menu the user can have access 
 The name of the system must not contain spaces, while the coordinates and the parameters have to be separated by commas.
 \newline
 There is then a table with radio buttons that specify for each order of derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{From window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative symbolically (only if the Symbolic toolbox is installed in MatLab).
-At the bottom of this window a larger text entry window is shown to allow the user to type the system in\label{systemWindow}. The syntax a system must satisfy will be later described.
+At the bottom of this window a larger text entry window is shown to allow the user to type the system in\label{systemWindow}. The syntax a system must satisfy will be described later.
 
-\paragraph{What happens next?} Let for example the name of the new system inserted be "NewTypedSystem", when the user has correctly inserted all the required data and pressed the \emph{Ok button} MatCont will parse the data entered and create two files under the folder \emph{System} named "NewNewTypedSystem.m" and "NewTypedSystem.mat" \cite{documentazione}.
+\paragraph{What happens next?} Let for example the name of the new system inserted be ``NewTypedSystem'', when the user has correctly inserted all the required data and pressed the \emph{Ok} button MatCont will parse the data entered and create two files under the folder \emph{System} named ``NewNewTypedSystem.m'' and ``NewTypedSystem.mat'' \cite{documentazione}.
 These files are respectively a MatLab script file, and a binary file. The latter will contain a struct with 36 fields describing the system, such as the list of coordinates, the list of parameters, the equations in the system, the dimension of the system (i.e. the number of different coordinates) etc...\newline
-This binary file contains the struct that will be loaded in order to initialise the fields of the current struct representing the system when "Edit", or "Load" is pressed. The .mat file, on the other hand, contains functions such as \emph{fun\_eval} and \emph{init} that will be called by MatCont when performing different computations on the system.
+This binary file contains the struct that will be loaded in order to initialise the fields of the current struct representing the system when ``Edit'', or ``Load'' is pressed. The .mat file, on the other hand, contains functions such as \emph{fun\_eval} and \emph{init} that will be called by MatCont when performing different computations on the system.
 
 
 \begin{figure}[htp]
-\hspace*{-4em}
-\includegraphics[scale=0.40]{imgTesi/matcont_system_state_diagram.jpg}
+\hspace*{-2.2em}
+\includegraphics[scale=1.5]{imgTesi/matcont_system_state_diagram.jpg}
 \caption{The state diagram regarding the insertion of a new system}
 \label{stateDiagram}
 \end{figure}
@@ -277,12 +278,12 @@ This binary file contains the struct that will be loaded in order to initialise 
 \newpage
 \subsection{Editing an existing system}
 By pressing on \emph{Select}, \emph{System}, \emph{Load/Edit/Delete System} the user will be presented a new window in which the list of existing systems and a list of buttons including \emph{Load}, \emph{Delete} or \emph{Edit} are shown. \newline 
-When the desired system is selected and Edit is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press the \emph{ok button} to confirm the changes made, now both the .m and .mat file will be overwritten with the new information and the system will be reloaded from them.
+When the desired system is selected and Edit is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press the \emph{ok} button to confirm the changes made, now both the .m and .mat file will be overwritten with the new information and the system will be reloaded from them. Observe that all the previously computed and saved curves will be deleted by this process.
 
 \section{The existing documentation}
-Online it is possible to find some guides and tutorials that introduce MatCont to a new user\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/Tutorials7px/} by presenting a series of examples that can be repeated step by step. A manual also exists that provides more knowledge on how this software works and how it is structured\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/ManualAug2019.pdf}.	
+On the page from which MatCont can be downloaded it is possible to find some guides and tutorials that introduce MatCont to a new user\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/Tutorials7px/} by presenting a series of examples that can be repeated step by step. A manual also exists that provides more knowledge on how this software works and how it is structured\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/ManualAug2019.pdf}.	
 \newline  
-\label{documentation}On the other hand the lack of code documentation, such as comments or method contracts, especially in some regions of the code can make reading, understanding and subsequently modifying the software quite a difficult task.
+\label{documentation}On the other hand the code would considerably benefit from the insertion of comments or method contracts, especially in some regions of the code, which may be quite difficult to read and subsequently modify.
 
 \chapter{Extending the user interface of MatCont}
 
@@ -291,15 +292,22 @@ In this chapter will be presented how the interface of MatCont has been extended
 
 \section{MatCont's extended capabilities}
 The capabilities of the extended MatCont version (i.e. what systems of differential equations can recognise) have been gradually increased since an iterative development process was used \ref{iterative}.
-The systems that can be studied with MatCont now include all the previous ODE systems (referred in later paragraphs as \emph{legacy systems}) as well as DDE systems with one or more discrete delays, such as $y'(t)=\beta*y(t-TAU)/(1+y(t-TAU)^n)-\gamma*y(t)$\footnote{The Mackey-Glass equation} and distributed delays as for example $y'(t)=\int_{-1}^{0} ky(t+z) dz$.
-\newline
-During the development process some choices were made to allow the extended system to further be extended easily in order to accept other families of DDEs, such as state dependent DDEs and renewal equations.
-\textcolor{red}{da completare man mano che si evolve il sw}
+The systems that can be studied with MatCont now include all the previous ODE systems (referred in later paragraphs as \emph{standard ODE systems}) as well as DDE systems with one or more discrete delays, such as the Mackey-Glass equation, $y'(t)=\beta*y(t-\tau)/(1+y(t-\tau)^n)-\gamma*y(t)$ and (finite) distributed delays as for example $y'(t)=\int_{-1}^{0} ky(t+z) dz$.
+Both the integration extremes in distributed delays must fall within one of the following classes:
+
+\begin{itemize}
+    \item A constant (e.g. $\int_{-3}^{0} z[t-z]  {dz}$).
+    \item A parameter of the system (e.g. $\int_{-parameter}^{0} z[t-z]  {dz}$).
+    \item An expression beginning with the time variable followed by another expression that can contain both constants, parameters and the time variable (e.g. $\int_{t-(32\cdot pamrameter)}^{0} z[t-z]  {dz}$).
+\end{itemize}
+    
+During the development process some choices were made to allow the extended system to further be extended easily in order to accept other families of delay equations, such as state dependent DDEs and renewal equations.\newline
+\textcolor{orange}{Renewal equations were indeed supported in later development stages, allowing the system inserted to contain zero or more DDEs and ODEs alongside zero or more renewal equations. All the renewal equations must be specified after the DDEs or ODEs, since the evaluation of the right hand side of each equation is subdivided into two macro blocks containing DDEs/ODEs alongside REs. These later development stages regarding the introduction of REs in the software won't be treated in this thesis. } 
 \newpage
 \section{Overview of the extended MatCont GUI}
 
-From the end user perspective the differences with the original version of MatCont GUI can be found when inserting or editing a system. These differences were intended to be both as localised as possible and consistent with MatCont's GUI style. The latter point has been fully achieved, the first one (i.e. keeping the differences localized in few specific areas) has been satisfied only from the point of view of the end user.\newline
-Indeed while the graphical differences in the interface can be circumscribed in two main windows, the logic and behaviour of MatCont was modified in several different places. This has been proven necessary to be able to fully support the usage of existing MatCont's components and functionalities with the new extension. This idea is fully expressed by Figure \ref{fig:stackComparison}.
+From the end user perspective the differences with the original version of MatCont GUI can be found when inserting or editing a system. These differences were intended to be both as localised as possible and consistent with MatCont's GUI style. The latter point has been achieved, the first one (i.e. keeping the differences localized in few specific areas) has been satisfied only from the point of view of the end user.\newline
+The latter sentence is referred to the fact that while the graphical differences in the interface can be circumscribed in two main windows, the logic and behaviour of MatCont was modified in several different places (i.e. more than a few files present now different behaviour accordingly to the type of system considered). This has been proven necessary to be able to fully support the usage of existing MatCont's components and functionalities with the new extension. This idea is fully expressed by Figure \ref{fig:stackComparison}.
 	
 \begin{figure}[htp]
 \centering
@@ -315,66 +323,69 @@ How the user can insert a DDE equation by typing it with natural syntax (i.e. a 
 Creating a method that was able to recognise the syntax was a process carried out during the first phase of the development and extended later on. It largely involved the usage of regular grammars\footnote{A formal grammar whose expressive power corresponds to the expressive power of finite automatons}.
 \newline
 \newline
-An equation like $y'(t)=r*y(t)*(1-y(t-\tau))$ could be written in the appropriate window (\ref{systemWindow}) by typing \verb| y'=r*y*(1-y[t-TAU]) | where TAU is a parameter representing $\tau$ \label{tau}(since only ASCII characters are allowed). 
+An equation like $y'(t)=ry(t)(1-y(t-\tau))$ could be written in the appropriate window (\ref{systemWindow}) by typing \verb| y'=r*y*(1-y[t-TAU])| where TAU is a parameter representing $\tau$ \label{tau}(since only ASCII characters are allowed). 
 \newline
-In later development stages distributed delay differential equations were added to the equations supported by the software.\newline An equation like $y'(t)=r* \int_{-\tau}^{0} -y(t-delay)\,delay $ can be inserted by typing \verb| y'=r * \int_{-TAU}^{0}{-y[t-delay]}{delay}|.
+In later development stages distributed delay differential equations were added to the equations supported by the software.\newline An equation like $y'(t)=r* \int_{-\tau}^{0} -y(t-DELAY)\,dDELAY $ can be inserted by typing \verb| y'=r * \int_{-TAU}^{0}{-y[t-delay]}{delay}|.
 The syntax used to insert integrals is very similar to the syntax used in \LaTeX.
-The $\backslash int\_$ string marks the beginning of the integral, then four pairs of curly braces delimit respectively the first and second integration extreme, the function to integrate and the integration variable. \newline
-With the same syntax a state dependent equation like \textcolor{red}{[inserire esempio]} could be written as \textcolor{red}{[sintassi matcont esempio]}.
+The $\backslash int\_$ string marks the beginning of the integral, then the the first pair of curly braces preceded by the underscore character contains the inferior integration extreme, the second pair of braces preceded by ``\^{ }'' contain the superior integration extreme, then the remaining two pair of braces delimit respectively the function to integrate and the integration variable.
 \newline
-As can be seen from the examples above dependencies of the coordinates on specific points in time are specified with square brackets, e.g., \texttt{y[t-1]} or \texttt{y[t-TAU]}, where in this latter case \texttt{TAU} is a parameter.
+As can be seen from the examples above the dependencies of the coordinates on specific points in time are specified with square brackets, and contain as the first term of the expression the time variable, e.g. \texttt{y[t-1]} or \texttt{y[t-TAU]}, where in this latter case \texttt{TAU} is a parameter.
 
 \subsection{Inserting a new ODE or DDE system}
 
-By proceding with the insertion of a new system in the extended version of MatCont the user will be presented the window in Figure \ref{fig:insertingWindow}. From Figure \ref{fig:insertingWindow} we can observe that the interface did maintain its overall structure, indeed it would have been counterintuitive to create a new interface from scratch, mainly for two reasons, the interface resulted to be already well structured and it would have been harder for users that had already used MatCont for years to adapt to a different interface. 
+By proceeding with the insertion of a new system in the extended version of MatCont the user will be presented the window in Figure \ref{fig:insertingWindow}. From Figure \ref{fig:insertingWindow} we can observe that the interface did maintain its overall structure, indeed it would have been counterintuitive to create a new interface from scratch, mainly for two reasons, the interface resulted to be already well structured and it would have been harder for users that had already used MatCont for years to adapt to a different interface. 
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.350]{imgTesi/insertingPredatorPrey.png}
+\includegraphics[scale=0.350]{imgTesi/imgNEW.png}
 \caption{MatCont's window to insert a DDE}
 \label{fig:insertingWindow}
 \end{figure}
 
-From the end user perspective only a single line has changed, in this line, a dropdown menu lets the user select the type of system to be inserted.
-If the option "ODE" is chosen then nothing except this first line will be changed, on the other end if "DDE" is chosen a subwindow asking the user to input an additional parameter (the degree of the collocation polynomial) will appear.
-All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$ in \ref{tau}) had to be specified in an additional entry in the subwindow, alongside the degree of the collocation polynomial. \newline
+From the end user perspective only a few lines of the layout have changed, in the first line line, a dropdown menu lets the user select the type of system to be inserted.
+If the option ``ODE'' is chosen then nothing except this first line will be changed, on the other end if ``Delay equations'' is chosen a subwindow asking the user to input two additional parameters (the degree of the collocation polynomial, and the degree used for the polynomial used for the approximation of integrals) will appear.
+All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$ in \ref{tau}) had to be specified in an additional entry in the subwindow, alongside the two degrees. \newline
+\textcolor{orange}{The second change the user can observe is that when inserting a system presenting delay equations there is no other option to compute the derivatives other than numerically. Indeed if the user inserted $n$ equations in the appropriate window the system would have $n$ equations from the end user perspective but, internally it will be represented by $n*(M+1)$ equations, where $M$ is the degree of the collocation polynomial. If the user could manually specify the derivatives it would need to write $n*(M+1)$ equations and not just $n$, breaking the abstraction of the discretization process implemented.}  
 \newline
-What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now two additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the degree of the collocation polynomial.
-The script file containing the functions used by MatCont when studying the system, if it's a DDE system, is also substantially different when comparing it to the same file associated with an ODE system.
-The key idea used was based on the same principle used when refactoring a function: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
+What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now three additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the degree of the collocation polynomial and the degree related to the Clenshaw-Curtis quadrature.
+The script file containing the functions used by MatCont when studying the system, if it's related to a ``Delay equation'' system, is also substantially different when comparing it to the same file associated with an ODE system.
+The key idea used was based on the same principle adopted when refactoring a function: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
 
 \begin{figure}[htp]
+
+\hspace*{-6em}
 \centering
-\includegraphics[scale=0.40]{imgTesi/rpedatory_prey_parameters.png}
-\caption{MatCont's window to insert a DDE showing the panel to insert the additional parameter.}
+\includegraphics[scale=1.5]{imgTesi/comparisonedit.png}
+\caption{The comparison between MatCont's window to edit an ``ODE'' and ``Delay equation'' system.}
 \label{mParameter}
 \end{figure}
 
 \subsection{Editing an ODE or DDE system}
 The view the user is presented when a system to edit is selected it is still the same of when a new system is inserted, with the exception that now, the dropdown menu that would allow the user to select the system type is locked on the type of the system that is being modified. \newline
-When the system considered is a legacy system, meaning a system previously inserted with the original version of MatCont, or an ODE system inserted with the extended version of MatCont, the user will be presented the same system details as in the original MatCont that could be modified (i.e. the name, the coordinates, the parameters, the time, and the equations themselves). \newline
-On the other hand, if the system considered is an "DDE" one, the interface will display (as when the insertion of a new "DDE" system is performed) a button that when pressed will show the subpanel containing an entry with the degree of the collocation polynomial chosen. This value can be modified alongside all the details discussed above for the "ODE" systems.
+When the system considered is a standard ODE system, meaning a system previously inserted with the original version of MatCont, or an ODE system inserted with the extended version of MatCont, the user will be presented the same system details as in the original MatCont that could be modified (i.e. the name, the coordinates, the parameters, the time, and the equations themselves). \newline
+On the other hand, if the system considered contained delay equations, the interface will display (as when the insertion of a new ``Delay equation'' system is performed) the subpanel containing the two entries with the degree both the the collocation polynomial and quadrature formula chosen. These values can be modified alongside all the details discussed above for the ``ODE'' systems.
 
 
 \section{The full legacy support}
 
 As written in  \hyperref[sec:additionalFields]{section 7.1.2} the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont (legacy systems). \newline
-One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the field denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to "ODE", since in regular MatCont only these types of systems are allowed (the struct in which the data is loaded contains indeed all the fields, regardless of what structure is saved on the file). From this point in the code everything will work the same as for ODE systems inserted with the extended version of the software.
+One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the field denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to ``ODE'', since in regular MatCont only these types of systems are allowed (the struct in which the data is loaded contains indeed all the fields, regardless of what structure is saved on the file). From this point in the code everything will work the same as for ODE systems inserted with the extended version of the software.
 \newline
 \newline
 This compatibility with previously created systems can easily be understood from Figure \ref{fig:stateDiagramNew} which describes the states the extended MatCont can go through when inserting the new system. Comparing it with Figure \ref{stateDiagram} the new states are represented by a green rectangle, and it can be observed that the overall structure remains similar while special states for managing the new cases are added. This modus operandi lead also the extension for the other few MatCont's components involved.
 
 \begin{figure}[htp]
-\hspace*{-3em}
-\includegraphics[scale=0.45]{imgTesi/matcont_system_state_diagramNEW.jpg}
+\vspace*{0.6em}
+\hspace*{-5.5em}
+\includegraphics[scale=1.95]{imgTesi/matcont_system_state_diagramNEW.jpg}
 \caption{The state diagram regarding the insertion of a new system in the extended MatCont. The new states are marked by the green border.}
 \label{fig:stateDiagramNew}
 \end{figure}
-
+\newpage
 \section{A Deeper view of the parsing process} 
 
 The additional parsing process on the equations of the system, as can be observed from Figure \ref{fig:stateDiagramNew}, takes place only in the case of DDE systems, since otherwise the system won't contain nor discrete nor distributed delays.\newline
-This parsing phase is responsible for translating the equations in the system written by the user to the format the system will present in its discretized form in the \emph{fun\_eval} function in the relative .m file. The \emph{fun\_eval} function returns a vector containing the evaluation of the system with the specified state and value of the parameters \textcolor{red}{(da verificare, fun eval, non ha desrcizione)}.\newline
+This parsing phase is responsible for translating the equations in the system written by the user to the format the system will present in its discretized form in the \emph{fun\_eval} function in the relative .m file. The \emph{fun\_eval} function returns a vector containing the evaluation of the system with the specified state and value of the parameters.\newline
 The parsing process consist of two main phases, a first routine where each equation of the system is checked for delayed terms (since some equations in the DDE system may not contain delays) with the a regular expression like the one presented below:
 \begin{center}
 $"coordinateVar\; \backslash [\;timeVar \;\backslash W\;(\;\backslash [\;timeVar \;\backslash W\;[\;\widehat {}\; \backslash ]]*\backslash ]\;|\;[ \;\widehat {} \;  \backslash ]])*\backslash ]"$ 
@@ -384,22 +395,22 @@ $"coordinateVar\; \backslash [\;timeVar \;\backslash W\;(\;\backslash [\;timeVar
 % \verb$ coordinateVar \int[timeVar \W (\[timeVar \W [^\]]*\]|[^\]])*\W] $ 
 %er equivalente in verb
 
-The meaning of the regular expression above applied on an equation of the system can be interpreted as: "Find in the right hand side of the equation the substrings starting with the specific coordinate, followed by a open square bracket and by a non alphabetic nor numeric symbol \footnote{A character not in the[a\textendash zA\textendash Z\_0\textendash 9] set.} (expecting the user to insert a $+$ or $-$) followed either by another open square bracket, another non alphabetic nor numeric symbol and a string not containing the close square bracket, or followed by just the latter string. Then repeat this pattern for zero or more times (Kleene star operator) and lastly the substring must end with a close square bracket".\newline
+The meaning of the regular expression above applied on an equation of the system can be interpreted as: ``Find in the right hand side of the equation the substrings starting with the specific coordinate, followed by a open square bracket and by a non alphabetic nor numeric symbol \footnote{A character not in the[a\textendash zA\textendash Z\_0\textendash 9] set.} (expecting the user to insert a $+$ or $-$) followed either by another open square bracket, another non alphabetic nor numeric symbol and a string not containing the close square bracket, or followed by just the latter string. Then repeat this pattern for zero or more times (Kleene star operator) and lastly the substring must end with a close square bracket''.\newline
 By doing this it is then possible to extrapolate the delay and replace the substring with another properly built string that contains a function call to a static method defined inside another script file that is responsible for computing the interpolation.
 \newline
 This process is repeated for each equation with all the different coordinates (since every equation might contain an arbitrary delayed term).
-The structure of the regular expression above allows the recognition of state dependent equation up to one nested level. \textcolor{red}{da implementare ancora}\newline \newline
-The second routine of the parsing phase, also mainly based on the usage of regular expressions, is responsible for recognising and properly substituting integrals that may appear in the right hand side of an equation. It follows the same principle as the first routine, for each equation with, a proper built regular expression, find all the integrals, recognise and substitute the integration variable and eventually substitute the integral in the right hand side with a the correct string representing the \textcolor{red}{integral dicretizato? approssimato?} that will be evaluated in computing \emph{fun\_eval}. These two phases are carried out sequentially, so the string representing the right hand side of each equation in the discretized system produced in output by the first routine is then taken as an input in the second parser routine.
+The structure of the regular expression above would already allow the recognition of state dependent equations up to one nested level. \newline \newline
+The second routine of the parsing phase, also mainly based on the usage of regular expressions, is responsible for recognising and properly substituting integrals that may appear in the right hand side of an equation. It follows the same principle as the first routine, for each equation with, a proper built regular expression, find all the integrals, recognise and substitute the integration variable and eventually substitute the integral in the right hand side with a the correct string representing the approximated integral that will be evaluated in computing \emph{fun\_eval}. These two phases are carried out sequentially, so the string representing the right hand side of each equation in the discretized system produced in output by the first routine is then taken as an input in the second parser routine.
 \begin{figure}[htp]
 \hspace*{-5.5em}
 \includegraphics[scale=0.21]{imgTesi/indeepDiagram.jpg}
-\caption{A more detailed state diagram of the "parsing the equations" state of Figure \ref{fig:stateDiagramNew}}
+\caption{A more detailed state diagram of the ``parsing the equations'' state of Figure \ref{fig:stateDiagramNew}}
 \label{fig:stateDiagramNewDetail}
 \end{figure}
 \newline There are also other secondary less complex routines that write in the .m file other sections of both the \emph{fun\_eval}, \emph{init} and other functions.\newline
 One of the routines mentioned is responsible for writing in the file some functions each returning a pre-computed matrix. For example one function returns the M+1\footnote{where M is the degree of the collocation polynomial} Chebyshev nodes in the interval $[0,1]$.
 \newline \newline
-Another of the secondary routine is responsible for writing in \emph{fun\_eval} an array identified by the name 'delayFunctions' containing all the delays found in the system. The process used to find the delays is analogous to the one used during the first parsing phase. The array written in \emph{fun\_eval} will be used in every evaluation of the system to determine the maximum (without sign) delay and subsequently scale the Chebyshev nodes (used to interpolate the behaviour of the solution in the interval $[-\tau_{max},0]$) from the interval $[0,1]$ to $[-\tau_{max},0]$.
+Another of the secondary routines is responsible for writing in \emph{fun\_eval} an array identified by the name ``delayFunctions'' containing all the delays found in the system. The process used to find the delays is analogous to the one used during the first parsing phase. The array written in \emph{fun\_eval} will be used in every evaluation of the system to determine the maximum (without sign) delay and subsequently scale the Chebyshev nodes (used to interpolate the behaviour of the solution in the interval $[-\tau_{max},0]$) from the interval $[0,1]$ to $[-\tau_{max},0]$.
 
 
 
@@ -409,7 +420,7 @@ Another of the secondary routine is responsible for writing in \emph{fun\_eval} 
 
 \newpage
 \section{A brief look at the development process}
-The extension rocess followed some of the development principles presented in the Agile Manifesto \cite{agileManifesto}. Focus was especially put on the delivery of working software frequently and on the iterative development process. Overviewing the iteration process the evolution of the software went through these major intermediate phases: \label{iterative}
+The extension process followed some of the development principles presented in the Agile Manifesto \cite{agileManifesto}. Focus was especially put on the delivery of working software frequently and on the iterative development process. Overviewing the iteration process the evolution of the software went through these major intermediate phases: \label{iterative}
 
 
 \begin{itemize}
@@ -418,7 +429,7 @@ The extension rocess followed some of the development principles presented in th
     \item Adjustment of the preprocessing done on the data inserted by the user before passing it to the numerical algorithms (at this point the numerical part of MatCont, such as integration or the continuation of an equilibrium, was working correctly with DDEs with discrete delays).
     \item Integration of MatConts' scripts related to the memorization of the computed data (now the part of Matcont related to plotting the computed curve worked correctly with DDE systems).
     \item Extension of the preprocessing and parsing phase done on the input to recognise distributed delays (i.e. parsing integrals).
-    \item Extension of the preprocessing and parsing phase done on the input to recognise state dependent equations.  \textcolor{red}{[da fare]}
+    \item Extension of the preprocessing and parsing phase done on the input to recognise renewal equations.
 \end{itemize}
 
 
@@ -428,7 +439,7 @@ Each intermediate version was followed by a small testing phase, consisting prim
 During the development two main challenges were faced:
 
 \begin{itemize}
-	\item Working on a software (MatCont) related to a previously unknown domain to me. This situation can be quite common when dealing with softwares in a different fields. How this challenged was faced and overcame was by conducting an introductory study on the main aspects of the field and also by interacting and working with a domain expert.   
+	\item Working on a software (MatCont) related to a previously unknown domain to me. This situation can be quite common when dealing with softwares in different fields. How this challenge was faced and overcome was by conducting an introductory study on the main aspects of the field and also by interacting and working with a domain expert.   
 	
 	\item Understanding and extending sections of code with little or none code documentation (i.e. comments or method contracts) as introduced in section \ref{documentation}. This challenge was mostly faced when adapting the code responsible for handling the curve data. Overall, this challenge has been faced with the help of some of the tools provided by MatLab for the debugging process such as breakpoints and step-by-step execution. 
 \end{itemize}
@@ -438,12 +449,17 @@ During the development two main challenges were faced:
 \begin{figure}[htp]
 \hspace*{-5em}
 \includegraphics[scale=0.38]{imgTesi/comparisonMerged.png}
-\caption{The qualitative comparison between DDE-Biftool curve and Matcont's curve }
+\caption{A qualitative comparison between a Hopf bifurcation continuation curve of DDE-Biftool and Matcont's.}
 \label{fig:curveComparison}
 \end{figure}
 
+\section{Future extensions}
 
-\textcolor{red}{......... inserire capitolo con conclusioni?.........}
+The system has been extended keeping in mind that other eventual extensions may take place. For example nested integrals or state dependent delay equations (up to some level of nesting) aren't supported yet, but in future these features could be supported and properly menaged by a more general extension of MatCont.
+The most intuitive way to extend the syntax presented in 7.1.2 to allow the insertion of state dependent DDEs would be to let the user write them in a form like the following: \verb| y'=y[y[t-TAU]]| where this string represents the equation $y(t)'=y(y(t-\tau))$, so by expressing nested delay dependencies also with square brackets.
+\newline
+Another possible future integration more related to the GUI and the User experience itself, may be the automatic recognition of the system type once inserted, by doing so, the user won't need to select whether the system inserted is described by ODEs only, or by delay equations. This will bring the GUI even closer to the standard MatCont's GUI.
+
 
 \newpage
 \clearpage
