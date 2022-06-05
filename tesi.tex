@@ -154,11 +154,17 @@ The general solution of the equation is $y(t)=y_0 e^{rt}$ where $y_0$ is the ini
 An equilibrium, a solution constant on the domain, for the equation (regardless the value of the parameter r) is obtained with the initial value $y_0=0$. Plotting the solution of the relative IVP (with different values of $r$) will always result in a straight lin	e on the trajectory plane.
 
 \chapter{Delay Differential Equations}
-\cite{diekmann2012delay}
-\textcolor{red}{
-...............
-...............
-...............}
+
+Delay differential equations can be seen as a generalization of ODEs, and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. Informally a delay differential equation can be seen as an ODE in which the function $F$ takes into account not only the value of the unknown function it's derivatives at the current time $t$ considered but also at previous times (e.g. $t-\tau$ where $\tau \in {\rm I\!R}$).
+For simplicity only finite delays will be hereby considered, i.e. the function $F$ may depend only on a finite segment of the past history of the unknown function \cite{diekmann2012delay}.\newline
+In order to find a specific solution to a first order delay equation differently from what happened with an ODE, it's not sufficient to specify a single initial value, but an entire function on the interval $[-\tau_{max},0]$ where $\tau_{max}$ is the maximum value among the delays values in the equation.
+A first useful distinction, that will be helpful in chapter 7, is distinguishing between discrete and distributed delays. The first kind of delay takes the form of the unknown function at time $t$ minus (plus) some positive (negative) delay term, while a distributed delay presents the unknown function inside an integral with the delay term being the integration variable.\newline
+For example the following equation, presents two discrete delays and $\tau_{max}=max(\tau_1,1)$, where $\tau_1$ is a parameter:
+\begin{equation} 
+z'(t)=z(t-1)+z(t-\tau_1) 
+\end{equation}
+For what concerns the IVP, given an initial function, the theorem of existence and uniqueness of the solution is still valid.
+
 
 \section{The idea behind the discretization algorithm}
 
