@@ -31,6 +31,13 @@
 \includegraphics[scale=1.05]{frontespizio.pdf}
 
 \clearpage
+\newpage 
+\pagenumbering{gobble}
+\ % empty page
+
+\newpage
+
+\pagenumbering{arabic}
 \setcounter{page}{1}
 
 \tableofcontents
@@ -74,7 +81,7 @@ Another important distinction is on linear or non-linear differential equations.
 
 \chapter{Ordinary Differential Equations}
 
-An ordinary differential equation, or ODE, is a kind of differential equation where the unknown function only depends on one independent variable (usually referred to as time), the domain of the unknown function is then an interval $I \subset {\rm I\!R}$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \cite{odeIntro} where $t$ is the independent variable, $y$ the unknown function, $ y^{(i)}(t) $ the $i$-th derivative of $y$ and $F : A \subseteq {\rm I\!R}^{k+2} \rightarrow R$. \newline \newline
+An ordinary differential equation, or ODE, is a kind of differential equation where the unknown function only depends on one independent variable (usually referred to as time), the domain of the unknown function is then an interval $I \subset {\rm I\!R}$. The most general form an ODE can be written as: $F(t,y(t), y’(t) ... y^{(k)}(t))=0$ \label{F}\cite{odeIntro} where $t$ is the independent variable, $y$ the unknown function, $ y^{(i)}(t) $ the $i$-th derivative of $y$ and $F : A \subseteq {\rm I\!R}^{k+2} \rightarrow R$. \newline \newline
 The maximum order of derivative of a differential equation is referred to as the order of the equation.
 The first example below shows a first order differential equation\footnote{A first order differential equation is a differential equation of degree equal to one, a second, third, forth and so on order differential equation will present a degree respectively of two, three, four and so on} while the second example represents a second order one:
 
@@ -101,7 +108,7 @@ z'(t)+y(t)+1=0
 \end{cases}\,.
 \end{equation}
 
-\subsection{Intial value problem}
+\section{Intial value problem}
 As written in the introduction, solving a differential equation or a system of equations (i.e. looking for the \emph{general} solution) means finding a class/family of equations, it may be required though to find a specific solution (i.e. a single equation or system that satisfies the relationship with some initial conditions in the domain of the unknown function).
 The initial value problem for a given equation can be viewed as a system containing the differential equations considered and $n$ additional equations that specify the initial conditions where $n$ is the order of the equation.
 
@@ -155,9 +162,9 @@ An equilibrium, a solution constant on the domain, for the equation (regardless 
 
 \chapter{Delay Differential Equations}
 
-Delay differential equations can be seen as a generalization of ODEs, and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. Informally a delay differential equation can be seen as an ODE in which the function $F$ takes into account not only the value of the unknown function it's derivatives at the current time $t$ considered but also at previous times (e.g. $t-\tau$ where $\tau \in {\rm I\!R}$).
+Delay differential equations can be seen as a generalization of ODEs and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. Informally a delay differential equation can be seen as an ODE in which the function $F$ \ref{F} takes into account not only the value of the unknown function derivatives at the current time $t$ considered but also at previous times (e.g. $t-\tau$ where $\tau \in {\rm I\!R}$).
 For simplicity only finite delays will be hereby considered, i.e. the function $F$ may depend only on a finite segment of the past history of the unknown function \cite{diekmann2012delay}.\newline
-In order to find a specific solution to a first order delay equation differently from what happened with an ODE, it's not sufficient to specify a single initial value, but an entire function on the interval $[-\tau_{max},0]$ where $\tau_{max}$ is the maximum value among the delays values in the equation.
+In order to find a specific solution to a first order delay equation differently from what happens with an ODE, it's not sufficient to specify a single initial value, but an entire function on the interval $[-\tau_{max},0]$ where $\tau_{max}$ is the maximum value among the delays values in the equation.
 A first useful distinction, that will be helpful in chapter 7, is distinguishing between discrete and distributed delays. The first kind of delay takes the form of the unknown function at time $t$ minus (plus) some positive (negative) delay term, while a distributed delay presents the unknown function inside an integral with the delay term being the integration variable.\newline
 For example the following equation, presents two discrete delays and $\tau_{max}=max(\tau_1,1)$, where $\tau_1$ is a parameter:
 \begin{equation} 
