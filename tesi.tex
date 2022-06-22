@@ -14,10 +14,10 @@
 	\titlespacing*{\chapter}{0pt}{-35pt}{10pt}
 	
 	\graphicspath{ {./imgTesi/} }
-	\title{\textbf{Draft tesi (\textcolor{orange}{lastest major changes in orange})}}
+	\title{\textbf{Draft tesi (\textcolor{orange}{latest major changes in orange})}}
 	\author{Enrico Santi}
 	
-	\newtheorem{chiconetheo}{Theorem}
+	\newtheorem{exmp}{Example}
 \begin{document}
 
 %per non separare 2 parole da \n -> parola1~parola2
@@ -56,13 +56,44 @@ The work done and described in Chapter \ref{cap7} will also be presented at the 
 
 \clearpage
 %fine pag
+\chapter{Basics on dynamical systems}
+
+\section{Dynamical systems}
+
+A dynamical system describes a phenomenon whose state varies inside a \emph{state space} as the time changes \cite{arrowsmith1990introduction}. A state space can be informally described as all the values (describing the state) the considered dynamical system can assume as the time progresses. 
+How the state of the system evolves with time is described by a family of functions referenced as \emph{evolution operators} presenting two properties.
+\newline
+A dynamical system can then be	 described as a triple $\{T,X,\phi^t\}$ where the first element T is the time set, X is the state space and $\phi^t$ is the family of evolution operators depending on $t \in T$, $\phi^t : X \rightarrow X$ satisfying $\phi^0=id$ and $\phi^{t+s}=\phi^t \circ \phi^s$ where $id$ represents the identity function mapping each state to itself \cite{kuznetsov}.
+%continua: The first property of the evolution operators 
+\newline
+A first major distinction of these systems is related to the time set considered, if it is considered as a sequence of discrete points (i.e. $ T \subset {\rm I\!N} $) then these are discrete dynamical systems, on the other hand if the time is considered continuous (i.e. $ T $ can be a more general subset of ${\rm I\!R}$ such as an interval) then continuous dynamical systems are taken into account.
+In some sense when modelling a phenomenon with a discrete dynamical system system we are only interested in the states of the system at discrete points in time \cite{barbarossa2011stability}. Another difference from a continuous-time dynamical system is that the description of such a system is not based on ODEs or delay equations but on recursive equations. A simple example of continuous dynamical system is represented by the Malthus equation:  
+\begin{equation}
+y'(t)=r y(t) 
+\label{malthusEquation}
+\end{equation}
+The time-discrete counterpart system of the system described by \eqref{malthusEquation} is:
+
+\begin{equation} 
+\label{malthusdiscrete}
+y_{t+1}=y_t+ry_t
+\end{equation}
+
+\vspace{0.8em}
+
+As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems recalls the relationship between $\Delta x/\Delta t$ and $dx/dt$.\newline
+These systems are used to model the evolution of a phenomenon, and find application in several fields, from engineering to biology, in this thesis only continuous-time systems will be treated.\newline
 
 
-\chapter{Introduction to differential equations}
 
-A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred to as unknown since solving a differential equation (when it is possible) means finding a set of functions satisfying the relationship in an interval $I \subseteq {\rm I\!R}$. \newline 
+
+\section{Ordinary differential equations}
+
+
+
+A differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. The function is referred to as unknown since solving a differential equation (when it is possible) means finding a set of functions satisfying the relationship on a specific set of points, to obtain a single function additional conditions are needed, usually initial conditions (Paragraph \ref{IVP}). \newline 
 A first distinction among differential equations is done on the number of independent variables the unknown function presents, if these variables are more than one then partial differential equations are being considered. On the other hand if the independent variable is only one, the differential equation is called an ordinary differential equation. \newline
-In the following paragraphs only the latter case of differential equation will be taken into account. \newline
+In this thesis only the latter case of differential equation will be taken into account, the unknown function by definition must satisfy the relationship an interval $I \subseteq {\rm I\!R}$. \newline
 Another distinction can be made on whether or not the relation describing the equation depends not only on the function but also on the independent variables of the function. In the case the relation doesn't depend on the independent variables the differential equation is said to be \emph{autonomous}.\newline
 The first example below shows an autonomous ordinary differential equation while the second example represents a nonautonomous one:
 
@@ -73,47 +104,17 @@ $y'(t)+y(t)+1=0$,
 \begin{center}
 $y'(t)+y(t)+t=0$,
 \end{center}
-
 A more concrete difference concerning these two kinds of ODEs is presented in Paragraph \ref{geometric}. 
 \newline
-Another important distinction is on linear or nonlinear differential equations. Linear differential equations can be described by a linear function where the variables are the unknown functions (i.e. linear differential equations are defined by homogeneous polynomials of degree one in terms of the unknown functions).
-
-
-\chapter{Ordinary differential equations}
-
-An ordinary differential equation, or ODE, is a kind of differential equation where the unknown function only depends on one independent variable (usually referred to as time). The domain of the unknown function is then by definition an interval $I \subset {\rm I\!R}$.\textcolor{orange}{While it's true that other functions defined over a generic $A \subset {\rm I\!R}$ that satisfy the relationship on the required interval exist, they aren't taken into account by the classical definition of solution}. The most general form an ODE can be written as: $F(t,y(t), y’(t), ... ,y^{(k)}(t))=0$ \label{F}\cite{odeIntro}, where $t$ is the independent variable, $y$ the unknown function, $ y^{(i)}(t) $ the $i$-th derivative of $y$ and $F : A \subseteq {\rm I\!R}^{k+2} \rightarrow R$. \newline \newline
-The maximum order of derivative of an ODE is referred to as the order of the equation.
-The first example below shows a first order differential equation\footnote{A first order ODE is a differential equation of degree equal to one, a second, third, forth and so on order differential equation will present a degree respectively of two, three, four and so on.} while the second example represents a second order one:
-
-
-\begin{center}
-$y'(t)+1=0$
-\end{center}
-
-\vspace*{-1.1em}
-\begin{equation} 
-\label{equation2}
-y''(t)+y(t)+1=0
-\end{equation}
-
-\vspace*{1em}
-
-A useful observation that could be used when studying ODEs is that given an ODE of degree $n$ it can be re-written as a system of $n$ first order ODEs. The equation \eqref{equation2} is equivalent to the following system:
-
-\begin{equation} 
-\begin{cases}
-\label{equationSystem}
-z(t)-y'(t)=0 \\
-z'(t)+y(t)+1=0 
-\end{cases}\,.
-\end{equation}
-
-\section{Initial value problem}
-As written in the introduction, solving a differential equation or a system of equations (i.e. looking for the \emph{general} solution) means finding a class/family of functions. It may be required though to find a specific solution (i.e. a single function that satisfies the relationship with some additional conditions in the domain of the unknown function).
-\textcolor{orange}{
-An initial condition is an equation involving the unknown function or one of its derivatives evaluated at a specific point $t_0 \in I$ and a value in the codomain of the unknown function.} 
+Another important distinction is on linear or nonlinear differential equations. Linear differential equations can be described by a linear function where the variables are the unknown functions \cite{chicone}.%(i.e. linear differential equations are defined by homogeneous polynomials of degree one in terms of the unknown functions).
+\newline\newline
+Given an ordinary differential equation, or ODE, the domain of the unknown function is then by definition an interval $I \subset {\rm I\!R}$. While it's true that other functions defined over a generic $A \subset {\rm I\!R}$ that satisfy the relationship on the required interval exist, they aren't taken into account by the classical definition of solution. The maximum order of derivative of an ODE is referred to as the order of the equation.
+A useful observation that could be used when studying ODEs is that given an ODE of degree $n$ it can be re-written as a system of $n$ first order ODEs. \textcolor{orange}{ The most general form of a first order non-autonomous ODE can be written as: $y'(t)=F(t,y(t))$ \label{F}\cite{odeIntro}, where $t$ is the independent variable, $y$ the unknown function (so y(t) is the state) and $ {\rm I\!R}^{d}$ the state space, $ y'(t) $ is the first derivative of $y$ and $F : A \subseteq  {\rm I\!R}^{d+1} \rightarrow  {\rm I\!R}$ }.\newline \newline
+\subsection{Initial value problem}\label{IVP}
+%As written in the introduction, solving a differential %equation or a system of equations (i.e. looking for the %\emph{general} solution) means finding a class/family of %functions.
+Usually in addition to finding the general solution of an ODE it may be required to look for a specific solution (i.e. a single function that satisfies the relationship with some additional conditions in the domain of the unknown function).
+An initial condition is an equation involving the unknown function (or one of its derivatives) evaluated at a specific point $t_0 \in I$ (usually and also for this thesis $t_0=0$) and a value in the codomain of the unknown function (or it's derivatives).
 The initial value problem for a given equation can be viewed as a system containing the differential equations considered and $n$ additional equations that specify the initial conditions (at $t_0$) where $n$ is the order of the equation.
-\textcolor{orange}{
 Let $y^{(n)}$ be an ODE of order $n$, the initial conditions associated to the IVP will resemble the following system:
 \begin{center} $
 \begin{cases}
@@ -123,17 +124,13 @@ y'(t_0)=y_1 \\
 y^{(n-1)}(t_0)=y_{n-1} 
 \end{cases}\,.$
 \end{center}
-}
-For what concerns the properties of the IVP we recall the following theorem from \cite{chicone}.
+For what concerns the properties of the IVP we recall the theorem from \cite{chicone} which expresses the fact that, every initial value problem, where the function expressed by the right hand side of the ODE satisfies some  regular properties, has a unique solution that is smooth with respect to initial conditions and parameters.
 
-\begin{chiconetheo}
-Every initial value problem has a unique solution that is smooth with respect to initial conditions and parameters.
-\end{chiconetheo}
 %{inserire: non verrà ripotata la dimostrazione di esistemza e unicità o un maggiore formalismo}
 
-\section{Geometric interpretation of first order ODEs}
-As in many other mathematical fields a geometrical interpretation of the studied concepts helps to obtain a better understanding of the topic.  \textcolor{orange}{
- A trajectory of a solution of an ODE, in particular for a dynamical system, consists of the set of the values of the unknown function in the interval and the values of the independent variable itself (i.e. ${(t,y(t)): t \in I}$}). Related to this concept, one of the first geometric visualizations for ODEs is the trajectory diagram. This diagram, in relation to a given ODE, presents on one of its axes the independent variable, and on the other the unknown function. What this diagram shows is a vector field (i.e. an assignment of a vector to each point in a given space), where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point.\newline
+\subsection{Geometric interpretation of first order ODEs}
+As in many other mathematical fields a geometrical interpretation of the studied concepts helps to obtain a better understanding of the topic. 
+A trajectory of a solution of an ODE, in particular for a dynamical system, consists of the set of the values of the unknown function in the interval and the values of the independent variable itself (i.e. ${(t,y(t)): t \in I}$). Related to this concept, one of the first geometric visualizations for ODEs is the trajectory diagram. This diagram, in relation to a given ODE, presents on one of its axes the independent variable, and on the other the unknown function, for what concerns systems of ODEs components (unknown functions) is considered separately in different diagrams. What this diagram shows is a vector field (i.e. an assignment of a vector to each point in a given space), where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point.\newline
 This becomes really clear when the definition of derivative is recalled, which can be informally described as a function that associates to each point of a differentiable function the angular coefficient of the tangent vector in that point, if it exists.\newline
 
 
@@ -151,70 +148,95 @@ This becomes really clear when the definition of derivative is recalled, which c
 \label{fig:nonautonomous}
 \end{figure}
 
-The two trajectory diagrams in Figure \ref{fig:autonomous} and \ref{fig:nonautonomous} showing the solution of the respective initial value problem (with $y(0)=1$) emphasise the geometrical difference between the trajectory of an autonomous ODE Figure \ref{fig:autonomous} and the trajectory of a non autonomous ODE. In the first case the vector associated to a given point $(x_i,y_j)$ remains unchanged for every other point $(x_k,y_j)$, while the second diagram doesn't present this property. \label{geometric}
+The two trajectory diagrams in Figure \ref{fig:autonomous} and \ref{fig:nonautonomous}, numerically obtained, show the solution of the respective initial value problem (with $y(t_0)=1$, where $t_0=0$) emphasise the geometrical difference between the trajectory of an autonomous ODE Figure \ref{fig:autonomous} and the trajectory of a non autonomous ODE. In the first case the vector associated to a given point $(x_i,y_j)$ remains unchanged for every other point $(x_k,y_j)$, while the second diagram doesn't present this property. \label{geometric}
 \newline
 The geometric interpretation allows to qualitatively study an ODE or a system of ODEs without analytically solving them, giving insights on the problem \cite{chicone}.
-Another concept is the orbit of a solution of an ODE. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value is assumed by the solution in the interval (i.e. ${(y(t)): t \in I}$) \cite{chicone}.  
+Two other fundamental concepts are the orbit of a solution of an ODE and the phase portrait. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value is assumed by the solution in the interval (i.e. ${(y(t)): t \in I}$) \cite{chicone}. On the other hand the phase portrait is a partitioning of the state space into orbits \ref{kuznetsov}.
 For what concerns systems of autonomous ordinary differential equations usually also the \emph{phase} or \emph{orbit} plane is presented, this plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
 The phase diagram can also be plotted for an autonomous ODE, but this will result in a one dimensional line.\newline
 \newline
-	The phase plane of a given systems (with proper initial conditions) can present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred to as a \emph{periodic orbit} and a \emph{steady state} or an \emph{equilibrium}. In Chapter 5 the related concepts of stability and bifurcation will be briefly discussed.
+The phase plane of a given systems (with proper initial conditions) can present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred to as a \emph{periodic orbit} and a \emph{steady state} or an \emph{equilibrium}. In Chapter 5 the related concepts of stability and bifurcation will be briefly discussed.
 
-\section{An example}
+\begin{exmp} 
 
-A simple example of an ODE is represented by the Malthus equation:  
-\begin{equation}
-y'(t)=r y(t) 
-\label{malthusEquation}
-\end{equation}
- 
-This equation, where $r$ is a parameter, is a linear autonomous first order ODE which can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)b(y)$}.\newline
+The Malthus equation \eqref{malthusEquation}, where $r$ represents a parameter, is a linear autonomous first order ODE which can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)b(y)$}.\newline
 The general solution of the equation is $y(t)=y_0 e^{rt-t_0}$ where $y_0$ is the initial value chosen for $y(t_0)$.\newline
 An equilibrium, a constant solution on the domain, for the equation (regardless the value of the parameter $r$) is obtained with the initial value $y_0=0$. Plotting the solution of the relevant IVP (with different values of $r$) will always result in a straight line on the trajectory plane.
 
-\chapter{Dynamical systems}
+\end{exmp}
+%%fine
 
 
-A dynamical system describes a phenomenon whose state varies inside a \emph{state space} as the time changes \cite{arrowsmith1990introduction}. A state space can be informally described as all the values (describing the state) the considered dynamical system can assume as the time progresses. 
-How the state of the system evolves with time is described by a family of functions referenced as \emph{evolution operators} presenting two properties.
-\newline
-A dynamical system can the described as a triple $\{T,X,\phi^t\}$ where the first element T is the time set, X is the state space and $\phi^t$ is the family of evolution operators depending on $t \in T$, $\phi^t : X \rightarrow X$ satisfying $\phi^0=id$ and $\phi^{t+s}=\phi^t \circ \phi^s$ where $id$ represents the identity function mapping each state to itself \cite{kuznetsov}.
-%continua: The first property of the evolution operators 
-\newline
-A first major distinction of these systems is related to the time set considered, if it is considered as a sequence of discrete points (i.e. $ T \subset {\rm I\!N} $) then these are discrete dynamical systems, on the other hand if the time is considered continuous (i.e. $ T $ can be a more general subset of ${\rm I\!R}$ such as an interval) then these are continuous dynamical systems.
-As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems recalls the relationship between $\Delta x/\Delta t$ and $dx/dt$.\newline
-These systems are used to model the evolution of a phenomenon, and find application in several fields, from engineering to biology.\newline
 
-\section {Discrete and continuous dynamical systems}
-As briefly introduced, a discrete dynamical system differs from a continuous-time one by the time set $T$, which can only be a subset of ${\rm I\!N}$. In some sense when modelling a phenomenon with such a system we are only interested in the states of the system at discrete points in time \cite{barbarossa2011stability}. Another difference from a continuous-time dynamical system is that the description of such a system is not based on ODEs or delay equations but on recursive equations. For example the time-discrete counterpart system of the system described by \eqref{malthusEquation} is:
+\section{Delay differential equations}
 
+Delay differential equations can be seen as a generalization of ODEs and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. Informally a delay differential equation can be seen as an ODE in which the function $F$ \eqref{F} takes into account not only the value of the unknown function and its derivatives at the current time $t$ considered but also at previous times (e.g. $t-\tau$ where $\tau > 0$).
+Alternatively, with reference to \ref{diekmann2012delay} \textcolor{orange}{(rimuovere sopra?)} a delay equation is a rule for extending a function of time towards the future
+on the basis of the (assumed to be) known history.
+Let $y_t(\theta):=y(t+\theta)$ with $\theta \in [-\tau,0]$ be the history of the unknown function, which also represents the state, then a Delay equation can be defined as $y'(t)=F(y_t), t \geq 0$ where the state space is $X=C([-\tau, 0]; {\rm I\!R}^d)$. The state $y_t$ is then an infinite-dimensional object (a function) \ref{diekmann2012delay}.
+\newline 
+\newline 
+For simplicity only finite delays will be hereby considered, i.e. the function $F$ may depend only on a finite segment of the past history of the unknown function \cite{diekmann2012delay}.\newline
+In order to find a specific solution to a first order delay equation differently from what happens with an ODE, it's not sufficient to specify a single initial value, but an entire function on the interval $[-\tau,0]$ where $\tau$ is the maximum delay in the equation. An IVP will then result in a system resembling:
 \begin{equation} 
-\label{malthusdiscrete}
-y_{t+1}=y_t+ry_t
+\begin{cases}
+\label{ddesystem}
+y'(t)=F(y_t),   \;\;\; t\geq0\\
+y(\theta)=\psi(\theta), \;\; \theta \in [-\tau,0]
+\end{cases}\,.
+\end{equation}
+For what concerns the IVP, the theorem of existence and uniqueness of the solution is still valid.
+A first useful distinction, that will be helpful in Chapter \ref{cap7}, is distinguishing between discrete and distributed delays. The first kind of delay takes the form of the unknown function at time $t$ minus some positive delay term and as such they refer to values of the unknown function at single points in the history of the function itself (e.g. $y(t-\tau)$, while distributed delays refer to an interval of values of the function and they are represented by the unknown function inside an integral with the delay term being the integration variable (e.g. $\int_{-\tau}^{0}{y(t+\theta)}{d\theta}$).\newline
+For example the following equation, presents two discrete delays and $\tau_{max}=\max\{\tau_1,1\}$, where $\tau_1$ is a parameter:
+\begin{equation} 
+z'(t)=z(t-1)+z(t-\tau_1) 
 \end{equation}
 
+\subsection{From DDEs back to ODEs }
 
-\section {Stability and bifurcations}
+The step to discretize a delay equation to a system of ODEs is to rewrite a delay differential equation as an abstract differential equation. The generic IVP \ref{ddesystem} is equivalent to the following abstract IVP \cite{DDEdisc}:
+\begin{equation} 
+\begin{cases}
+\label{ddesystem}
+v'(t)=A_F(v(t)),  \;\;\; t\geq0\\
+v(0)=\psi,
+\end{cases}\,.
+\end{equation}
+where $A_F$ is the generator associated to the semigroup generated by the solution operators $\phi$ parametrized in $\psi$.\newline
+Given an IVP, the solution operators $\phi$ parametrized in $\psi$ means the operators are not dependent on a single initial state $x_0$ (i.e. the state at time t is described by $\phi(t)x_0$) but on a whole function $\psi$ (i.e. the state at time t will depend on the parameter $\psi$, and will be $\phi(t)\psi $). $A_F(\psi)$ can be defined as the limit as time goes to zero of the difference of evolution operator $\psi$ considered at the time variable of the limit and $\psi$, divided by the time variable. $A_F(\psi)$ is then by definition $\psi'$.
+Consider now $M \in {\rm I\!N}\backslash\{0\}$ distinct points in $[-\theta,0)$ and a last point equal to 0, for example the $M+1$ Chebyshev extrema\footnote{real values in [-1,1] which can be calculated as $x_k=cos(\frac{k}{n} \pi), k \in [1,n]$ where $x_k$ is the $k$-th extrema and $n$ is the number of nodes needed.} in $[-\theta,0]$. Let $d$ be the dimension of the original system; the space $Y_M=(R^{d(M+1)})$ is the discretization of the state space $Y$ of the original system of index $M$, every state $y \in Y$ is now represented by a vector in $Y_M$ with the components of the vector denoting the state of each of the $d$ equations at the instant specified by the corresponding node.
+The reconstruction operator $R_M$ associates to a given vector in $Y_M$ the $M$-degree polynomial in $Y$ interpolating the values of the vector in the respective considered points. 
+The discretization of $A_F$ of index $M$ is then the operator $A_{F,M}$ and the abstract differential equation can be seen as an ODE on $Y_M$. The initial IVP is approximated by an ODE IVP of dimension $d*(M+1)$ equations.
 
-The idea of stability of a solution (given an initial point) is both rigorously and intuitively described in \cite{chicone}, it can be intuitively defined as: a solution for a differential equation is stable if other solutions close to the considered solution remain relatively close as the system evolves. \textcolor{orange}{On the other hand, if a solution isn't stable it is said to be unstable.
-Another related concept is the asymptotic stability of a solution, which can intuitively be described as the characteristic presented by solution, such that as time goes to infinity, the distance to a solution obtained by starting with another (relatively close) initial point goes to zero.}
-\newline\newline
-When taking into consideration systems depending on one or more parameters such as \eqref{malthusEquation} it can be studied how changes in the value of a single parameter affect the solution of the system itself.
-The graph showing how changes in the parameter change the behaviour of the solutions is the \emph{bifurcation diagram} \cite{chicone} and it can be represented as a Euclidean plane presenting on an axis the parameter chosen for the bifurcation analysis and on the other axis the coordinates for the orbit diagram of the system.
-\newline
-Depending on which aspect of the system's solution changes, bifurcation points can be classified into different classes, such as:
+\subsubsection{Why discretizing to an ODE system}
 
+There are two main reasons behind the discretization of a dynamical system described by delay equations to an ODE system:
 \begin{itemize}
-    \item Saddle-node bifurcation point: A value of the considered parameter at which one or more equilibria in the solution arise or disappear.  
-    \item Transcritical bifurcation point: A value of the considered parameter at which one or more equilibria in the solution switch stability.
-    \item Pitchfork bifurcation point: A value of the considered parameter at which one equilibrium changes stability and either two equilibria arise or disappear. %%Pitchfork bifurcations can be classified as supercritical or subcritical depending on whether the two equilibria arise or disappear.
-
-    \item Hopf bifurcation: A value of the considered parameter at which one equilibrium changes stability and a limit cycle\footnote{An isolated and closed curve which other orbits approach to or are repelled by it as time progresses} arises.
+\item We are only able to study with the help of a computer finite dimensional objects and it wouldn't be possible to deal with the original problem since the operator $A_F$ mentioned in the previous paragraph is infinite-dimensional. 
+\item While a few software to carry out bifurcation analysis of delayed equations exist, softwares for the study of ODE systems are generally more complete and the methods utilized more known.
 \end{itemize}
 
+
+\subsection{Stability and bifurcations}
+
+The idea of stability of a solution (given an initial point) is both rigorously and intuitively described in \cite{chicone}, it can be intuitively defined as: the property that make solutions near to the considered solution remain relatively close as the system evolves. On the other hand, if a solution isn't stable it is said to be unstable.
+Another related concept is the asymptotic stability of a solution, which can intuitively be described as the characteristic such that as time goes to infinity, the distance between the solution and another one obtained by starting with another (relatively close) initial point goes to zero.
+\newline\newline
+When taking into consideration systems depending on one or more parameters such as \eqref{malthusEquation} it can be studied how changes in the value of a single parameter affect the solution of the system itself.
+These systems when described by first order ODEs can be represented by the generic equation:
+\begin{equation} 
+y'(t)=F(p,y(t)), \;\;\; t \geq 0 
+\end{equation}
+
+\vspace{0.8em}
+
+Where $p \in {\rm I\!R}^m$ represents the vector of parameters presented by $y(t)$, only real value parameters are being considered in this thesis.\newline 
+The graph showing how changes in the parameter change (qualitatively) the behaviour of the solutions is the \emph{bifurcation diagram} \cite{chicone} and it can be represented as a Euclidean plane presenting on an axis the parameter chosen for the bifurcation analysis and on the other axis the coordinates for the orbit diagram of the system.
+\newline
+A bifurcation could be described as the values of a considered parameter at which changes in the value of the parameter correspond to qualitative changes in the behaviour of the solution. Depending on which aspect of the system's solution changes, bifurcation points can be classified into different classes as described in \cite{kuznetsov}. An example may be the Hopf bifurcation: A value of the considered parameter at which one equilibrium changes stability and a limit cycle\footnote{An isolated and closed curve which other orbits approach to or are repelled by it as time progresses} arises.
  
 
-\subsection{Example: logistic model}
+\begin{exmp}
 
 The (continuous) logistic model is described by the logistic equation:
 \begin{equation} 
@@ -229,53 +251,7 @@ y(t)=\frac{1}{1+(\frac{K}{x_0}-1)e^{-rt}}
 \end{equation}
 Where $x_0$ is the value of $y(0)$ in the related IVP.\newline
 The system presents two steady points, one (the trivial one) at $0$ and the second at $K$. For what concerns positive values of $r$, the trivial steady point is unstable while the second one is stable. 
-
-\chapter{Delay differential equations}
-
-Delay differential equations can be seen as a generalization of ODEs and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. Informally a delay differential equation can be seen as an ODE in which the function $F$ \eqref{F} takes into account not only the value of the unknown function derivatives at the current time $t$ considered but also at previous times (e.g. $t-\tau$ where $\tau > 0$).
-For simplicity only finite delays will be hereby considered, i.e. the function $F$ may depend only on a finite segment of the past history of the unknown function \cite{diekmann2012delay}.\newline
-In order to find a specific solution to a first order delay equation differently from what happens with an ODE, it's not sufficient to specify a single initial value, but an entire function on the interval $[-\tau_{max},0]$ where $\tau_{max}$ is the maximum delay in the equation.
-A first useful distinction, that will be helpful in Chapter \ref{cap7}, is distinguishing between discrete and distributed delays. The first kind of delay takes the form of the unknown function at time $t$ minus some positive delay term and as such they refer to values of the unknown function at single points in the history of the function itself (e.g. $y(t-\tau)$, while distributed delays refer to an interval of values of the function and they are represented by the unknown function inside an integral with the delay term being the integration variable (e.g. $\int_{-\tau}^{0}{y(t+\theta)}{d\theta}$).\newline
-For example the following equation, presents two discrete delays and $\tau_{max}=\max\{\tau_1,1\}$, where $\tau_1$ is a parameter:
-\begin{equation} 
-z'(t)=z(t-1)+z(t-\tau_1) 
-\end{equation}
-For what concerns the IVP, given an initial function, the theorem of existence and uniqueness of the solution is still valid.
-
-
-\section{The idea behind the discretization algorithm}
-
-The first concept is to rewrite a delay differential equation as an abstract differential equation. Let $y_t(\theta)=y(t+\theta)$ with $\theta \in [-\tau,0]$, without going into the details \cite{DDEdisc} the following system:
-\begin{equation} 
-\begin{cases}
-\label{ddesystem}
-y'(t)=F(y_t),   \;\;\; t\geq0\\
-y(\theta)=\psi(\theta), \;\; \theta \in [-\tau,0]
-\end{cases}\,.
-\end{equation}
-is equivalent to the following abstract IVP:
-\begin{equation} 
-\begin{cases}
-\label{ddesystem}
-v'(t)=A_F(v(t)),  \;\;\; t\geq0\\
-v(0)=\psi,
-\end{cases}\,.
-\end{equation}
-where $A_F$ is the generator associated to the semigroup generated by the solution operators $\phi$ parametrized in $\psi$.\newline
-\textcolor{orange}{Given an IVP, the solution operators $\phi$ parametrized in $\psi$ means the operators are not dependent on a single intial state $x_0$ (i.e. the state at time t is described by $\psi(t)x_0$) but on a whole function $\psi$ (i.e. the state at time t will depend on the parameter $\psi$, and will be $\psi(t)\psi $). $A_F(\psi)$ can be defined as the limit as time goes to zero of the difference of evolution operator $\psi$ considered at the time variable of the limit and $\psi$, divided by the time variable. $A_F(\psi)$ is then by definition $\psi'$}.
-Consider now $M \in {\rm I\!N}\backslash\{0\}$ distinct points in $[-\theta,0)$ and a last point equal to 0, for example the $M+1$ Chebyshev extrema\footnote{\textcolor{orange}{real values in [-1,1] which can be calculated as $x_k=cos(\frac{k}{n} \pi), k \in [1,n]$ where $x_k$ is the $k$-th extrema and $n$ is the number of nodes needed.}} in $[-\theta,0]$. Let $d$ be the dimension of the original system; the space $Y_M=(R^{d(M+1)})$ is the discretization of the state space $Y$ of the original system of index $M$, every state $y \in Y$ is now represented by a vector in $Y_M$ with the components of the vector denoting the state of each of the $d$ equations at the instant specified by the corresponding node.
-The reconstruction operator $R_M$ associates to a given vector in $Y_M$ the $M$-degree polynomial in $Y$ interpolating the values of the vector in the respective considered points. 
-The discretization of $A_F$ of index $M$ is then the operator $A_{F,M}$ and the abstract differential equation can be seen as an ODE on $Y_M$. The initial IVP is approximated by an ODE IVP of dimension $d*(M+1)$ equations.
-
-\subsection{Why discretizing to an ODE system}
-\textcolor{orange}{
-There are two main reasons behind the discretization of a dynamical system described by delay equations to an ODE system:
-\begin{itemize}
-\item We are only able to study with the help of a computer finite dimensional objects and it wouldn't be possible to deal with the original problem since the operator $A_F$ mentioned in the previous paragraph is infinite-dimensional. 
-\item While a few software to carry out bifurcation analysis of delayed equations exist, \textcolor{red}{chiedere principio di funzionamento (astratto) di DDEBiftool} softwares for the study of ODE systems are generally more complete and the methods utilized more known.
-\end{itemize}
-}
-
+\end{exmp}
 \chapter{A brief introduction to MatCont}
 \label{cap6}
 MatCont is a software, based upon MATLAB, that provides functions and a graphic user interface to study the behaviour of continuous dynamical systems defined by ODEs, particularly for what concerns the bifurcation analysis\cite{documentazione}.
@@ -350,8 +326,7 @@ Both the integration extremes in distributed delays must fall within one of the 
 \begin{itemize}
     \item A constant (e.g. $\int_{-3}^{0} y[t+z]  {dz}$).
     \item A parameter of the system (e.g. $\int_{-parameter}^{0} y[t+z]  {dz}$).
-    \item An expression beginning with the time variable followed by another expression that can contain both constants, parameters and the time variable. \textcolor{orange}{Still, the coordinates in the integral must present a delay written as $Coordinate[timeVariable-expression].$ }\end{itemize}
-    
+    \item An expression beginning with the time variable followed by another expression that can contain both constants, parameters and the time variable. Still, the coordinates in the integral must present a delay written as $Coordinate[timeVariable-expression].$ \end{itemize}
 During the development process some choices were made to allow the extended system to further be extended easily in order to accept other families of delay equations, such as state dependent DDEs and renewal equations (REs).\newline
 REs were indeed supported in later development stages, allowing the system inserted to contain zero or more DDEs and ODEs alongside zero or more REs. All the REs must be specified after the DDEs or ODEs, since the evaluation of the right hand side of each equation is subdivided into two macro blocks containing DDEs/ODEs alongside REs. These later development stages regarding the introduction of REs in the software won't be treated in this thesis. 
 \newpage
@@ -396,7 +371,7 @@ By proceeding with the insertion of a new system in the extended version of MatC
 From the end user perspective only a few lines of the layout have changed, in the first line line, a dropdown menu lets the user select the type of system to be inserted.
 If the option ``ODE'' is chosen then nothing except this first line will be changed, on the other end if ``Delay equations'' is chosen a subwindow asking the user to input two additional parameters (the degree of the collocation polynomial, and the degree used for the polynomial used for the approximation of integrals) will appear.
 All the parameters will still be typed in the parameters entry whether they are used to calculate a delay or not. This latter functionality has been modified in later development stages since originally the parameters showing up in the delays (e.g. $\tau$ in \ref{tau}) had to be specified in an additional entry in the subwindow, alongside the two degrees. \newline
-\textcolor{orange}{The second change the user can observe is that when inserting a system presenting delay equations there is no other option to compute the derivatives other than numerically. Indeed if the user inserted $n$ equations in the appropriate window the system would have $n$ equations from the end user perspective but, internally it will be represented by $n*(M+1)$ equations, where $M$ is the degree of the collocation polynomial. If the user could manually specify the derivatives it would need to write $n*(M+1)$ equations and not just $n$, breaking the abstraction of the discretization process implemented.}  
+The second change the user can observe is that when inserting a system presenting delay equations there is no other option to compute the derivatives other than numerically. Indeed if the user inserted $n$ equations in the appropriate window the system would have $n$ equations from the end user perspective but, internally it will be represented by $n*(M+1)$ equations, where $M$ is the degree of the collocation polynomial. If the user could manually specify the derivatives it would need to write $n*(M+1)$ equations and not just $n$, breaking the abstraction of the discretization process implemented.
 \newline
 What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now three additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the degree of the collocation polynomial and the degree related to the Clenshaw-Curtis quadrature.
 The script file containing the functions used by MatCont when studying the system, if it's related to a ``Delay equation'' system, is also substantially different when comparing it to the same file associated with an ODE system.
@@ -417,7 +392,7 @@ When the system considered is a standard ODE system, meaning a system previously
 On the other hand, if the system considered contained delay equations, the interface will display (as when the insertion of a new ``Delay equation'' system is performed) the subpanel containing the two entries with the degree both the the collocation polynomial and quadrature formula chosen. These values can be modified alongside all the details discussed above for the ``ODE'' systems.
 
 
-\section{The full legacy support}
+\section{The complete legacy support}
 
 As written in  \hyperref[sec:additionalFields]{section 7.1.2} the binary file (.mat) associated to a system contains now some additional fields, this could make someone question whether the extended version of MatCont will still work with systems (and thus files) created with the regular version of MatCont (legacy systems). \newline
 One of the main goals was indeed to achieve full compatibility with these systems, and this is mainly done when a system is loaded. When MatCont now loads a file checks whether the field denoting the system type in the binary file exists or not. If it finds to be the latter case then the value of the field loaded is set to ``ODE'', since in regular MatCont only these types of systems are allowed (the struct in which the data is loaded contains indeed all the fields, regardless of what structure is saved on the file). From this point in the code everything will work the same as for ODE systems inserted with the extended version of the software.
@@ -504,6 +479,8 @@ During the development two main challenges were faced:
 \label{fig:curveComparison}
 \end{figure}
 
+\chapter{Conclusions}
+\textcolor{orange}{to complete}
 \section{Future extensions}
 
 The system has been extended keeping in mind that other eventual extensions may take place. For example nested integrals or state dependent delay equations (up to some level of nesting) aren't supported yet, but in future these features could be supported and properly menaged by a more general extension of MatCont.
