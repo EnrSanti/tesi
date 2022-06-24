@@ -197,6 +197,7 @@ z'(t)=z(t-1)+z(t-\tau_1)
 The step to discretize a delay equation to a system of ODEs is to rewrite a delay differential equation as an abstract differential equation. The generic IVP \ref{ddesystem} is equivalent to the following abstract IVP \cite{DDEdisc}:
 \begin{equation} 
 \begin{cases}
+\label{adesys}
 v'(t)=A_F(v(t)),  \;\;\; t\geq0\\
 v(0)=\psi,
 \end{cases}\,.
@@ -213,7 +214,16 @@ The approximated state will then be described by:
 \end{center}
 Where $\ell_{i,M}$\cite{DDEdisc} are the Lagrange polynomials considered on the M+1 points chosen, i.e.:
 \[\ell_{M,i}(\theta) = \prod_{k=0, k \neq i}^{M} \frac{\theta-\theta_{M,k}}{\theta_{M,i}-\theta_{M,k}},\;\;\;\;\; i=0,1,...,M\] \textcolor{orange}{ma... è stata poi implementata con la formulazione baricentrica dei polinomi}\newline
-Then, $F_M$, defined as $F(R_M(y_M))$ with $y_M \in Y_M$ approximates $F$ \ref{ddesystem}, the corresponding discretization of $A_F$ of index $M$ is the operator $A_{F,M}$ defined as \textcolor{orange}{definizione AFM} and the abstract differential equation can be seen as an ODE on $Y_M$. The initial IVP is approximated by an ODE IVP of dimension $d*(M+1)$ equations.
+Then, $F_M$, defined as $F(R_M(y_M))$ with $y_M \in Y_M$ approximates $F$ \ref{ddesystem}, the corresponding discretization of $A_F$ of index $M$ is the operator $A_{F,M}$ defined as $A_{F,M}(y_M)=(G_M(y_M),\Upsilon_M)$\textcolor{orange}{definizione AFM} and the abstract differential equation can be seen as an ODE on $Y_M$. The abstract IVP \eqref{adesys} can be turned into:
+\vspace{0.5em}
+\begin{equation}
+\begin{cases}
+\frac{d}{dt}(v_M(t))=A_{F,M}(v_M(t)),  \;\;\; t\geq0\\
+v_M(0)=y_M,
+\end{cases}\,.
+\end{equation}
+\vspace{0.5em}
+The initial IVP is approximated by an ODE IVP of dimension $d*(M+1)$ equations. 
 
 \subsubsection{Why discretizing to an ODE system}
 
