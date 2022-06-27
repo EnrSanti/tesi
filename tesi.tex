@@ -53,7 +53,7 @@ The internship has been focused on the development of an extension of the graphi
 The aim is to provide a user-friendly GUI to study dynamical systems described by delay differential equations (DDEs),  which arise in many application fields, i.e. control theory, ecology and epidemiology.
 The thesis is organized as follows.
 \newline In Chapter \ref{cap2} after a brief introduction on differential equations and dynamical systems we introduce the discretization approach, which is the theoretical basis of the MatCont extension, to approximate DDEs by a system of ODEs.\newline
-Chapter \ref{cap6} we describe the fundamental aspect of the current version of MatCont's GUI and how it works while in in Chapter \ref{cap7} we will focus on the new capabilities of the extended version of the extended version of MatCont, what are the new capabilities of this software and how the development has been carried out. Finally in Chapter \ref{conclusions} we conclude with some remarks on the future additional tools to implement to analyse the dynamics of renewal equations too.
+Chapter \ref{cap6} we describe the fundamental aspect of the current version of MatCont's GUI and how it works while in in Chapter \ref{cap7} we will focus on the new capabilities of the extended version of the extended version of MatCont, what are the new capabilities of this software and how the development has been carried out. Finally in Chapter \ref{conclusions} we conclude with some remarks on the future additional tools to implement to analyze the dynamics of renewal equations too.
 \newline
 \newline
 The work done and described in Chapter \ref{cap7} will also be presented at the \emph{17th IFAC Workshop on Time Delay Systems (TDS)}, September 2022 in Montreal, Canada. 
@@ -66,8 +66,8 @@ The work done and described in Chapter \ref{cap7} will also be presented at the 
 
 \section{Dynamical systems}
 
-
-Dynamical systems describe the evolution in time of phenomena and find application in several fields, from engineering to biology (\cite{arrowsmith1990introduction,kuznetsov}).
+%qui singolare
+A dynamical system describes the evolution in time of phenomenon and finds application in several fields, from engineering to biology (\cite{arrowsmith1990introduction,kuznetsov}).
 Mathematically a phenomenon is represented by a state variable and the dynamical system is defined as a triple $\{T,X,\phi^t\}$ where $T$ is the time set, $X$ is the state space\footnote{all the values describing the state the considered dynamical system can assume as the time progresses.}, and \{$\phi^t$\}$_{t \in T}$ is the family of evolution operators $\phi^t : X \rightarrow X$ satisfying: 
 \begin{itemize}
 \item$\phi^0=id$, where $id$ is the identity on $X$, 
@@ -81,7 +81,7 @@ A first major distinction is related to the time set $T$:
 
 \end{itemize}
 As described in \cite{MEERSCHAERT2013115} the relationship between discrete and continuous systems recalls the relationship between $\Delta x/\Delta t$ and $dx/dt$.
-In this thesis we will treat only continuous dynamical systems defined by ordinary differential equation (ODE) and delay equations, so from here we refer to them simply as dynamical systems.
+In this thesis we will treat only continuous dynamical systems which are described by ordinary differential equations (ODEs) and delay differential equations (DDEs), from here after we refer to them simply as dynamical systems.
 
 %In some sense when modelling a phenomenon with a discrete dynamical system system we are only interested in the states of the system at discrete points in time \cite{barbarossa2011stability}. Another difference from a continuous-time dynamical system is that the description of such a system is not based on ODEs or delay equations but on recursive equations. A simple example of continuous dynamical system is represented by the Malthus equation:  
 %\begin{equation}
@@ -105,13 +105,13 @@ In this thesis we will treat only continuous dynamical systems defined by ordina
 
 
 %An ordinary differential equation is a relation involving one or more derivatives of an \emph{unknown} function and the function itself \cite{odeIntro}. 
-We consider autonomous ordinary differential equations of the form:
+We consider autonomous differential equations of the form:
 \begin{equation}
 \label{odeeq}
 y'(t)=F(y(t)), \;\;\; t \geq 0
 \end{equation}
-where $t$ is the independent variable, $y$ the unknown function (so $y(t) \in R^d$  is the state) and $ {\rm I\!R}^{d}$ the state space with $d \geq 1$,  and $F : A \subseteq  {\rm I\!R}^{d} \rightarrow  {\rm I\!R}$.
-Solving a differential equation (when it is possible) means finding a set of functions satisfying the relationship on an interval. To obtain a unique solution additional conditions are needed. Here we consider the following initial value problem (IVP):
+where $t$ is the independent variable, $y$ the unknown function ${\rm I\!R}^d$-valued with $d\geq1$   and $F : A \subseteq  {\rm I\!R}^{d} \rightarrow  {\rm I\!R}^d$.
+Solving a differential equation (when it is possible) means finding a set of functions satisfying the relationship on a suitable interval. To obtain a unique solution of \eqref{odeeq} additional conditions are needed. So we consider the following initial value problem (IVP):
 \begin{equation} 
 \begin{cases}
 \label{IVPode}
@@ -119,20 +119,24 @@ y'(t)=F(y(t)),\;\;\; t \geq 0\\
 y(t_0)=y_0 \\
 \end{cases}\,.
 \end{equation}
-Under suitable assumptions on the right hand side $F$, the IVP \eqref{IVPode} has a unique solution $y(t)=\phi^t(y_0)$, for $t \in [0,t_f]$. Moreover it can be proven that the solution continuously depends on the initial value $y_0$ \cite{chicone}. Note that the state space is ${\rm I\!R}^d$ so the equation \eqref{odeeq} defines a finite-dimensional dynamical system.
+which under suitable regularity assumptions on the right hand side $F$ has a unique solution $y(t)=\phi^t(y_0)$, for $t \in [0,t_f]$. Moreover it can be proven for \eqref{IVPode} that the solution continuously depends on the initial value $y_0$ \cite{chicone}.The eqaution \ref{odeeq} defines a dynamical system where $y(t) \in  {\rm I\!R}^d$ is the state at time $t$, $X \in {\rm I\!R}^d$ is the state space and $T=[0,tf]$. Note that the state space is ${\rm I\!R}^d$ so the equation \eqref{odeeq} defines a finite-dimensional dynamical system.
 \newline
-A trajectory of a solution of an ODE, in particular for a dynamical system, consists of the set of the values of the unknown function in the interval and the values of the independent variable itself (i.e. ${(t,y(t)): t \in I}$).
-Related to this concept, one of the first geometric visualizations for ODEs is the trajectory diagram. This diagram, in relation to a given ODE, presents on one of its axes the independent variable, and on the other the unknown function, for what concerns systems of ODEs components (unknown functions) is considered separately in different diagrams. What this diagram shows is a vector field (i.e. an assignment of a vector to each point in a given space), where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point.\newline
-This becomes really clear when the definition of derivative is recalled, which can be informally described as a function that associates to each point of a differentiable function the angular coefficient of the tangent vector in that point, if it exists.\newline
+A trajectory of a solution of an IVP consists of following set:
+\begin{equation} 
+\{(t,y(t)): t \in T\}
+\end{equation}
+%modifica
+Related to this concept, one of the first geometric visualizations for ODEs is the trajectory diagram. In relation to a given IVP, it presents on one of its axes the independent variable, and on the other the component considered, for what concerns systems of ODEs (with $d > 1$) usually each component ($y_i$, unknown function) is considered separately in a different diagram. This diagram in realtion to an ODE presents the related vector a vector field (i.e. an assignment of a vector to each point in a given space), where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point. This geometric visualization allows to qualitatively study different IVPs without analytically solving them, giving insights on the problem \cite{chicone}. In Figure \ref{fig:malthus} and \ref{fig:logistic} we show an example of these diagrams in the case of two scalar ($d=1$) equations. In the following two examples the solutions can be calculated exactly but this is not always possible, for this reason usually numerical softwares and integrators are used (i.e. MATLAB).
+\newline
 \begin{exmp} 
 
 The (continous)\footnote{its discrete counterpart is described by the recursive equation $y(t+1) = y(t) + ry(t)$} Malthus equation is defined as follows:
 \begin{equation} 
 \label{malthuseq}
-y'(t)=ry(t)
+y'(t)=ry(t),\;\;\; t \geq 0\\
 \end{equation} 
 It is a linear autonomous first order ODE in which $r$ represents a parameter, that can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)b(y)$}.\newline
-The general solution of the equation is $\phi^t(y_0)=y_0 e^{rt-t_0}$ for $t \geq 0$ where $y_0$ is the initial value chosen for $y(t_0)$.\newline
+The general solution of the equation is $\phi^t(y_0)=y_0 e^{rt}$ for $t \geq 0$ where $y_0$ is the initial value chosen for $y(0)$.\newline
 An equilibrium, a constant solution on the domain, for the equation (regardless the value of the parameter $r$) is obtained with the initial value $y_0=0$ at $t_0=0$. Plotting the solution of the relevant IVP (with different values of $r$) will always result in a straight line on the trajectory plane.
 
 \end{exmp}
@@ -141,16 +145,16 @@ An equilibrium, a constant solution on the domain, for the equation (regardless 
 The logistic model is described by the logistic equation:
 \begin{equation} 
 \label{logisticEQ}
-y'(t)=ry(t)(1-\frac{y(t)}{K})
+y'(t)=ry(t)(1-\frac{y(t)}{K}),\;\;\; t \geq 0\\
 \end{equation}
-This model describes the ratio at which a population of individuals grows. The parameter $r$ is the rate of maximum population growth (i.e. the rate at which the individuals can reproduce)\cite{weisstein2003logistic} and it is usually considered a positive value. The parameter $K$ represents the maximum number of individuals the environment can sustain.  
-The general solution to the equation can be obtained by separation of variables:
+This model describes the evolution of a population of individuals where the parameter $r$ is the rate of maximum population growth (i.e. the rate at which the individuals can reproduce)\cite{weisstein2003logistic} and it is usually considered a positive value and $K$ represents the maximum number of individuals the environment can sustain (the capacity).  
+The general solution of the equation \ref{logisticEQ} (where $y_0$ is the value of $y(0)$ in the related IVP) can be obtained by separation of variables:\newline
 \begin{equation}  
 \label{logisticEQsol}
-\phi^t(y_0)=\frac{K}{1+(\frac{K}{y_0}-1)e^{-r(t-t_0)}}
+\phi^t(y_0)=\frac{K}{1+(\frac{K}{y_0}-1)e^{-r(t)}} cambia t>=0
 \end{equation}
-Where $y_0$ is the value of $y(t_0)$ in the related IVP.\newline
-The system presents two steady points, one (the trivial one) at $0$ and the second at $K$. For what concerns positive values of $r$, the trivial steady point is unstable while the second one is stable. 
+
+The system presents two equilibria: $e_0=0$ and $e_1=K$. For what concerns positive values of $r$, looking at Figure \ref{fig:logistic} it can be seen that all the solutions approach to $e_1$ ($e_1$ it is asymptotically stable) while they move avay from the trivial equibirum ($e_0$ is asymptotically unstable). 
 \end{exmp}
 
 %Another distinction can be made on whether or not the relation describing the equation depends not only on the function but also on the independent variables of the function. In the case the relation doesn't depend on the independent variables the differential equation is said to be \emph{autonomous}.\newline
@@ -204,13 +208,11 @@ The system presents two steady points, one (the trivial one) at $0$ and the seco
 
 
 The two trajectory diagrams in Figure \ref{fig:malthus} and \ref{fig:logistic} are numerically obtained. They show two solutions of the respective \eqref{malthuseq} and \eqref{logisticEQ} initial value problems each, with $y(t_0=0)=1$ and $y(t_0=0)=0$ for the Malthus equation and $y(t_0=0)=1$ and $y(t_0=0)=1$ for the Logistic equation.
-\newline 
-The geometric interpretation allows to qualitatively study IVPs without analytically solving them, giving insights on the problem \cite{chicone}.
-Two other fundamental concepts are the orbit of a solution of an ODE and the phase portrait. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value is assumed by the solution in the interval (i.e. ${(y(t)): t \in I}$) \cite{chicone}. On the other hand the phase portrait is a partitioning of the state space into orbits \cite{kuznetsov}.
-For what concerns systems of autonomous ordinary differential equations usually also the \emph{phase} or \emph{orbit} plane is presented, this plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
-The phase diagram can also be plotted for an autonomous ODE, but this will result in a one dimensional line.\newline
 \newline
-The phase plane of a given systems (with proper initial conditions) can present curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred to as a \emph{periodic orbit} and a \emph{steady state} or an \emph{equilibrium}. In Chapter \ref{stability} the related concepts of stability and bifurcation will be briefly discussed.
+Two other fundamental concepts are the orbit of a solution of an ODE and the phase portrait. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value is assumed by the solution in the interval (i.e. ${(y(t)): t \in T}$) \cite{chicone}. On the other hand the phase portrait is a partitioning of the state space into orbits \cite{kuznetsov}.
+For what concerns ODEs defined as \ref{odeeq} also the \emph{phase} or \emph{orbit} plane is presented, this plane present on its axes some (two or three, according to the number of axes) of the solutions of the system. Since $d$ may be greater than three more phase planes can be presented for a system (depending on the solutions taken into account). This plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
+\newline
+From the phase plane of a given IVP (with proper initial conditions) we can observe curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred to as a \emph{periodic orbit} and a \emph{steady state} or an \emph{equilibrium}. In Chapter \ref{stability} the related concepts of stability and bifurcation are briefly discussed. The phase diagram can also be plotted for an  ODE with $d=1$, but this will result in a one dimensional line.\newline
 
 %scrivi equilibri
 
@@ -222,7 +224,11 @@ The phase plane of a given systems (with proper initial conditions) can present 
 
 Delay differential equations can be seen as a generalization of ODEs and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. With reference to \cite{diekmann2012delay} a delay equation is a rule for extending a function of time towards the future
 on the basis of the (assumed to be) known history.
-Let $y_t(\theta):=y(t+\theta)$ with $\theta \in [-\tau,0]$ be the history of the unknown function, which also represents the state, a delay equation can then be defined as $y'(t)=F(y_t), t \geq 0$ where the state space is $X=C([-\tau, 0]; {\rm I\!R}^d)$. Note that state $y_t$ is an infinite-dimensional object (a function) \cite{diekmann2012delay}.
+Let $y_t(\theta):=y(t+\theta)$ with $\theta \in [-\tau,0]$ be the history of the unknown function, which also represents the state, a delay equation can then be defined as 
+\begin{equation} 
+y'(t)=F(y_t), \;\;\; t \geq 0
+\end{equation} 
+where the state space is $X=C([-\tau, 0]; {\rm I\!R}^d)$. Note that state $y_t$ is an infinite-dimensional object (a function) \cite{diekmann2012delay}.
 \newline 
 \newline 
 For simplicity only finite delays will be hereby considered, i.e. the function $F$ may depend only on a finite segment of the past history of the unknown function \cite{diekmann2012delay}.\newline
@@ -234,7 +240,7 @@ y'(t)=F(y_t),   \;\;\; t\geq0\\
 y(\theta)=\psi(\theta), \;\; \theta \in [-\tau,0]
 \end{cases}\,.
 \end{equation}
-For what concerns the IVP, the theorem of existence and uniqueness of the solution is still valid.
+For what concerns the IVP, the theorem of existence and uniqueness of the solution is still valid. %inserisci riferimento a dieckmann
 A first useful distinction, that will be helpful in Chapter \ref{cap7}, is distinguishing between discrete and distributed delays. The first kind of delay takes the form of the unknown function at time $t$ minus some positive delay term and as such they refer to values of the unknown function at single points in the history of the function itself (e.g. $y(t-\tau_1)$), while distributed delays refer to an interval of values of the function and they are represented by the unknown function inside an integral with the delay term being the integration variable (e.g. $\int_{-\tau}^{0}{y(t+\theta)}{d\theta}$).\newline
 For example the following equation, where $\tau_1$ is a parameter, presents two discrete delays and $\tau=\max\{\tau_1,1\}$:
 \begin{equation} 
@@ -536,7 +542,7 @@ The opportunity of this internship and the work done helped me in gaining a bett
 
 \section{Future extensions}
 
-The system has been extended keeping in mind that other eventual extensions may take place. For example nested integrals or state dependent delay equations (up to some level of nesting) aren't supported yet, but in future these features could be supported and properly menaged by a more general extension of MatCont.
+The system has been extended keeping in mind that other eventual extensions may take place. For example nested integrals or state dependent delay equations (up to some level of nesting) aren't supported yet, but in future these features could be supported and properly managed by a more general extension of MatCont.
 The most intuitive way to extend the syntax presented in \ref{syntax} to allow the insertion of state dependent delay equations would be to let the user write them in a form like the following: \verb| y'=y[y[t-TAU]]| where this string represents the equation $y(t)'=y(y(t-\tau))$, so by expressing nested delay dependencies also with square brackets.
 \newline
 Another possible future integration more related to the GUI and the User experience itself, may be the automatic recognition of the system type once inserted, by doing so, the user wouldn't need to select whether the system inserted is described by ODEs only, or by delay equations. This will bring the GUI even closer to the standard MatCont's GUI.
