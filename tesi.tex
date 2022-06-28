@@ -53,7 +53,7 @@ The internship has been focused on the development of an extension of the graphi
 The aim is to provide a user-friendly GUI to study dynamical systems described by delay differential equations (DDEs),  which arise in many application fields, i.e. control theory, ecology and epidemiology.
 The thesis is organized as follows.
 \newline In Chapter \ref{cap2} after a brief introduction on differential equations and dynamical systems we introduce the discretization approach, which is the theoretical basis of the MatCont extension, to approximate DDEs by a system of ODEs.\newline
-Chapter \ref{cap6} we describe the fundamental aspect of the current version of MatCont's GUI and how it works while in in Chapter \ref{cap7} we will focus on the new capabilities of the extended version of the extended version of MatCont, what are the new capabilities of this software and how the development has been carried out. Finally in Chapter \ref{conclusions} we conclude with some remarks on the future additional tools to implement to analyze the dynamics of renewal equations too.
+Chapter \ref{cap6} we describe the fundamental aspects of the current version of MatCont's GUI and how it works while in in Chapter \ref{cap7} we will focus on the new capabilities of the extended version of MatCont, what are the new capabilities of this software and how the development has been carried out. Finally in Chapter \ref{conclusions} we conclude with some remarks on the future additional tools to implement to analyze the dynamics of renewal equations too.
 \newline
 \newline
 The work done and described in Chapter \ref{cap7} will also be presented at the \emph{17th IFAC Workshop on Time Delay Systems (TDS)}, September 2022 in Montreal, Canada. 
@@ -119,14 +119,14 @@ y'(t)=F(y(t)),\;\;\; t \geq 0\\
 y(t_0)=y_0 \\
 \end{cases}\,.
 \end{equation}
-which under suitable regularity assumptions on the right hand side $F$ has a unique solution $y(t)=\phi^t(y_0)$, for $t \in [0,t_f]$. Moreover it can be proven for \eqref{IVPode} that the solution continuously depends on the initial value $y_0$ \cite{chicone}.The eqaution \ref{odeeq} defines a dynamical system where $y(t) \in  {\rm I\!R}^d$ is the state at time $t$, $X \in {\rm I\!R}^d$ is the state space and $T=[0,tf]$. Note that the state space is ${\rm I\!R}^d$ so the equation \eqref{odeeq} defines a finite-dimensional dynamical system.
+which under suitable regularity assumptions on the right hand side $F$ has a unique solution $y(t)=\phi^t(y_0)$, for $t \in [0,t_f]$. Moreover it can be proven for \eqref{IVPode} that the solution continuously depends on the initial value $y_0$ \cite{chicone}.The equation \ref{odeeq} defines a dynamical system where $y(t) \in  {\rm I\!R}^d$ is the state at time $t$, $X \in {\rm I\!R}^d$ is the state space and $T=[0,tf]$. Note that the state space is ${\rm I\!R}^d$ so the equation \eqref{odeeq} defines a finite-dimensional dynamical system.
 \newline
 A trajectory of a solution of an IVP consists of following set:
 \begin{equation} 
 \{(t,y(t)): t \in T\}
 \end{equation}
 %modifica
-Related to this concept, one of the first geometric visualizations for ODEs is the trajectory diagram. In relation to a given IVP, it presents on one of its axes the independent variable, and on the other the component considered, for what concerns systems of ODEs (with $d > 1$) usually each component ($y_i$, unknown function) is considered separately in a different diagram. This diagram in realtion to an ODE presents the related vector a vector field (i.e. an assignment of a vector to each point in a given space), where at each point, the slope of the corresponding vector represents the value of the first derivative of the unknown function at that specific point. This geometric visualization allows to qualitatively study different IVPs without analytically solving them, giving insights on the problem \cite{chicone}. In Figure \ref{fig:malthus} and \ref{fig:logistic} we show an example of these diagrams in the case of two scalar ($d=1$) equations. In the following two examples the solutions can be calculated exactly but this is not always possible, for this reason usually numerical softwares and integrators are used (i.e. MATLAB).
+Related to this concept, one of the first geometric visualizations for ODEs is the trajectory diagram. In relation to a given IVP, it presents on one of its axes the independent variable, and on the other the component considered, for what concerns systems of ODEs (with $d > 1$) usually each component ($y_i$, unknown function) is considered separately in a different diagram. This diagram in relation to an ODE presents the related vector field (i.e. an assignment of a vector to each point in a given space), where at each point, the slope of the corresponding vector represents the value of the first derivative of the component considered at that specific point. This geometric visualization allows to qualitatively study different IVPs without analytically solving them, giving insights on the problem \cite{chicone}. In Figure \ref{fig:malthus} and \ref{fig:logistic} we show an example of these diagrams in the case of two scalar ($d=1$) equations. In the following two examples the solutions can be calculated exactly but this is not always possible, for this reason usually numerical softwares and integrators are used (i.e. MATLAB).
 \newline
 \begin{exmp} 
 
@@ -135,7 +135,7 @@ The (continous)\footnote{its discrete counterpart is described by the recursive 
 \label{malthuseq}
 y'(t)=ry(t),\;\;\; t \geq 0\\
 \end{equation} 
-It is a linear autonomous first order ODE in which $r$ represents a parameter, that can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)b(y)$}.\newline
+It is a linear autonomous first order ODE, in which $r$ represents a parameter, that can be solved analytically by separation of variables\footnote{A procedure for solving ODEs that can be rewritten as $y'(t)=a(t)b(y)$}.\newline
 The general solution of the equation is $\phi^t(y_0)=y_0 e^{rt}$ for $t \geq 0$ where $y_0$ is the initial value chosen for $y(0)$.\newline
 An equilibrium, a constant solution on the domain, for the equation (regardless the value of the parameter $r$) is obtained with the initial value $y_0=0$ at $t_0=0$. Plotting the solution of the relevant IVP (with different values of $r$) will always result in a straight line on the trajectory plane.
 
@@ -151,10 +151,10 @@ This model describes the evolution of a population of individuals where the para
 The general solution of the equation \ref{logisticEQ} (where $y_0$ is the value of $y(0)$ in the related IVP) can be obtained by separation of variables:\newline
 \begin{equation}  
 \label{logisticEQsol}
-\phi^t(y_0)=\frac{K}{1+(\frac{K}{y_0}-1)e^{-r(t)}} cambia t>=0
+\phi^t(y_0)=\frac{K}{1+(\frac{K}{y_0}-1)e^{-r(t)}},\;\;\; t \geq 0\\
 \end{equation}
 
-The system presents two equilibria: $e_0=0$ and $e_1=K$. For what concerns positive values of $r$, looking at Figure \ref{fig:logistic} it can be seen that all the solutions approach to $e_1$ ($e_1$ it is asymptotically stable) while they move avay from the trivial equibirum ($e_0$ is asymptotically unstable). 
+The system presents two equilibria: $e_0=0$ and $e_1=K$. For what concerns positive values of $r$, looking at Figure \ref{fig:logistic} it can be seen that all the solutions approach to $e_1$ (it is asymptotically stable) while they move away from the trivial equilibrium ($e_0$ is asymptotically unstable). 
 \end{exmp}
 
 %Another distinction can be made on whether or not the relation describing the equation depends not only on the function but also on the independent variables of the function. In the case the relation doesn't depend on the independent variables the differential equation is said to be \emph{autonomous}.\newline
@@ -209,8 +209,8 @@ The system presents two equilibria: $e_0=0$ and $e_1=K$. For what concerns posit
 
 The two trajectory diagrams in Figure \ref{fig:malthus} and \ref{fig:logistic} are numerically obtained. They show two solutions of the respective \eqref{malthuseq} and \eqref{logisticEQ} initial value problems each, with $y(t_0=0)=1$ and $y(t_0=0)=0$ for the Malthus equation and $y(t_0=0)=1$ and $y(t_0=0)=1$ for the Logistic equation.
 \newline
-Two other fundamental concepts are the orbit of a solution of an ODE and the phase portrait. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value is assumed by the solution in the interval (i.e. ${(y(t)): t \in T}$) \cite{chicone}. On the other hand the phase portrait is a partitioning of the state space into orbits \cite{kuznetsov}.
-For what concerns ODEs defined as \ref{odeeq} also the \emph{phase} or \emph{orbit} plane is presented, this plane present on its axes some (two or three, according to the number of axes) of the solutions of the system. Since $d$ may be greater than three more phase planes can be presented for a system (depending on the solutions taken into account). This plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
+Two other fundamental concepts are the orbit of a solution of an ODE and the phase portrait. An orbit in an interval (of the independent variable) can be defined as a subset of the state space such that each value is assumed by the solution in the interval (i.e. $\{(y(t)): t \in T\}$) \cite{chicone}. On the other hand the phase portrait is a partitioning of the state space into orbits \cite{kuznetsov}.
+For what concerns ODEs defined as \ref{odeeq} also the \emph{phase} or \emph{orbit} plane is presented, this plane present on its axes some (two or three, according to the number of axes) of the solutions of the system. Since $d$ may be greater than three, more phase planes can be presented for a system (depending on the solutions taken into account). This plane doesn't present the independent variable axis (e.g. the time axis), allowing to study the dynamics of a system independently from the time perspective (i.e. study the orbits).
 \newline
 From the phase plane of a given IVP (with proper initial conditions) we can observe curves (i.e. single orbits) that show some interesting properties, for example closed curves and single points denote special orbits, respectively referred to as a \emph{periodic orbit} and a \emph{steady state} or an \emph{equilibrium}. In Chapter \ref{stability} the related concepts of stability and bifurcation are briefly discussed. The phase diagram can also be plotted for an  ODE with $d=1$, but this will result in a one dimensional line.\newline
 
@@ -222,101 +222,115 @@ From the phase plane of a given IVP (with proper initial conditions) we can obse
 
 \section{Delay differential equations}
 
-Delay differential equations can be seen as a generalization of ODEs and in the mathematical modelling context are crucial to describe certain phenomena not representable by ODEs. With reference to \cite{diekmann2012delay} a delay equation is a rule for extending a function of time towards the future
-on the basis of the (assumed to be) known history.
-Let $y_t(\theta):=y(t+\theta)$ with $\theta \in [-\tau,0]$ be the history of the unknown function, which also represents the state, a delay equation can then be defined as 
-\begin{equation} 
+With reference to \cite{diekmann2012delay} {\it
+“a delay equation is a rule for extending a function of time towards the future on the basis of the (assumed to be) known history”}.
+Let $y$ denote a function of time, then the history function is defined as:
+
+\begin{equation}
+y_t(\theta)=y(t+\theta),\;\;\;  \theta \in [-\tau,0]
+\end{equation}
+where $\tau >0$ is the bounded delay and $[-\tau,0]$ is the delay interval. 
+A DDE is defined as:
+\begin{equation}\label{DDE}
 y'(t)=F(y_t), \;\;\; t \geq 0
-\end{equation} 
-where the state space is $X=C([-\tau, 0]; {\rm I\!R}^d)$. Note that state $y_t$ is an infinite-dimensional object (a function) \cite{diekmann2012delay}.
+\end{equation}
+where $F: C([-\tau, 0]; {\rm I\!R}^d) \to {\rm I\!R}^d$ is a nonlinear map \cite{diekmann2012delay}.
 \newline 
 \newline 
-For simplicity only finite delays will be hereby considered, i.e. the function $F$ may depend only on a finite segment of the past history of the unknown function \cite{diekmann2012delay}.\newline
-In order to find a specific solution to a first order delay equation differently from what happens with an ODE, it's not sufficient to specify a single initial value, but an entire function on the interval $[-\tau,0]$ where $\tau$ is the maximum delay in the equation is required. An IVP will then result in a system resembling:
-\begin{equation} 
-\begin{cases}
+A first useful distinction, that will be helpful in Chapter \ref{cap7}, is distinguishing between discrete and distributed delays. In the first case we have that $F(y_t)= f(y_t(\tau_1), y_t(\tau_2),…,)$ with $0 \leq \tau_1 < \tau_2<…\leq \tau$, while an example of DDEs with distributed delay is $F(y_t)=\int_{-\tau}^{0}{f(y(t+\theta))}{d\theta}$.
+\newline
+In order to define an IVP for \eqref{DDE} it’s not sufficient to specify an initial vector, but it is necessary to give an initial function $\psi$. So an IVP reads as: 
+\begin{equation}
 \label{ddesystem}
+\begin{cases}
 y'(t)=F(y_t),   \;\;\; t\geq0\\
-y(\theta)=\psi(\theta), \;\; \theta \in [-\tau,0]
+y(\theta)=\psi(\theta), \;\; \theta \in [-\tau,0]\\
 \end{cases}\,.
 \end{equation}
-For what concerns the IVP, the theorem of existence and uniqueness of the solution is still valid. %inserisci riferimento a dieckmann
-A first useful distinction, that will be helpful in Chapter \ref{cap7}, is distinguishing between discrete and distributed delays. The first kind of delay takes the form of the unknown function at time $t$ minus some positive delay term and as such they refer to values of the unknown function at single points in the history of the function itself (e.g. $y(t-\tau_1)$), while distributed delays refer to an interval of values of the function and they are represented by the unknown function inside an integral with the delay term being the integration variable (e.g. $\int_{-\tau}^{0}{y(t+\theta)}{d\theta}$).\newline
+Under suitable assumption of $F,$ it can be proved that \eqref{ddesystem} has a unique continuous solution in $[-\tau,t_f]$ \cite{diekmann2012delay}. 
+A DDE defines a infinite-dimensional dynamical system where the state at time $t\geq 0$ is the history function $y_t$ and the state space is $X= C([-\tau, 0]; {\rm I\!R}^d)$.
 For example the following equation, where $\tau_1$ is a parameter, presents two discrete delays and $\tau=\max\{\tau_1,1\}$:
 \begin{equation} 
 z'(t)=z(t-1)+z(t-\tau_1) 
 \end{equation}
 \section{Stability and bifurcations}
 \label{stability}
-The idea of stability of a solution (given an initial point) is both rigorously and intuitively described in \cite{chicone}, it can be intuitively defined as: the property that makes solutions near to the considered solution remain relatively close as the system evolves. On the other hand, if a solution isn't stable it is said to be unstable.
-Another related concept is the asymptotic stability of a solution, which can intuitively be described as the characteristic such that as time goes to infinity, the distance between the solution and another one obtained by starting with another (relatively close) initial point goes to zero.
+In terms of differential equations, stability concerns the analysis of the effect of small perturbations on a given solution \cite{chicone}.
+Intuitively a solution is said to be stable if any other solutions of the differential equation close to it remains close to it as the system evolves. If a solution doesn’t have this property it is called unstable.
+Moreover a stable solution is asymptotically stable if distance between the given solution and the solutions close to it approaches zero as time goes to infinity. From the point of view of dynamical systems, the study of stability properties of equilibria and periodic solutions are important tasks.
 \newline\newline
-When taking into consideration systems depending on one or more parameters such as \eqref{malthuseq} it can be studied how changes in the value of a single parameter affect the solution of the system itself.
-These systems when described by first order ODEs can be represented by the generic equation:
-\begin{equation} 
-y'(t)=F(p,y(t)), \;\;\; t \geq 0 
+ When taking into account differential equations
+ depending on one or more parameters such as \eqref{malthuseq}, it is interesting to study when a small change of the value of one parameter causes a “qualitative” change in the behavior of the system. Such values of the parameters are known as “bifurcation”
+ points. Depending on which aspect of the system's solution changes, they can be classified into different classes as described in \cite{kuznetsov}. For instance a Hopf bifurcation is a critical value of the parameter where an equilibrium loses its stability
+ and a stable periodic orbit arises.  
+ \newline
+We consider differential equations which depend on parameters defined as: 
+\begin{equation}
+y'(t)=F(p,y(t)), \;\;\; t \geq 0
 \end{equation}
-
 \vspace{0.8em}
-$p \in {\rm I\!R}^m$ represents the vector of the $m$ parameters presented by $y(t)$, only real value parameters are being considered in this thesis.\newline 
-The graph showing how changes in the parameter change (qualitatively) the behavior of the solutions is the \emph{bifurcation diagram} \cite{chicone} and it can be represented as a Euclidean plane presenting on an axis the parameter chosen for the bifurcation analysis and on the other axis the coordinates for the orbit diagram of the system.
-\newline
-A bifurcation could be described as the values of a considered parameter at which changes in the value of the parameter correspond to qualitative changes in the behavior of the solution. Depending on which aspect of the system's solution changes, bifurcation points can be classified into different classes as described in \cite{kuznetsov}. An example may be the Hopf bifurcation: A value of the considered parameter at which one equilibrium changes stability and a limit cycle\footnote{An isolated and closed curve which other orbits approach to or are repelled by it as time progresses} arises.
+where $p \in {\rm I\!R}^m$ represents the vector of
+the $m$ parameters.
+ \newline
+As reported in the introduction, MatCont is a collection of Matlab routines for
+ the stability and bifurcation analysis of parametrized ODEs. It is used to study dynamical systems defined by ODEs, while \ref{why} other softwares such as DDEBiftool, can deal with dynamical systems defined by DDEs. These softwares though, are usually less complete than their ODE counterparts. For example the method presented (from \cite{DDEdisc}) in section \ref{back} allows also to deal with distributed delays making possible for the user to study different kinds of systems, this is not the case with some softwares for DDEs.
+%ddebiftool usa solo ritardi discreti. con questo metodo.
+\subsubsection{Why discretizing to an ODE system}
+\label{why}
+%modifica sotto stability
+In the next chapter a technique to study DDE systems by approximating them with an ODE system is recalled from \cite{DDEdisc}. There are two main reasons behind the discretization of a dynamical system described by delay equations to an ODE system:
+\begin{itemize}
+\item We are only able to study with the help of a computer finite dimensional objects and it wouldn't be possible to deal with the original problem since a DDE describes infinite-dimensional dynamical system. 
+\item While a few softwares to carry out bifurcation analysis of delayed equations exist (for example DDEBiftool which can treat DDEs with discrete and state dependent delays), softwares for the study of ODE systems are generally more complete and the methods utilized more known.
+\end{itemize}
+
 
 
 \section{From DDEs back to ODEs }
-
-The first step to discretize a delay equation to a system of ODEs is to rewrite a delay differential equation as an abstract differential equation. The generic IVP \ref{ddesystem} is equivalent to the following abstract IVP \cite{DDEdisc}:
+\label{back}
+As the first step to derive a system of ODEs from a system of DDEs, we rewrite the DDE as an abstract differential equation on the state space $X$, i.e.:
 \begin{equation} 
-\begin{cases}
 \label{adesys}
 v'(t)=A_F(v(t)),  \;\;\; t\geq0\\
-v(0)=\psi,
-\end{cases}\,.
 \end{equation}
-where $A_F$ is the generator associated to the semigroup generated by the solution operators $\phi$ parametrized in $\psi$.\newline
-Given an IVP, the solution operators $\phi$ parametrized in $\psi$ means the operators are not dependent on a single initial state $x_0$ (i.e. the state at time t is described by $\phi^t(x_0)$) but on a whole function $\psi$ (i.e. the state at time t will depend on the parameter $\psi$, and will be $\phi^t(\psi) $). $A_F(\psi)$ can be defined as the limit as time goes to zero of the difference of evolution operator $\phi$ considered at the time variable of the limit and $\psi$, divided by the time variable. $A_F(\psi)$ is then by definition $\psi'$.
-Consider now $M \in {\rm I\!N}\backslash\{0\}$ distinct points in $[-\theta,0)$ and a last point equal to 0, for example the $M+1$ Chebyshev extrema\footnote{real values in [-1,1] which can be calculated as $x_k=cos(\frac{k}{n} \pi), k \in [1,n]$ where $x_k$ is the $k$-th extrema and $n$ is the number of nodes needed.} in $[-\theta,0]$ and let $d$ be the dimension of the original system. The idea is to approximate the state to a finite dimensional object by representing it through the polynomial interpolation on the nodes. The space $X_M=(R^{d(M+1)})$ is the discretization of the state space $X$ of the original system of index $M$, every state $x \in X$ is now represented by a vector $x_M \in X_M$ with the components of the vector denoting the state of each of the $d$ equations at the instant specified by the corresponding node.
-The reconstruction operator $R_M$ associates to a given vector in $X_M$ the $M$-degree polynomial in $X$ interpolating the values of the vector in the respective considered points. 
-The approximated state will then be described by:
-\begin{center}
-\vspace{-1.2em}
-\[R_M(x_M)(\theta)=\sum_{i=0}^{M} \ell_{M,i}(\theta)\;x_{M,i},  \;\;\;\;\; \theta  \in [-\tau, 0]\]
-\vspace{0.0001em}
-\end{center}
-Where $x_{M,i}$ is the $i$-th component of $x_M$ and $\ell_{i,M}$ \cite{DDEdisc} are the Lagrange polynomials considered on the M+1 points chosen, i.e.:
-\[\ell_{M,i}(\theta) = \prod_{k=0, k \neq i}^{M} \frac{\theta-\theta_{M,k}}{\theta_{M,i}-\theta_{M,k}},\;\;\;\;\; i=0,1,...,M\] 
+where $A_F$: $dom(A_F) \subset X$ $\to X$ the infinite-dimensional operator called generator \cite{DDEdisc} given by: 
+\begin{equation} 
+A_F(\psi)=\psi',\;\;\;
+dom(A_F)=\{ \psi \in X : \;\psi' \in X,\; \psi'(0)=F(\psi)\}
+\end{equation} 
+The idea is to approximate the state $v(t)$ with its interpolating polynomial at selected nodes in the delay interval, and to apply the operator $A_F$ to it. Note that the interpolating polynomial is described by the value of the $v(t)$  at the interpolating nodes. 
+Given the discretization parameter $M \in {\rm I\!N}\backslash\{0\}$, we select now the $M+1$ Chebyshev extrema on the interval $[-\theta,0]$: $\theta_M= - \tau <...<\theta_0=0$. 
 \newline
-Then $F_M$, defined as $F(R_M(x_M))$ with $x_M \in X_M$, approximates $F$ \ref{ddesystem}. The corresponding discretization of $A_F$ of index $M$ is the operator $A_{F,M}$ defined as $A_{F,M}(y_M)=(F_M(x_M),\Upsilon_M)$ where $\Upsilon_{M,i}= \frac{d}{d\theta_i}R_M(x_M)(\theta_i) $ for $i=1...M$. The abstract differential equation can be seen as an ODE on $X_M$. The abstract IVP \eqref{adesys} can be turned into:
+By defining the restriction operator:
+\begin{equation} 
+R_M(\psi)=(\psi(\theta_1);...;\psi(\theta_M);) \in {\rm I\!R}^{d(M)}, \; \psi \in X
+\end{equation}
+and the prolongation operator:
+\begin {equation}
+P_M(\Psi_M)(\theta)=\sum_{i=0}^{M} \ell_{M,i}(\theta)\;\Psi_{M,i},  \;\;\;\;\; \theta  \in [-\tau, 0], \; \Psi_{M} \in R^{d(M+1)}
+\end{equation}
+we can construct the finite dimensional operator on ${\rm I\!R}^{d(M+1)}$ given by:  
+\begin{equation} 
+A_{F,M}(\Psi_M)=(F(P_M(\Psi_M));R_M'(P_M(\Psi_M)))
+\end{equation}
+Finally the abstract differential equation \eqref{adesys} is turned into the following ODE:
 \vspace{0.5em}
 \begin{equation}
-\begin{cases}
 \frac{d}{dt}(v_M(t))=A_{F,M}(v_M(t)),  \;\;\; t\geq0\\
-v_M(0)=x_M,
-\end{cases}\,.
 \end{equation}
 \vspace{0.5em}
-The initial IVP is approximated by an ODE IVP of dimension $d\cdot(M+1)$ equations. 
-
-\subsubsection{Why discretizing to an ODE system}
-
-There are two main reasons behind the discretization of a dynamical system described by delay equations to an ODE system:
-\begin{itemize}
-\item We are only able to study with the help of a computer finite dimensional objects and it wouldn't be possible to deal with the original problem since the operator $A_F$ mentioned in the previous paragraph is infinite-dimensional. 
-\item While a few software to carry out bifurcation analysis of delayed equations exist (for example DDEBiftool which can treat DDEs with discrete and state dependent delays), softwares for the study of ODE systems are generally more complete and the methods utilized more known.
-\end{itemize}
-The presented technique allows also to deal with distributed delays making possible for the user to easily study different kinds of systems.
+which dynamics mimics the dynamics of the original system.
 
  
 
 \chapter{A brief introduction to MatCont}
 \label{cap6}
-MatCont is a software, based upon MATLAB, that provides functions and a graphic user interface to study the behavior of continuous dynamical systems defined by ODEs, particularly for what concerns the bifurcation analysis\cite{documentazione}.
+MatCont is a software, based upon MATLAB, that provides routines and a GUI to study the behavior of continuous dynamical systems defined by ODEs, particularly for what concerns the bifurcation analysis\cite{documentazione}.
 \newline
-The GUI and functions provided are independent, since the functionalities of MatCont can also be used from MatLab's command line.
+The GUI and routines provided are independent, since the functionalities of MatCont can also be used from MATLAB's command line.
 \newline
 In the following paragraphs the main aspects of MatCont's GUI and how the user could interact with it will be discussed, they should be kept in consideration when the extension part will be described in the next chapter.
-There will not be an exhaustive description of the parsing done by MatCont on the data inserted by the user since during the extension process new parsing functions were introducted without interfering with the pre-existing parsing.
+There will not be an exhaustive description of the parsing done by MatCont on the data inserted by the user since during the extension process new parsing routines were introducted without interfering with the pre-existing ones.
 %sposta su e ribadisci punto 2
 
 \section{Overview of the current MatCont GUI}
@@ -324,7 +338,7 @@ There will not be an exhaustive description of the parsing done by MatCont on th
 \subsection{MatCont Main Window}
 MatCont presents to the user a minimalist but rather intuitive interface. 
 The main window shown to the user is divided into three sections: \emph{Class}, \emph{Current System} and \emph{Current Curve}.
-\emph{Class} shows the user what type of system is currently loaded (at the moment only ODE), while \emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R from window). \emph{Current Curve} shows the curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section, information such as the properties of the initial point (i.e. ``initial point type'' ) and the method that's going to be executed when computing the curve (i.e. ``initializer'') are displayed.
+\emph{Class} shows the user what type of system is currently loaded (only ODE in the official version), while \emph{Current System} shows the user some basic information about the system itself, such as the name and how the derivatives will be computed (i.e. N for numerically, S for symbolically, and R for from window). \emph{Current Curve} shows the name of curve loaded and what is going to be computed, to give the user some recall of what the state of the software is. In this section, information such as the properties of the initial point chosen (i.e. ``initial point type'' ) and the method that's going to be executed when computing the curve (i.e. ``initializer'') are displayed.
 Above these three sections a toolbar menu is presented, from here the user can create a new system, load, edit or delete an already existing one. The type of the specified initial point can also be selected from this menu (e.g. a point without special properties, an equilibrium etc...) and the same is true for the curve to compute (e.g. an orbit, an equilibrium etc...). The user from this toolbar menu can also open an output window, both numerical and graphical (i.e. a Euclidean plane with two or three axes). The graphical output window will plot the graph (along the specified axes) of what is being computed, at the same time the numerical output window will show the values of the specified parameters, coordinates and other quantities of interest at every step of the computation. 
 
 \begin{figure}[htp]
@@ -345,12 +359,12 @@ By pressing on Select, System, New in the toolbar menu the user can have access 
 
 The name of the system must not contain spaces, while the coordinates and the parameters have to be separated by commas.
 \newline
-There is then a table with radio buttons that specify for each order of derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{From window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative symbolically (only if the Symbolic toolbox is installed in MatLab).
+There is then a table with radio buttons that specify for each order of derivative how it should be computed, \emph{Numerically} the value of the derivative will be numerically approximated, \emph{From window} will allow the user to insert the derivative for each equation in the system (this can be done to save time during the computation) and \emph{Symbolically} which will specify to compute the derivative symbolically (only if the Symbolic toolbox is installed in MATLAB).
 At the bottom of this window a larger text entry window is shown to allow the user to type the system in\label{systemWindow}. The syntax a system must satisfy requires writing every equation such that the left hand side presents just the first derivative of the coordinate considered. The time dependence is omitted and every operator must be explicitly written.
 
 \paragraph{What happens next?} Let for example the name of the new system inserted be ``NewTypedSystem'', when the user has correctly inserted all the required data and pressed the \emph{Ok} button MatCont will parse the data entered and create two files under the folder \emph{System} named ``NewTypedSystem.m'' and ``NewTypedSystem.mat'' \cite{documentazione}.
-These files are respectively a MatLab script file, and a binary file. The latter will contain a struct with 36 fields describing the system, such as the list of coordinates, the list of parameters, the equations in the system, the dimension of the system (i.e. the number of different coordinates) etc...\newline
-This binary file contains the struct that will be loaded in order to initialize the fields of the current struct representing the system when ``Edit'' or ``Load'' is pressed. The .mat file, on the other hand, contains functions such as \emph{fun\_eval} and \emph{init} that will be called by MatCont when performing different computations on the system.
+These files are respectively a MATLAB script file, and a binary file. The latter will contain a struct with 36 fields describing the system, such as the list of coordinates, the list of parameters, the equations in the system, the dimension of the system (i.e. the number of different coordinates) etc...\newline
+This binary file contains the struct that will be loaded in order to initialize the fields of the current struct representing the system when ``Edit'' or ``Load'' is pressed. The .mat file, on the other hand, contains routines such as \emph{fun\_eval} and \emph{init} that will be called by MatCont when performing different computations on the system.
 
 
 \begin{figure}[htp]
@@ -363,7 +377,7 @@ This binary file contains the struct that will be loaded in order to initialize 
 \newpage
 \subsection{Editing an existing system}
 By pressing on \emph{Select}, \emph{System}, \emph{Load/Edit/Delete System} the user will be presented a new window in which the list of existing systems and a list of buttons including \emph{Load}, \emph{Delete} or \emph{Edit} are shown. \newline 
-When the desired system is selected and ``Edit'' is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press the \emph{ok} button to confirm the changes made, now both the .m and .mat file will be overwritten with the new information and the system will be reloaded from them. Observe that all the previously computed and saved curves will be deleted by this process.
+When the desired system is selected and ``Edit'' is pressed the same window used to input the new system is shown, this time though, the .m file related to the system will be loaded and all the fields will be already filled with the system details. The user can then modify what needed and press the \emph{Ok} button to confirm the changes made, now both the .m and .mat file will be overwritten with the new information and the system will be reloaded from them. Observe that all the previously computed and saved curves will be deleted by this process.
 
 \section{The existing documentation}
 On the page from which MatCont can be downloaded it is possible to find some guides and tutorials that introduce MatCont to a new user\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/Tutorials7px/} by presenting a series of examples that can be repeated step by step. A manual also exists that provides more knowledge on how this software works and how it is structured\footnote{https://sourceforge.net/projects/matcont/files/Documentation/MatContODE/ManualAug2019.pdf}.	
@@ -377,14 +391,14 @@ In this chapter will be presented how the interface of MatCont has been extended
 
 \section{MatCont's extended capabilities}
 The capabilities of the extended MatCont version (i.e. what systems of differential equations can recognise) have been gradually increased since an iterative development process was used, see section \ref{iterative}.
-The systems that can be studied with MatCont now include all the previous ODE systems (referred in later paragraphs as \emph{standard ODE systems}) as well as DDE systems with one or more discrete delays, such as the Mackey-Glass equation, $y'(t)=\beta\cdot y(t-\tau)/(1+y(t-\tau)^n)-\gamma\cdot y(t)$ and systems with (finite) distributed delays as for example $y'(t)=\int_{-1}^{0} k\cdot y(t+z) dz$.
+The systems that can be studied with MatCont now include all the previous ODE systems (referred in later paragraphs as \emph{standard ODE systems}) as well as DDE systems with one or more discrete delays, such as the Mackey-Glass equation,$y'(t)=\beta\cdot y(t-\tau)/(1+y(t-\tau)^n)-\gamma\cdot y(t)$, and systems with (finite) distributed delays as for example $y'(t)=\int_{-1}^{0} k\cdot y(t+z) dz$.
 Both the integration extremes in distributed delays must fall within one of the following classes:
 
 \begin{itemize}
     \item A constant (e.g. $\int_{-3}^{0} y[t+z]  {dz}$).
     \item A parameter of the system (e.g. $\int_{-parameter}^{0} y[t+z]  {dz}$).
     \item An expression beginning with the time variable followed by another expression that can contain both constants, parameters and the time variable. Still, the coordinates in the integral must present a delay written as $Coordinate[timeVariable-expression].$ \end{itemize}
-During the development process some choices were made to allow the extended system to further be expanded easily in order to accept other families of delay equations, such as state dependent DDEs and renewal equations (REs).\newline
+During the development process some choices were made to allow the extended system to further be easily expanded in order to accept other families of delay equations, such as state dependent DDEs and renewal equations (REs).\newline
 REs were indeed supported in later development stages, allowing the system inserted to contain zero or more DDEs and ODEs alongside zero or more REs. All the REs must be specified after the DDEs or ODEs, since the evaluation of the right hand side of each equation is subdivided into two macro blocks containing DDEs/ODEs alongside REs. These later development stages regarding the introduction of REs in the software won't be treated in this thesis. 
 \newpage
 \section{Overview of the extended MatCont GUI}
@@ -410,7 +424,7 @@ An equation like $y'(t)=r \cdot y(t)(1-y(t-\tau))$ could be written in the appro
 \newline
 In later development stages distributed delay differential equations were added to the equations supported by the software.\newline An equation like $y'(t)=r\cdot \int_{-\tau}^{0} -y(t-DELAY)\,dDELAY $ can be inserted by typing \verb| y'=r * \int_{-TAU}^{0}{-y[t-delay]}{delay}|.
 The syntax used to insert integrals is very similar to the syntax used in \LaTeX.
-The $\backslash int\_$ string marks the beginning of the integral, then the the first pair of curly braces preceded by the underscore character contains the inferior integration extreme, the second pair of braces preceded by ``\^{ }'' contain the superior integration extreme, then the remaining two pair of braces delimit respectively the function to integrate and the integration variable.
+The $\backslash int\_$ string marks the beginning of the integral, then the the first pair of curly braces preceded by the underscore character contains the inferior integration extreme, the second pair of braces preceded by ``\^{ }'' contain the superior integration extreme, the remaining two pair of braces then delimit respectively the function to integrate and the integration variable.
 \newline
 As it can be seen from the examples above the dependencies of the coordinates on specific points in time must be specified with square brackets and contain as the first term of the expression the time variable, e.g. \texttt{y[t-1]} or \texttt{y[t-TAU]} (where in this latter case \texttt{TAU} is a parameter) followed by an expression describing the delay.
 
@@ -431,8 +445,8 @@ All the parameters will still be typed in the parameters entry whether they are 
 The second change the user can observe is that when inserting a system presenting delay equations there is no other option to compute the derivatives other than numerically. Indeed if the user inserted $n$ equations in the appropriate window the system would have $n$ equations from the end user perspective but, internally it will be represented by $n*(M+1)$ equations, where $M$ is the degree of the collocation polynomial. If the user could manually specify the derivatives it would need to write $n*(M+1)$ equations and not just $n$, breaking the abstraction of the discretization process implemented.
 \newline
 What the user can not see, at least from the graphical interface, is that the binary file associated to a system contains now three additional fields\label{sec:additionalFields}, one describing the type of the system and the other containing, if the system contains delay differential equations, the degree of the collocation polynomial and the degree related to the Clenshaw-Curtis quadrature.
-The script file containing the functions used by MatCont when studying the system, if it's related to a ``Delay equation'' system, is also substantially different when comparing it to the same file associated with an ODE system.
-The key idea used was based on the same principle adopted when refactoring a function: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
+The script file containing the routines used by MatCont when studying the system, if it's related to a ``Delay equation'' system, is also substantially different when comparing it to the same file associated with an ODE system.
+The key idea used was based on the same principle adopted when refactoring a method: the methods in the script were semantically modified while keeping the same signature as their ODE counterparts. By doing so it hasn't been proven necessary to modify every part of MatCont invoking those methods.
 
 \begin{figure}[htp]
 
@@ -468,7 +482,7 @@ This compatibility with previously created systems can easily be understood from
 \section{A deeper view of the parsing process} 
 
 The additional parsing process on the equations of the system, as can be observed from Figure \ref{fig:stateDiagramNew}, takes place only in the case of ``Delay equation'' systems, since otherwise the system won't contain neither discrete nor distributed delays.\newline
-This parsing phase is responsible for translating the equations in the system written by the user to the format the system will present in its discretized form in the \emph{fun\_eval} function in the relative .m file. The \emph{fun\_eval} function returns a vector containing the evaluation of the system with the specified state and value of the parameters.\newline
+This parsing phase is responsible for translating the equations in the system written by the user to the format the system will present in its discretized form in the \emph{fun\_eval} routine in the relative .m file. The \emph{fun\_eval} routine returns a vector containing the evaluation of the system with the specified state and value of the parameters.\newline
 The parsing process consist of two main phases, a first routine where each equation of the system is checked for delayed terms (since some equations in a  ``Delay equation'' system may not contain delays) with a regular expression like the one presented below:
 \begin{center}
 $"coordinateVar\; \backslash [\;timeVar \;\backslash W\;(\;\backslash [\;timeVar \;\backslash W\;[\;\widehat {}\; \backslash ]]*\backslash ]\;|\;[ \;\widehat {} \;  \backslash ]])*\backslash ]"$ 
@@ -490,8 +504,8 @@ The second routine of the parsing phase, also mainly based on the usage of regul
 \caption{A more detailed state diagram of the ``parsing the equations'' state of Figure \ref{fig:stateDiagramNew}}
 \label{fig:stateDiagramNewDetail}
 \end{figure}
-\newline There are also other secondary less complex routines that write in the .m file other sections of both the \emph{fun\_eval}, \emph{init} and other functions.\newline
-One of the routines mentioned is responsible for writing in the file some functions each returning a pre-computed matrix. For example one function returns the M+1\footnote{where M is the degree of the collocation polynomial} Chebyshev nodes in the interval $[-1,0]$.
+\newline There are also other secondary less complex routines that write in the .m file other sections of both the \emph{fun\_eval}, \emph{init} and other routines.\newline
+One of the routines mentioned is responsible for writing in the file some MATLAB functions each returning a pre-computed matrix. For example one MATLAB function returns the M+1\footnote{where M is the degree of the collocation polynomial} Chebyshev nodes in the interval $[-1,0]$.
 \newline \newline
 Another one of the secondary routines is responsible for writing in \emph{fun\_eval} an array identified by the name ``delayFunctions'' containing all the delays found in the system. The process used to find the delays is analogous to the one used during the first parsing phase. The array written in \emph{fun\_eval} will be used in every evaluation of the system to determine the maximum (without sign) delay and subsequently scale the Chebyshev nodes (used to interpolate the behavior of the solution in the interval $[-\tau_{max},0]$) from the interval $[-1,0]$ to $[-\tau_{max},0]$.
 
